@@ -5,6 +5,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../Constants.dart';
 import 'Buttons.dart';
 
 
@@ -87,6 +88,7 @@ class _ZikrPageState extends State<ZikrPage> {
 
 
     return Scaffold(
+      backgroundColor: Constants.primaryColor,
 
       extendBodyBehindAppBar: true,
 

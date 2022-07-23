@@ -24,7 +24,7 @@ class _EbookReaderState extends State<EbookReader> {
   var _box;
   @override
   void initState() {
-    _box =  box.read("arxaFon") ?? "white70";
+    _box =  box.read("arxaFon") ?? "white";
     _fontSize = box.read("font") ?? 15;
 
     switch(_box ){
@@ -105,8 +105,8 @@ class _EbookReaderState extends State<EbookReader> {
                           InkWell(
                             onTap: (){
                               setState((){
-                                box.write("arxaFon", "white70");
-                                _bacgroundColor = Colors.white70;
+                                box.write("arxaFon", "white");
+                                _bacgroundColor = Colors.white;
                               });
           },
                             child: Padding(

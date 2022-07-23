@@ -82,7 +82,7 @@ Widget topCardWidget() {
         ],
       ),
       Text(
-        'Hər bir irad və təkliflərinizi aşağıdakı əlaqə vasitələri ilə bizə göndərə bilərsiniz. Fikirləriniz bizim üçün önəmlidir.', textAlign: TextAlign.justify, textScaleFactor: 1.04,
+        'Hər bir irad və təkliflərinizi, tətbiqdə aşkarlanan texniki problemləri aşağıdakı əlaqə vasitələri ilə bizə göndərə bilərsiniz. Fikirləriniz bizim üçün önəmlidir.', textAlign: TextAlign.justify, textScaleFactor: 1.04,
         style: TextStyle(
           fontSize: 16,
 

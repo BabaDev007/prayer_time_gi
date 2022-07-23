@@ -64,7 +64,7 @@ class BookListDart with BookName{
     BookListDart(BookName().eyogul, BookName().Hocamiz , "https://www.gozelislam.com/uploads/files/2019-09/1568294071_ey-oul-elmihal-son.pdf", "assets/eyogul.png"),
     BookListDart(BookName().molitvennik, BookName().Hocamiz , "https://www.gozelislam.com/uploads/files/2019-09/1568380990_kniga-o-namaze.pdf", "assets/molitvennik.png"),
     BookListDart(BookName().azerbaycanOv, "", "https://www.gozelislam.com/uploads/files/2019-05/1559235919_kitab-2016.pdf", "assets/ovliyalar.jpg",),
-    BookListDart(BookName().sevgili, BookName().RamazanAyvalli , "http://www.hakikatkitabevi.net/public/book.download.php?view=1&type=PDF&bookCode=238", "assets/1558894510_sevgili.jpg",),
+    BookListDart(BookName().sevgili, BookName().RamazanAyvalli , "https://www.gozelislam.com/uploads/files/2019-05/1559235585_mybelovedprophet-az-1.pdf", "assets/1558894510_sevgili.jpg",),
     BookListDart(BookName().religiya, BookName().Hocamiz , "https://www.gozelislam.com/uploads/files/2019-09/1568380799_islam.pdf", "assets/religiya.png"),
     BookListDart(BookName().rehber, BookName().HasanYavas , "https://www.gozelislam.com/uploads/files/2019-06/1560017598_rehberlmihali.pdf", "assets/rehberilmihal.jpg",),
     BookListDart(BookName().qiyametveax, BookName().Hocamiz , "https://www.gozelislam.com/uploads/files/2019-05/qiyamet_ve_axiret.pdf", "assets/qvaaz.jpeg",),

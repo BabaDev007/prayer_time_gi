@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
+import 'package:prayer_time_gi/Constants.dart';
+import 'package:prayer_time_gi/Screens/HomeScreen/splashscreen.dart';
 import 'ThemeService/ThemeDataService.dart';
 
 
@@ -12,8 +13,10 @@ void main() async{
 
         SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
+          systemNavigationBarColor: Constants.primaryColor,
           statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
+          systemNavigationBarIconBrightness: Brightness.light
 
        ));
 
@@ -30,7 +33,7 @@ class PrayerTimeApp extends StatelessWidget {
       theme: ThemeService().lightTheme,
       darkTheme: ThemeService().darkTheme,
       themeMode: ThemeService().getThemeMode(),
-      home: HomeScreen(),
+      home: MyCustomSplashScreen(),
     );
   }
 }

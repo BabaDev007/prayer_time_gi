@@ -49,11 +49,11 @@ class _PrayerTimesState extends State<PrayerTimes> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.sunny_snowing, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "Sübh", style: TextStyle(color: Constants.primaryColor, fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Sübh", style: TextStyle(color: Constants.primaryColor, fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -73,11 +73,11 @@ class _PrayerTimesState extends State<PrayerTimes> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.sunny, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "Günəş", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Günəş", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -97,11 +97,11 @@ class _PrayerTimesState extends State<PrayerTimes> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(FontAwesomeIcons.solidSun, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "Zöhr", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Zöhr", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -121,11 +121,11 @@ class _PrayerTimesState extends State<PrayerTimes> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(FontAwesomeIcons.sun, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "Əsr", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Əsr", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -145,11 +145,11 @@ class _PrayerTimesState extends State<PrayerTimes> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.sunny_snowing, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "Axşam", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Axşam", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -170,11 +170,11 @@ class _PrayerTimesState extends State<PrayerTimes> {
 
                   children: [
                     Icon(FontAwesomeIcons.solidMoon, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "İşa", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İşa", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -184,6 +184,32 @@ class _PrayerTimesState extends State<PrayerTimes> {
                   ],
                 ),
               ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Divider(height: 0, thickness: 0.5,),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                  children: [
+                    Icon((Icons.nights_stay_rounded), color: Constants.primaryColor, size: 17,),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Gecə yarısı", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+
 
 
 
@@ -226,11 +252,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
 
-                    AutoSizeText(maxFontSize: 15 , "İşrak", style: TextStyle(color: Constants.primaryColor, fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İşrak", style: TextStyle(color: Constants.primaryColor, fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -250,11 +276,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "Kərahət", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Kərahət", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -274,11 +300,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "Əsr-i Sani", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Əsr-i Sani", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -298,11 +324,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "İsfirar", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İsfirar", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -322,11 +348,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "İştibak", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İştibak", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
@@ -347,11 +373,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
 
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(maxFontSize: 15 , "İşa-i Sani", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İşa-i Sani", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(maxFontSize: 15 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Icon(Icons.info_outline_rounded, size: 20, color: Constants.primaryColor,),
