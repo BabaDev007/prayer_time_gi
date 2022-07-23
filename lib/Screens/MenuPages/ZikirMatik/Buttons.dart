@@ -20,6 +20,7 @@ class _ZikrButtonState extends State<ZikrButton>
   @override
   Widget build(BuildContext context) {
     return  InkWell(
+      enableFeedback: false,
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
       onHighlightChanged: (value) {
