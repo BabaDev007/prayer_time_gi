@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prayer_time_gi/Screens/MenuPages/Books/PdfViewer.dart';
 import 'package:prayer_time_gi/Screens/Settings/SettingPage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
@@ -8,6 +9,7 @@ import '../../Constants.dart';
 import '../../PageTransition/PageTransition.dart';
 import '../MenuPages/AboutPrayerTimes/AboutPrayerTimes.dart';
 import '../MenuPages/Books/BookList.dart';
+import '../MenuPages/DiniBilgiler/DiniBilgiler.dart';
 import '../MenuPages/Esmail_Husna/EsmaScreen.dart';
 import '../MenuPages/Feedback/FeedbackPage.dart';
 import '../MenuPages/KompassScreen/qiblah_compass.dart';
@@ -115,7 +117,7 @@ class DrawerPage extends  Drawer {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
                         onPressed: (){
-                          Navigator.push(context, SizeTransition2(ZikrPage()));
+                          Navigator.push(context, SizeTransition2(DiniBilgiler()));
 
                         }, child:  Icon(FontAwesomeIcons.mosque, size: 30
                       , color: Constants.primaryColor ,) ),
@@ -131,7 +133,7 @@ class DrawerPage extends  Drawer {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
                         onPressed: (){
-                          Navigator.push(context, SizeTransition2(ZikrPage()));
+                          Navigator.push(context, SizeTransition2(BookReaderNamaz()));
 
                         }, child:  Icon(FontAwesomeIcons.starAndCrescent, size: 37
                       , color: Constants.primaryColor ,) ),
@@ -264,6 +266,7 @@ class DrawerPage extends  Drawer {
                           Navigator.push(context, SizeTransition2(FeedbackPage()));
                         }, child:  Icon(Icons.feedback_outlined, size: 30, color: Constants.primaryColor ,)),
                   ),),
+
 
 
 

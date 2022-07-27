@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreenBody/HomeScreenBody.dart';
 import '../../Constants.dart';
 import '../../PageTransition/PageTransition.dart';
+import '../MenuPages/KompassScreen/qiblah_compass.dart';
 import '../Settings/SettingPage.dart';
 import 'DraverPage.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
-import 'Widgets.dart';
 
 class HomeScreen extends StatefulWidget  {
   @override
@@ -50,6 +50,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
        centerTitle: true,
        actions: [
+         TextButton(child: CircleAvatar(
+           radius: 15,
+           backgroundColor: Colors.white,
+             child: Image.asset("assets/tasbeh.png", height: 20,)), onPressed: () {  Navigator.push(context, SizeTransition2(QiblahCompass())); },),
+
+         IconButton(icon: Icon(FontAwesomeIcons.kaaba, size: 18 ,), onPressed: () {  Navigator.push(context, SizeTransition2(QiblahCompass())); },),
 
          IconButton(onPressed: (
              ){

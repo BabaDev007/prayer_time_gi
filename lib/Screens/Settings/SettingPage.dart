@@ -25,8 +25,8 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void initState() {
-  c.isShowPrayerTime.value = box.read("prayertime") ?? false;
-  c.isShowHikmetliSoz.value = box.read("hikmet") ?? false;
+  c.isShowPrayerTime.value = box.read("prayertime") ?? true;
+  c.isShowHikmetliSoz.value = box.read("hikmet") ?? true;
     // TODO: implement initState
     super.initState();
   }
@@ -119,36 +119,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Divider(),
                           ),
-                          ListTile(  leading: Icon(Icons.mode_night_outlined,size: 20, color: Constants.primaryColor,),
-                            title: Text("Tema", style: TextStyle(fontWeight: FontWeight.w600, color: Constants.primaryColor),) ,
-                            subtitle: Text("Gecə və gündüz rejimi", textAlign: TextAlign.left,)
 
-                            , trailing: Switch(value: Get.isDarkMode, onChanged: (bool value) {
-                              setState((){
-                                ThemeService().changeThemeMode();
-
-                                  Get.showSnackbar(
-
-                                      GetSnackBar(
-
-borderRadius: 25,
-duration: Duration(seconds: 1),
-                                          message:"",
-                                          messageText: Center(
-                                            child: Text("Rejim aktivləşdi", style: TextStyle(
-                                                color: Constants.primaryColor
-                                            ),),
-                                          ),
-                                          // colorText: Colors.white,
-                                          snackPosition: SnackPosition.TOP,
-                                          backgroundColor: Colors.white
-                                      )
-                                  );
-
-
-
-                              });
-                            },),),
 
 
 

@@ -20,8 +20,11 @@ class EbookReader extends StatefulWidget {
 
 class _EbookReaderState extends State<EbookReader> {
   late EpubController _epubReaderController;
-
+  double _fontSize = 16;
+  var _bacgroundColor = Colors.white;
   var _box;
+  GetStorage box = GetStorage();
+
   @override
   void initState() {
     _box =  box.read("arxaFon") ?? "white";
@@ -66,10 +69,7 @@ class _EbookReaderState extends State<EbookReader> {
       _fontSize--;
     });
   }
-  double _fontSize = 16;
-  double _size = 16;
-  var _bacgroundColor = Colors.white;
-  GetStorage box = GetStorage();
+
 
 
   @override

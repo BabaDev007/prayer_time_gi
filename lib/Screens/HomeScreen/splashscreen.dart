@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
-
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 class MyCustomSplashScreen extends StatefulWidget {
   @override
   _MyCustomSplashScreenState createState() => _MyCustomSplashScreenState();
@@ -21,7 +21,6 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
   @override
   void initState() {
     super.initState();
-
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 3));
 

@@ -5,10 +5,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/splashscreen.dart';
 import 'ThemeService/ThemeDataService.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 
 
 void main() async{
+
   await GetStorage.init();
 
         SystemChrome.setSystemUIOverlayStyle(
@@ -23,11 +25,18 @@ void main() async{
   runApp( PrayerTimeApp());
 }
 
+
 class PrayerTimeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+builder: (context, child){
+  return MediaQuery(
+    data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+    child: child ?? Container(),
+  );
+},
       debugShowCheckedModeBanner: false,
       title: 'Gözəl İslam NamazApp',
       theme: ThemeService().lightTheme,
