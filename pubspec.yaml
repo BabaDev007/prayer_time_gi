@@ -38,7 +38,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash: any
   flutter_lints: any
   flutter_staggered_animations: any
   url_launcher: any
@@ -60,6 +59,7 @@ dev_dependencies:
   percent_indicator: any
   pdfx: ^2.2.0
   internet_file: any
+  connectivity_plus: any
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

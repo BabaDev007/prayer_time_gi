@@ -19,6 +19,8 @@ import '../MenuPages/ZikirMatik/ZikirMatik.dart';
 import '../MenuPages/İlahiler/IlahiList.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'Widgets.dart';
+
 
 class DrawerPage extends  Drawer {
 
@@ -107,7 +109,7 @@ class DrawerPage extends  Drawer {
                         }, child: SvgPicture.asset("assets/99.svg", color: Constants.primaryColor, width: 100, height: 50,) ),
                   ),),
                 GridTile(
-                  footer: Center(child: Text("Dini Bilgilər", style: TextStyle(
+                  footer: Center(child: Text("Dini Mövzular", style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: CupertinoColors.white, fontSize: 7
                   ),)),
@@ -117,7 +119,7 @@ class DrawerPage extends  Drawer {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
                         onPressed: (){
-                          Navigator.push(context, SizeTransition2(DiniBilgiler()));
+                          Navigator.push(context, SizeTransition2(Themes()));
 
                         }, child:  Icon(FontAwesomeIcons.mosque, size: 30
                       , color: Constants.primaryColor ,) ),

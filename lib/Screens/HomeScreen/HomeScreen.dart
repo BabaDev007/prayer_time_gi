@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreenBody/HomeScreenBody.dart';
 import '../../Constants.dart';
 import '../../PageTransition/PageTransition.dart';
+import '../../StateManagement/StateManagement.dart';
 import '../MenuPages/KompassScreen/qiblah_compass.dart';
 import '../Settings/SettingPage.dart';
 import 'DraverPage.dart';
@@ -25,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
      textCancel: "Xeyr",
       textConfirm: "Bəli",
       onConfirm: (){
-        Get.back(result: true);
+        exit(0);
       },
       onCancel: (){
         Get.back(result: false);
@@ -36,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
+    final Controller c = Get.put(Controller());
 
     return WillPopScope(
         onWillPop: showExitPopup,
@@ -46,14 +50,19 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
       backgroundColor:  Constants.primaryColor,
      appBar: AppBar(
-       title: Title(color: Colors.white, child: Icon(Icons.mosque_outlined),),
+       title: Row(
+         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         children: [
+           IconButton(icon: Icon(Icons.chevron_left, size: 35,), onPressed: () { c.lastDay(); },),
+           Icon(Icons.mosque_outlined),
+           IconButton(icon: Icon(Icons.chevron_right, size: 35,), onPressed: () { c.nextDay(); },),
+
+         ],
+       ),
 
        centerTitle: true,
        actions: [
-         TextButton(child: CircleAvatar(
-           radius: 15,
-           backgroundColor: Colors.white,
-             child: Image.asset("assets/tasbeh.png", height: 20,)), onPressed: () {  Navigator.push(context, SizeTransition2(QiblahCompass())); },),
+
 
          IconButton(icon: Icon(FontAwesomeIcons.kaaba, size: 18 ,), onPressed: () {  Navigator.push(context, SizeTransition2(QiblahCompass())); },),
 

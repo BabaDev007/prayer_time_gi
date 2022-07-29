@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 class Constants{
@@ -12,7 +14,6 @@ class Constants{
   var scaffolColor = Colors.greenAccent.shade100;
   String compassLottiePath = "assets/kompass_lottie.json";
   String lottieasset = "assets/53164-light-dark-mode-button.json";
-
 
 }
 

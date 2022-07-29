@@ -1,8 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' as parser;
+
 class MyCustomSplashScreen extends StatefulWidget {
   @override
   _MyCustomSplashScreenState createState() => _MyCustomSplashScreenState();
@@ -17,10 +22,88 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
 
   late AnimationController _controller;
  late Animation<double> animation1;
+  GetStorage box = GetStorage();
+
+  var currentTime;
+  var url = Uri.parse("https://prayer-time-ws.herokuapp.com/api/dates/json/1.0/allDataYearly?indexOfCity=1425");
+
+  Future<void> getData()async{
+if(box.read("time") == null) {
+  var response = await http.get(url);
+
+  var json = response.body;
+  var jsonData = jsonDecode(utf8.decode(json.runes.toList()).toString());
+  if (response.statusCode == 200) {
+    currentTime = jsonData["data"];
+    box.write("time", currentTime);
+  }
+}  }
+  var bashliq;
+  var metin;
+
+  var isShow = false;
+  var pr;
+  var hs;
+  var hikmetliSoz;
+  var hikmet;
+  var _bashliq2;
+  var _link2;
+  var _metin2;
+  var _url = Uri.parse("https://www.gozelislam.com/");
+
+
+
+  Future<void> getHikmet() async {
+    var response = await http.get(_url);
+    final body = response.body;
+    final document = parser.parse(body);
+    var res = document.getElementsByClassName("top-block2").forEach((element) {
+      setState(() {
+        hikmetliSoz = element.children[0].children[2].text.toString();
+      });
+      box.write("hikmetlisoz", hikmetliSoz);
+    });
+  }
+
+  var _metin3;
+
+  Future<void> getMovzuDialog() async {
+    var _url = Uri.parse("https://www.gozelislam.com/");
+    var response = await http.get(_url);
+    final body = response.body;
+    final document = parser.parse(body);
+    var res = document.getElementsByClassName("costom4").forEach((element) {
+      setState(() {
+        _bashliq2 =
+            element.children[0].children[0].children[0].children[0].children[0]
+                .text.toString();
+        _metin2 = element.children[0].children[0].children[1].text.toString();
+      });
+      box.write("_metin2", _metin2);
+      box.write("_bashliq2", _bashliq2);
+      box.write("_link2",
+          element.children[0].children[0].children[0].children[0]
+              .attributes['href'].toString());
+    });
+    print(box.read("_link2"));
+  }
+
+  Future<void> getMovzuPage() async {
+    var _url = Uri.parse(box.read("_link2"));
+    var response = await http.get(_url);
+    final body = response.body;
+    final document = parser.parse(body);
+    var res = document.getElementsByClassName("blog-info").forEach((
+        element) async {
+
+
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 3));
 
@@ -34,23 +117,28 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
 
     _controller.forward();
 
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 1), () {
       setState(() {
         _fontSize = 1.06;
       });
     });
 
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 1), () {
       setState(() {
         _containerSize = 2;
         _containerOpacity = 1;
       });
     });
 
-    Timer(Duration(seconds: 4), () {
-      setState(() {
-        Navigator.pushReplacement(context, PageTransition(HomeScreen()));
-      });
+    Timer(Duration(seconds: 4), () async{
+      getMovzuPage();
+      getMovzuDialog();
+      getHikmet();
+     await getData();
+
+
+       Navigator.pushReplacement(context, PageTransition(HomeScreen()));
+
     });
   }
 

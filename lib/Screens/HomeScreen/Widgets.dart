@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Constants.dart';
@@ -10,7 +12,9 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import '../../Constants.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
+import '../../StateManagement/StateManagement.dart';
 class Stack1 extends StatelessWidget {
 
   @override
@@ -33,8 +37,21 @@ class PrayerTimes extends StatefulWidget {
 }
 
 class _PrayerTimesState extends State<PrayerTimes> {
+  var zor;
+  GetStorage box = GetStorage();
+
+
+
+
+  @override
+  void initState() {
+    zor = box.read("time");
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+    final Controller c = Get.put(Controller());
     return PhysicalModel(
       elevation: 4,
       borderRadius: BorderRadius.circular(10),
@@ -42,165 +59,189 @@ class _PrayerTimesState extends State<PrayerTimes> {
       child: Container(
 
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.sunny_snowing, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Sübh", style: TextStyle(color: Constants.primaryColor, fontSize: 20),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+          padding: const EdgeInsets.all(8.0),
+          child: Obx(()=>
+             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(Icons.add, color: Constants.primaryColor, size: 17,),
 
-                      ],
-                    )
-                  ],
+                      AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "İmsak", style: TextStyle(fontFamily: "Oswald" , color: Constants.primaryColor, fontSize: 20),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , zor['${c.difference}']['baseTime']['imsaq'].toString(), style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Divider(height: 0, thickness: 0.5,),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.sunny, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Günəş", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Divider(height: 0, thickness: 0.5,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(Icons.sunny_snowing, color: Constants.primaryColor, size: 17,),
+                      AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "Sübh", style: TextStyle(fontFamily: "Oswald" , color: Constants.primaryColor, fontSize: 20),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "${zor['${c.difference}']['baseTime']['sabah']}", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
 
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Divider(height: 0, thickness: 0.5,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(Icons.sunny, color: Constants.primaryColor, size: 17,),
+                      AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "Günəş", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "${zor['${c.difference}']['baseTime']['gunes']}", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+
+                        ],
+                      )
+                    ],
+                  ),
+
+                ), const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Divider(height: 0, thickness: 0.5,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(FontAwesomeIcons.solidSun, color: Constants.primaryColor, size: 17,),
+                      AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "Zöhr", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "${zor['${c.difference}']['baseTime']['gunorta']}", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Divider(height: 0, thickness: 0.5,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(FontAwesomeIcons.sun, color: Constants.primaryColor, size: 17,),
+                      AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "Əsr", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "${zor['${c.difference}']['baseTime']['ikindi']}", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Divider(height: 0, thickness: 0.5,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(Icons.sunny_snowing, color: Constants.primaryColor, size: 17,),
+                      AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "Axşam", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "${zor['${c.difference}']['baseTime']['axsam']}", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Divider(height: 0, thickness: 0.5,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                    children: [
+                      Icon(FontAwesomeIcons.solidMoon, color: Constants.primaryColor, size: 17,),
+                      AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "İşa", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "${zor['${c.difference}']['baseTime']['yatsi']}", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Divider(height: 0, thickness: 0.5,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                    children: [
+                      Icon((Icons.nights_stay_rounded), color: Constants.primaryColor, size: 17,),
+                      AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "Gecə yarısı", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "${zor['${c.difference}']['extraTime']['midnight']}", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+
+                        ],
+                      )
+                    ],
+                  ),
                 ),
 
-              ), const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Divider(height: 0, thickness: 0.5,),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(FontAwesomeIcons.solidSun, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Zöhr", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
-
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Divider(height: 0, thickness: 0.5,),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(FontAwesomeIcons.sun, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Əsr", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
-
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Divider(height: 0, thickness: 0.5,),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.sunny_snowing, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Axşam", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
-
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Divider(height: 0, thickness: 0.5,),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                  children: [
-                    Icon(FontAwesomeIcons.solidMoon, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İşa", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
-
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Divider(height: 0, thickness: 0.5,),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                  children: [
-                    Icon((Icons.nights_stay_rounded), color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Gecə yarısı", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
-
-                      ],
-                    )
-                  ],
-                ),
-              ),
 
 
 
 
-
-            ],
+              ],
+            ),
           ),
         ),
-        height: Get.size.height,
-        width: Get.size.width/1.2,
+        height: Get.size.height/2.5,
+        width: Get.size.width/1.1,
 
       ),
     );
@@ -215,18 +256,34 @@ class PrayerTimes2 extends StatefulWidget {
 }
 
 class _PrayerTimes2State extends State<PrayerTimes2> {
+var zor;
+GetStorage box = GetStorage();
+
+var url = Uri.parse("https://prayer-time-ws.herokuapp.com/api/dates/json/1.0/allDataYearly?indexOfCity=1425");
+
+
+  @override
+  void initState() {
+    zor = box.read("time");
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final Controller c = Get.put(Controller());
     return PhysicalModel(
       elevation: 4,
       borderRadius: BorderRadius.circular(10),
       color: Colors.white,
       child: Container(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
+          padding: const EdgeInsets.all(10.0),
+          child: Obx(()=>Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
@@ -234,11 +291,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
 
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İmsak", style: TextStyle(color: Constants.primaryColor, fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "İşrak", style: TextStyle(fontFamily: "Oswald" , color: Constants.primaryColor, fontSize: 20),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , zor['${c.difference}']['extraTime']['israk'].toString(), style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
 
                       ],
                     )
@@ -255,33 +312,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İşrak", style: TextStyle(color: Constants.primaryColor, fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "Kərahət", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
-
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Divider(height: 0, thickness: 0.5,),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Kərahət", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , zor['${c.difference}']['extraTime']['kerahat'].toString(), style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
 
                       ],
                     )
@@ -298,11 +333,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Əsr-i Sani", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "Əsr-i Sani", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , zor['${c.difference}']['extraTime']['asri_sani'].toString(), style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
 
                       ],
                     )
@@ -319,11 +354,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İsfirar", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "İsfirar", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 ,zor['${c.difference}']['extraTime']['isfirar'].toString(), style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
 
                       ],
                     )
@@ -340,33 +375,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İştibak", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "İştibak", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
-
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Divider(height: 0, thickness: 0.5,),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                  children: [
-                    Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "İşa-i Sani", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , zor['${c.difference}']['extraTime']['istibak'].toString(), style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
 
                       ],
                     )
@@ -384,11 +397,33 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
 
                   children: [
                     Icon(Icons.add, color: Constants.primaryColor, size: 17,),
-                    AutoSizeText(minFontSize: 10, maxFontSize: 18 , "Təhəccüd", style: TextStyle(color: Constants.primaryColor,fontSize: 20),),
+                    AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "İşa-i Sani", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(minFontSize: 10, maxFontSize: 18 , "05:25", style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+                        AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , zor['${c.difference}']['extraTime']['isa_sani'].toString(), style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
+
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Divider(height: 0, thickness: 0.5,),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                  children: [
+                    Icon(Icons.add, color: Constants.primaryColor, size: 17,),
+                    AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , "Təhəccüd", style: TextStyle(color: Constants.primaryColor,fontSize: 20, fontFamily: "Oswald"),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AutoSizeText(minFontSize: 10, maxFontSize: c.isShowPrayerTime.value ? 15 : 50 , zor['${c.difference}']['extraTime']['midnight'].toString(), style: TextStyle(color: Constants.primaryColor, fontSize: 19, fontWeight: FontWeight.bold),),
 
                       ],
                     )
@@ -402,11 +437,11 @@ class _PrayerTimes2State extends State<PrayerTimes2> {
             ],
           ),
         ),
-        height: Get.size.height/3.3,
-        width: Get.size.width/1.2,
+
 
       ),
-    );
+        height: Get.size.height/2.5,
+        width: Get.size.width/1.1,));
   }
 }
 
@@ -682,6 +717,28 @@ class Themes extends StatefulWidget {
 
 class _ThemesState extends State<Themes> {
 
+  var _bashliq2;
+  var _metin2;
+  Future<void> getMovzuDialog() async {
+    var _url = Uri.parse("https://www.gozelislam.com/");
+    var response = await http.get(_url);
+    final body = response.body;
+    final document = parser.parse(body);
+    var res = document.getElementsByClassName("costom4").forEach((element) {
+      setState(() {
+        _bashliq2 =
+            element.children[0].children[0].children[0].children[0].children[0]
+                .text.toString();
+        _metin2 = element.children[0].children[0].children[1].text.toString();
+      });
+      box.write("_metin2", _metin2);
+      box.write("_bashliq2", _bashliq2);
+      box.write("_link2",
+          element.children[0].children[0].children[0].children[0]
+              .attributes['href'].toString());
+    });
+    print(box.read("_link2"));
+  }
   double _fontSize = 16;
   var _bacgroundColor = Colors.white;
   var _box;
@@ -745,11 +802,11 @@ class _ThemesState extends State<Themes> {
       case "white" : _bacgroundColor = Colors.white;
       break;
     }
+    getMovzuDialog();
 getMovzuPage();
- bashliq10 = box.read("_bashliq3")?? "İnternet Bağlantınızı Yoxlayın!!!";
- metin10 = box.read("_metin3") ?? "İnternet Bağlantınızı Yoxlayın!!!";
+ bashliq10 = box.read("_bashliq3")?? "Xəta";
+ metin10 = box.read("_metin3") ?? "Zəhmət olmasa təkrar cəhd edin";
  _link2 = box.read("_link2");
-zor();
 
     // TODO: implement initState
     super.initState();

@@ -5,7 +5,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/splashscreen.dart';
 import 'ThemeService/ThemeDataService.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 
 
