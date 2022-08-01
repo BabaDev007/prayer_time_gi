@@ -1,17 +1,16 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prayer_time_gi/PageTransition/PageTransition.dart';
-
+import 'package:jiffy/jiffy.dart';
 import 'package:marquee/marquee.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
-
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import '../../../Constants.dart';
 import '../../../StateManagement/StateManagement.dart';
 import '../Widgets.dart';
@@ -28,7 +27,6 @@ class _BodyState extends State<Body> {
   GetStorage box = GetStorage();
   var bashliq;
   var metin;
-
   var isShow = false;
   var pr;
   var hs;
@@ -37,6 +35,7 @@ class _BodyState extends State<Body> {
   var _bashliq2;
   var _link2;
   var _metin2;
+
   Controller c = Get.put(Controller());
   var _url = Uri.parse("https://www.gozelislam.com/");
 
@@ -105,11 +104,25 @@ class _BodyState extends State<Body> {
     });
   }
   var zor;
+  var hour;
+  var minute;
+  var second;
 
+
+  Timer? mytimer;
   @override
   void initState() {
     super.initState();
-    c.difference = DateTime.now().difference(DateTime(2021,DateTime.december,31)).inDays.obs;
+    mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState((){
+        hour = DateTime.now().hour.toString();
+        minute = DateTime.now().minute.toString();
+        
+
+      });
+    });
+    mytimer;
+    c.difference = Jiffy().dayOfYear.obs;
     pr = box.read("prayertime") ?? true;
     hs = box.read("hikmet") ?? true;
     getHikmet();
@@ -179,108 +192,89 @@ class _BodyState extends State<Body> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Expanded(
-                          flex: 1,
+                          flex: 2,
                           child:
-                          Padding(
-                              padding: EdgeInsets.only(left: 10.0),
-                              child:
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Colors.white,),
-                                    child: AutoSizeText(
 
-                                      "Günün Mövzusu", style: TextStyle(
-                                        fontFamily: "Oswald",
-                                        fontSize: 30,
-                                        color: Constants.primaryColor),
-                                      maxLines: 1,
+                             InkWell(
+                               onTap: () async {
+                                 getData();
+                                 Navigator.push(context,
+                                     SizeTransition2(DaylyTheme()));
+                               },
+                               child: Padding(
+                                 padding: const EdgeInsets.only(left: 10.0),
+                                 child: Container(
+                                   child: Padding(
+                                     padding: const EdgeInsets.all(8.0),
+                                     child: Text("Günlük Mövzu", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: "Oswald", fontSize: 20),),
+                                   ),
+                                   decoration: BoxDecoration(
+                                     color: Constants.primaryColor,
+                                     borderRadius: BorderRadius.circular(25),
+                                     border: Border.all(width: 1.7, color: Colors.white)
 
-                                      maxFontSize: 31,
-                                    ),
+                                   ),
+                                 ),
+                               ),
+                             )
 
 
-                                    onPressed: () async {
-                                      getData();
-                                      Navigator.push(context,
-                                          SizeTransition2(DaylyTheme()));
-                                    },),
-
-                                ],
-                              )
-                          )),
+                               ),
                       Expanded(
-                        flex: 1,
-                        child: FittedBox(
-                          child: Obx(() =>
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    AutoSizeText("${zor['${c
-                                        .difference}']["cityOfName"]}",
-                                      minFontSize: 6,
-                                      maxFontSize: 13,
-                                      style: TextStyle(color: Colors.white,
-                                          fontFamily: "Oswald"),),
-                                    AutoSizeText("${zor['${c
-                                        .difference}']['baseTime']["todayHijrahDate"]}",
-                                      minFontSize: 6,
-                                      maxFontSize: 8,
-                                      style: TextStyle(color: Colors.white,
-                                          fontFamily: "Oswald"),),
-                                    AutoSizeText("${zor['${c
-                                        .difference}']['baseTime']["todayDate"]}",
-                                      minFontSize: 6,
-                                      maxFontSize: 8,
-                                      style: TextStyle(color: Colors.white,
-                                          fontFamily: "Oswald"),),
+                        flex: 2,
+                        child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                               children: [
+                                 AutoSizeText("${zor['${c
+                                     .difference}']['baseTime']["todayHijrahDate"]}",
+                                   maxLines: 1,
 
+                                   style: TextStyle(color: Constants.primaryColor,
+                                       fontFamily: "Oswald"),),
+                               AutoSizeText("${zor['${c
+                                     .difference}']['baseTime']["todayDate"]}",
 
-                                  ],
+                                   style: TextStyle(color: Constants.primaryColor,
+                                       fontFamily: "Oswald"),),
 
-                                ),
-                              ),
-                          ),
-                        ),
+                               ],
+                             ),
+
                       ),
 
 
+
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: FittedBox(
-                            child: CircularPercentIndicator(
-                              backgroundWidth: 1,
+                        flex: 2,
+                        child: FittedBox(
+                          child: CircularPercentIndicator(
+                            backgroundWidth: 1,
 
-                              progressColor: Colors.white,
-                              backgroundColor: Colors.white38,
-                              radius: 60.0,
-                              lineWidth: 3.0,
-                              percent: 0.41,
-                              center: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  AutoSizeText("Əsr", maxFontSize: 30,
-                                    minFontSize: 29,
-                                    style: TextStyle(
-                                      color: Colors.white, fontFamily: "Oswald",
-                                    ),),
-                                  AutoSizeText("01:24:13", maxFontSize: 40,
-                                    minFontSize: 20,
-                                    style: TextStyle(
-                                        color: Colors.white70,
-                                        fontFamily: "Oswald",
-                                        fontSize: 25
-                                    ),),
-                                ],
-                              ),
-
+                            progressColor: Colors.white,
+                            backgroundColor: Colors.white38,
+                            radius: 60.0,
+                            lineWidth: 3.0,
+                            percent: 0.41,
+                            center: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AutoSizeText(
+                                  "Əsr", maxFontSize: 30,
+                                  minFontSize: 29,
+                                  style: TextStyle(
+                                    color: Colors.white, fontFamily: "Oswald",
+                                  ),),
+                                AutoSizeText("01:24:13", maxFontSize: 40,
+                                  minFontSize: 20,
+                                  style: TextStyle(
+                                      color: Colors.white70,
+                                      fontFamily: "Oswald",
+                                      fontSize: 25
+                                  ),),
+                              ],
                             ),
+
                           ),
                         ),
                       )

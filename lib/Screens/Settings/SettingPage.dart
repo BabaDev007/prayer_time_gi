@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -72,7 +71,20 @@ class _SettingsPageState extends State<SettingsPage> {
               elevation: 0,
             ),
 
-      body: isLoading ? Center(child: CircularProgressIndicator(color: Colors.white,),) : Center(
+      body: isLoading ? Center(child: Container(
+        height: Get.size.height/7,
+          width: Get.size.width/1.4,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20)
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: Constants.primaryColor,),
+              Text("Verilənlər yüklənir.\n Zəhmət olmasa gözləyin", textAlign: TextAlign.center, style: TextStyle(fontFamily: "Oswald"))
+            ],
+          )),) : Center(
         child: Scrollbar(
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
@@ -99,7 +111,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         children: [
                           SizedBox(height: 30,),
                            Icon(Icons.mosque_outlined, size: 70, color: Constants.primaryColor,),
-                          Text("Gözəl İslam", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22, fontFamily: "Oswald", color: Constants.primaryColor),),
+                          Text("www.namazvaxti.org", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22, fontFamily: "Oswald", color: Constants.primaryColor),),
                           SizedBox(height: 10,),
                           ListTile(title: Text("Namaz Vaxtları",style: TextStyle(color: Colors.black38 ,fontWeight: FontWeight.w600) )),
                           ListTile(
@@ -180,10 +192,8 @@ try {
 
                                 });
                               },),),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Divider(),
-                          ),
+                          SizedBox(height: 25,)
+
 
 
 

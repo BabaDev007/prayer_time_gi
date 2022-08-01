@@ -11,8 +11,8 @@ import '../MenuPages/KompassScreen/qiblah_compass.dart';
 import '../Settings/SettingPage.dart';
 import 'DraverPage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-
+import 'package:get_storage/get_storage.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 class HomeScreen extends StatefulWidget  {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,9 +20,12 @@ class HomeScreen extends StatefulWidget  {
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin{
 
-
+  var zor;
+GetStorage box = GetStorage();
   Future<bool> showExitPopup() async {
     return await Get.defaultDialog(
+      titleStyle: TextStyle(fontFamily: "Oswald"),
+      middleTextStyle: TextStyle(fontFamily: "Oswald"),
       title: "Çıxış",
       middleText: "Çıxış etməkdə əminsiniz",
      textCancel: "Xeyr",
@@ -34,6 +37,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         Get.back(result: false);
     }
     )??false; //if showDialouge had returned null, then return false
+  }
+
+  @override
+  void initState() {
+    zor = box.read("time");
+
+    // TODO: implement initState
+    super.initState();
   }
 
 
@@ -50,21 +61,34 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
       backgroundColor:  Constants.primaryColor,
      appBar: AppBar(
-       title: Row(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-         children: [
-           IconButton(icon: Icon(Icons.chevron_left, size: 35,), onPressed: () { c.lastDay(); },),
-           Icon(Icons.mosque_outlined),
-           IconButton(icon: Icon(Icons.chevron_right, size: 35,), onPressed: () { c.nextDay(); },),
+       title: Obx(() => FittedBox(
+         child: Row(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+           children: [
+             Icon(FontAwesomeIcons.location),
 
-         ],
-       ),
+             Padding(
+               padding: const EdgeInsets.only(left: 8.0),
+               child: Text(
+                 "${zor['${c
+                     .difference}']["cityOfName"]}" == "Baku (Baki)" ? "Bakı" : "${zor['${c
+                     .difference}']["cityOfName"]}", overflow: TextOverflow.fade,
 
-       centerTitle: true,
+                 style: TextStyle(color: Colors.white, fontSize: 15,
+                     fontFamily: "Oswald"),),
+             ),
+           ],
+         ),
+       ),) ,
+
+              // Icon(Icons.mosque_outlined),
+
        actions: [
+         IconButton(icon: Icon(Icons.chevron_left, size: 30,), onPressed: () { c.lastDay(); },),
 
+         IconButton(icon: Icon(Icons.chevron_right, size: 30,), onPressed: () { c.nextDay(); },),
 
-         IconButton(icon: Icon(FontAwesomeIcons.kaaba, size: 18 ,), onPressed: () {  Navigator.push(context, SizeTransition2(QiblahCompass())); },),
+        // IconButton(icon: Icon(FontAwesomeIcons.kaaba, size: 18 ,), onPressed: () {  Navigator.push(context, SizeTransition2(QiblahCompass())); },),
 
          IconButton(onPressed: (
              ){

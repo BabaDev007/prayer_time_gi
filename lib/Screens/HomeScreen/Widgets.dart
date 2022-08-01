@@ -1,4 +1,5 @@
 
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -41,13 +42,21 @@ class _PrayerTimesState extends State<PrayerTimes> {
   GetStorage box = GetStorage();
 
 
-
-
+Timer? mytimer;
   @override
   void initState() {
-    zor = box.read("time");
+
+     zor = box.read("time");
+
+
     // TODO: implement initState
     super.initState();
+  }
+  @override
+  void dispose() {
+
+    // TODO: implement dispose
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -489,8 +498,8 @@ class _DaylyThemeState extends State<DaylyTheme> {
       case "white" : _bacgroundColor = Colors.white;
       break;
     }
-    bashliq = box.read("bashliq");
-    metin = box.read("metin");
+    bashliq = box.read("bashliq") ?? "Dişdə dolğu və diş qapağının olması";
+    metin = box.read("metin") ?? Constants().metin;
     // TODO: implement initState
     super.initState();
   }
@@ -804,8 +813,8 @@ class _ThemesState extends State<Themes> {
     }
     getMovzuDialog();
 getMovzuPage();
- bashliq10 = box.read("_bashliq3")?? "Xəta";
- metin10 = box.read("_metin3") ?? "Zəhmət olmasa təkrar cəhd edin";
+ bashliq10 = box.read("_bashliq3")?? "Dişdə dolğu və diş qapağının olması";
+ metin10 = box.read("_metin3") ?? Constants().metin;
  _link2 = box.read("_link2");
 
     // TODO: implement initState

@@ -3,12 +3,21 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class MyCustomSplashScreen extends StatefulWidget {
+  MyCustomSplashScreen({
+    Key? key,
+
+    required this.analytics,
+    required this.observer,
+  }) : super(key: key);
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
   @override
   _MyCustomSplashScreenState createState() => _MyCustomSplashScreenState();
 }
