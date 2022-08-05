@@ -31,8 +31,8 @@ class _BookListState extends State<BookList> {
                   Get.back();
                 },
               title: "Məlumat",
-              middleText: "Təqdim olunmuş kitabların hər biri Dini İşlər üzrə komitənin yoxlanılmasından keçmiş, həqiqi İslam alimlərinin"
-                  " əsərləridir."            );
+              middleText: "Təqdim olunmuş kitabların hər biri  Dini Qurumlarla İş Üzrə Dövlət Komitəsi tərəfindən yoxlanışdan keçərək, nəzarət markası ilə markalanmışdır."
+                              );
 
           }, icon: Icon(Icons.info_outline_rounded))
         ],

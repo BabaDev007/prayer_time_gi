@@ -4,7 +4,7 @@ import 'package:flutter/services.dart'; // we need this for the vibrations
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
+import 'package:firebase_analytics/firebase_analytics.dart';
 import '../../../Constants.dart';
 import 'Buttons.dart';
 
@@ -75,9 +75,6 @@ class _ZikrPageState extends State<ZikrPage> {
 
   String _zikr = "";
   bool _iconButtonVibr = true;
-
-
-
 
 
 

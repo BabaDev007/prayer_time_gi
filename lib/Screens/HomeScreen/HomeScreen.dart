@@ -65,7 +65,7 @@ GetStorage box = GetStorage();
          child: Row(
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: [
-             Icon(FontAwesomeIcons.location),
+             Icon(FontAwesomeIcons.mapLocation),
 
              Padding(
                padding: const EdgeInsets.only(left: 8.0),

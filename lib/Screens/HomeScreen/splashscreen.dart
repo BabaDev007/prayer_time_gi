@@ -177,7 +177,7 @@ if(box.read("time") == null) {
                 duration: Duration(milliseconds: 1000),
                 opacity: _textOpacity,
                 child: Text(
-                  'Gözəl İslam App',
+                  'www.namazvaxtı.org',
                   style: TextStyle(
                     fontFamily: "Oswald",
                     color: Colors.white,

@@ -55,7 +55,7 @@ dev_dependencies:
   audioplayers: any
   marquee: any
   epub_view: any
-  font_awesome_flutter: any
+  font_awesome_flutter: ^10.1.0
   percent_indicator: any
   pdfx: any
   internet_file: any
@@ -63,6 +63,11 @@ dev_dependencies:
   jiffy: any
   flutter_native_splash: any
   intl: any
+  flutter_email_sender: any
+  image_picker: any
+  get_it: any
+
+
 
 
 flutter_native_splash:

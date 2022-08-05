@@ -8,9 +8,8 @@ import '../../../Constants.dart';
 
 class UsefulLinks extends StatelessWidget {
   var _tileWidget = [
-    LinkTile(name: "Dinimiz İslam", subtitle: "İslam dini haqqında hər şey", path: "www.dinimizislam.com", ),
-    LinkTile(name: "www.huzurpinari.com", subtitle: "Dini mövzular", path: "www.huzurpinari.com", ),
     LinkTile(name: "www.namazvaxti.org", path: "www.namazvaxti.org", subtitle: "Azərbaycan üçün Namaz Vaxtları"),
+    LinkTile(name: "www.huzurpinari.com", subtitle: "Dini mövzular", path: "www.huzurpinari.com", ),
     LinkTile(name: "www.bizimislam.com", path:"www.bizimislam.com", subtitle: "Dini Kitablar"),
     LinkTile(name:"www.veraislam.ru", path:"www.veraislam.ru", subtitle:"Rusca - Dini Mövzular və Sual-Cavab"),
     LinkTile(name:"www.namazvakti.com", path:"www.namazvakti.com",subtitle: "Bütün ölkələrin namaz vaxtları"),

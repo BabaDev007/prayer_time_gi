@@ -25,9 +25,12 @@ void main() async{
        ));
   WidgetsFlutterBinding.ensureInitialized();
         await Firebase.initializeApp();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp( PrayerTimeApp());
+  });
 
 
-  runApp( PrayerTimeApp());
 }
 
 

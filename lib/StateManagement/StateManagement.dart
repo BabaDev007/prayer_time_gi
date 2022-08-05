@@ -6,6 +6,7 @@ class Controller extends GetxController {
   var isShowPrayerTime = false.obs;
   var isShowHikmetliSoz = false.obs;
   var difference =Jiffy().dayOfYear.obs;
+  var difference2 = Jiffy().dayOfYear.obs;
   var cityname = "Bakı".obs;
   void lastDay(){
     if(!(difference < 0)){

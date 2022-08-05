@@ -42,7 +42,7 @@ Widget bottomCardWidget() {
               Text("Web Sayt:", style: Theme.of(context).textTheme.headline6 ,),
               TextButton(onPressed: (){
                 _launchUrl();
-              }, child: Text("www.gozelislam.com", textWidthBasis: TextWidthBasis.longestLine, style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.blue) ,))
+              }, child: Text("www.namazvaxti.org", textWidthBasis: TextWidthBasis.longestLine, style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.blue) ,))
             ],
           ),
           Row(
@@ -64,7 +64,7 @@ Widget bottomCardWidget() {
 
               TextButton(onPressed: (){
                 call("+(994) 55 233 70 70");
-              }, child: Text("+(994) 55 233 70 70", textWidthBasis: TextWidthBasis.longestLine, style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.blue) ,))
+              }, child: Text("+(994) 55 233 70 70", textWidthBasis: TextWidthBasis.longestLine, style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.blue, ) ,))
             ],
           )
         ],
@@ -78,13 +78,14 @@ Widget topCardWidget() {
       Column(
         children: [
          Icon(Icons.mosque_outlined, size: 50, color:Constants.primaryColor,),
-          Text("Gözəl İslam", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15 ,fontFamily: "Oswald", color:Constants.primaryColor),),
+          Text("www.namazvaxti.org", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15 ,fontFamily: "Oswald", color:Constants.primaryColor),),
         ],
       ),
       Text(
         'Hər bir irad və təkliflərinizi, tətbiqdə aşkarlanan texniki problemləri aşağıdakı əlaqə vasitələri ilə bizə göndərə bilərsiniz. Fikirləriniz bizim üçün önəmlidir.', textAlign: TextAlign.justify, textScaleFactor: 1.04,
         style: TextStyle(
           fontSize: 16,
+          fontFamily: "Oswald",
 
           color: Colors.black.withOpacity(.85),
         ),

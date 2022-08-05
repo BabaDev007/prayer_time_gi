@@ -13,7 +13,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share/share.dart';
 import '../../PageTransition/PageTransition.dart';
 import 'package:html/parser.dart' as parser;
-
 import '../../StateManagement/StateManagement.dart';
 import '../../ThemeService/ThemeDataService.dart';
 
@@ -24,6 +23,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
   GetStorage box = GetStorage();
   String? _value;
   var zor = false;
@@ -110,7 +110,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(height: 30,),
-                           Icon(Icons.mosque_outlined, size: 70, color: Constants.primaryColor,),
+                           Image.asset("assets/logo.png"),
                           Text("www.namazvaxti.org", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22, fontFamily: "Oswald", color: Constants.primaryColor),),
                           SizedBox(height: 10,),
                           ListTile(title: Text("Namaz Vaxtları",style: TextStyle(color: Colors.black38 ,fontWeight: FontWeight.w600) )),
@@ -232,7 +232,8 @@ try {
 
                           SizedBox(height: 10,),
                           ListTile(title: Text("Digər",style: TextStyle(color: Colors.black38 ,fontWeight: FontWeight.w600) )),
-                          ListTile(  leading: Icon(Icons.star_rate_outlined,size: 20, color: Constants.primaryColor,),
+                          ListTile(onTap: (){},
+                              leading: Icon(Icons.star_rate_outlined,size: 20, color: Constants.primaryColor,),
                               title: Text("Dəyərləndir", style: TextStyle(fontWeight: FontWeight.w600, color: Constants.primaryColor),) ,
                               subtitle: Padding(
                                 padding: const EdgeInsets.all(1.0),

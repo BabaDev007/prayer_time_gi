@@ -16,6 +16,7 @@ import '../MenuPages/KompassScreen/qiblah_compass.dart';
 import '../MenuPages/Movies/MovieTile.dart';
 import '../MenuPages/UsefulLinks/UseFulLinks.dart';
 import '../MenuPages/ZikirMatik/ZikirMatik.dart';
+import '../MenuPages/sendQuestion/sendQuestion.dart';
 import '../MenuPages/İlahiler/IlahiList.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -39,7 +40,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Qiblə", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -53,7 +54,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Online Kitablar", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -62,12 +63,12 @@ class DrawerPage extends  Drawer {
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
                         onPressed: (){
                           Navigator.push(context, SizeTransition2(BookList()));
-                        }, child:  Icon(FontAwesomeIcons.bookQuran, size: 30, color: Constants.primaryColor ,)),
+                        }, child:  Icon(FontAwesomeIcons.quran, size: 30, color: Constants.primaryColor ,)),
                   ),),
                 GridTile(
                   footer: Center(child: Text("Offline Kitablar", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -81,7 +82,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Dijital Təsbih", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -96,7 +97,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Esma-i Hüsna", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -111,7 +112,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Dini Mövzular", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -127,7 +128,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Namaz Öyrənirəm", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -143,7 +144,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Dini Filmlər", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -159,7 +160,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("İlahilər", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -173,7 +174,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Linklər", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -189,7 +190,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Vaxtlar Haqqında", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -203,7 +204,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Dini Sual Göndər", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -211,10 +212,11 @@ class DrawerPage extends  Drawer {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
                         onPressed: (){
-                          void _launchUrl() async {
-                            if (!await launch(Uri.parse("https://form.jotform.com/203285791454461").toString(), forceSafariVC: true, forceWebView: false)) throw 'Could not launch https://form.jotform.com/203285791454461';
-                          }
-                          _launchUrl();
+                          Navigator.push(context, SizeTransition2(SendEmail()));
+                          // void _launchUrl() async {
+                          //   if (!await launch(Uri.parse("https://form.jotform.com/203285791454461").toString(), forceSafariVC: true, forceWebView: false)) throw 'Could not launch https://form.jotform.com/203285791454461';
+                          // }
+                          // _launchUrl();
                         }, child:  Icon(FontAwesomeIcons.question, size: 30, color: Constants.primaryColor ,)),
                   ),),
 
@@ -223,7 +225,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Düzəlişlər", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -240,7 +242,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Paylaş", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -257,7 +259,7 @@ class DrawerPage extends  Drawer {
                 GridTile(
                   footer: Center(child: Text("Əlaqə", style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 11
+                      color: CupertinoColors.white, fontSize: 9
                   ),)),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
