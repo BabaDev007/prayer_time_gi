@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:prayer_time_gi/Constants.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/%C4%B0lahiler/%C4%B0lahiler.dart';
 
-import '../../HomeScreen/Widgets.dart';
+import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 
 
 class IlahiList extends StatelessWidget {
@@ -69,48 +72,63 @@ class IlahiList extends StatelessWidget {
     var _w = MediaQuery.of(context).size.width;
     var _h = MediaQuery.of(context).size.height;
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text("İlahilər",style: TextStyle(fontFamily: "Oswald")),
-        leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.chevron_left, size: 30,)),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-      ),
-      body: Stack(
-        children: [
-          Stack1(),
-          SafeArea(
-            child: AnimationLimiter(
-              child: ListView.builder(
+      backgroundColor: Constants.primaryColor,
+      appBar:
+      PreferredSize(
+        preferredSize: Size(
+          double.infinity,
+          56.0,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30)),
 
-                padding: EdgeInsets.all(_w / 30),
-                physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                itemCount: _tileWidget.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return AnimationConfiguration.staggeredList(
-                    position: index,
-                    delay: Duration(milliseconds: 80),
-                    child: SlideAnimation(
-                      duration: Duration(milliseconds: 1800),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                      horizontalOffset: 30,
-                      verticalOffset: 300.0,
-                      child: FlipAnimation(
-                          duration: Duration(milliseconds: 3000),
-                          curve: Curves.fastLinearToSlowEaseIn,
-                          flipAxis: FlipAxis.y,
-                          child: _tileWidget[index]
-                      ),
-                    ),
-                  );
-                },
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: AppBar(
+              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+              }, icon: Icon(Icons.chevron_left, size: 30,),),
+              elevation: 0,
 
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
               ),
+
+              backgroundColor: Constants.primaryColor.withOpacity(.6),
+              centerTitle: true,
+              shadowColor: Colors.transparent,
+              title: Text("İlahilər", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
             ),
           ),
-        ],
+        ),
+      ) ,
+      body: SafeArea(
+        child: AnimationLimiter(
+          child: ListView.builder(
+
+            padding: EdgeInsets.all(_w / 30),
+            physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            itemCount: _tileWidget.length,
+            itemBuilder: (BuildContext context, int index) {
+              return AnimationConfiguration.staggeredList(
+                position: index,
+                delay: Duration(milliseconds: 80),
+                child: SlideAnimation(
+                  duration: Duration(milliseconds: 1800),
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  horizontalOffset: 30,
+                  verticalOffset: 300.0,
+                  child: FlipAnimation(
+                      duration: Duration(milliseconds: 3000),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      flipAxis: FlipAxis.y,
+                      child: _tileWidget[index]
+                  ),
+                ),
+              );
+            },
+
+          ),
+        ),
       ),
     );
   }

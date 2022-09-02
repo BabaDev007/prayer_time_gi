@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
+import '../../../Constants.dart';
 import '../../../PaddingManager.dart';
 
 class IlahiTile  extends StatelessWidget {
@@ -42,7 +42,7 @@ class IlahiTile  extends StatelessWidget {
 
 
               child: ListTile(
-                leading: Icon(FontAwesomeIcons.youtube, color: Colors.red.shade700,),
+                leading: Image.asset("assets/youtube.png", color: Constants.primaryColor, width: 40, height: 40,),
                 title: AutoSizeText(name, maxLines: 1,),
                 trailing: Icon(Icons.chevron_right),
                 subtitle: AutoSizeText(subtitle, maxLines: 1,),

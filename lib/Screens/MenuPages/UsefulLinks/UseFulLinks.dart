@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/UsefulLinks/LinkTilel.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../../Constants.dart';
+import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 
 
 class UsefulLinks extends StatelessWidget {
@@ -26,44 +29,61 @@ class UsefulLinks extends StatelessWidget {
     return Scaffold(
       backgroundColor: Constants.primaryColor,
    extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text("Faydalı Keçidlər",style: TextStyle(fontFamily: "Oswald")),
-        leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.chevron_left, size: 30,)),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-      ),
+      appBar:PreferredSize(
+        preferredSize: Size(
+          double.infinity,
+          56.0,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30)),
+
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: AppBar(
+              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+              }, icon: Icon(Icons.chevron_left, size: 30,),),
+              elevation: 0,
+
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
+              ),
+
+              backgroundColor: Constants.primaryColor.withOpacity(.6),
+              centerTitle: true,
+              shadowColor: Colors.transparent,
+              title: Text("Linklər", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
+            ),
+          ),
+        ),
+      ) ,
       body: Stack(
         children: [
 
-          SafeArea(
-            child: AnimationLimiter(
-              child: ListView.builder(
+          AnimationLimiter(
+            child: ListView.builder(
 
-                padding: EdgeInsets.all(_w / 30),
-                physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                itemCount: _tileWidget.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return AnimationConfiguration.staggeredList(
-                    position: index,
-                    delay: Duration(milliseconds: 80),
-                    child: SlideAnimation(
-                      duration: Duration(milliseconds: 1800),
+              padding: EdgeInsets.symmetric(horizontal: _w / 30, vertical: 100 ),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              itemCount: _tileWidget.length,
+              itemBuilder: (BuildContext context, int index) {
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  delay: Duration(milliseconds: 80),
+                  child: SlideAnimation(
+                    duration: Duration(milliseconds: 1800),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    horizontalOffset: 30,
+                    verticalOffset: 300.0,
+                    child: FlipAnimation(
+                      duration: Duration(milliseconds: 3000),
                       curve: Curves.fastLinearToSlowEaseIn,
-                      horizontalOffset: 30,
-                      verticalOffset: 300.0,
-                      child: FlipAnimation(
-                        duration: Duration(milliseconds: 3000),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                        flipAxis: FlipAxis.y,
-                        child: _tileWidget[index]
-                      ),
+                      flipAxis: FlipAxis.y,
+                      child: _tileWidget[index]
                     ),
-                  );
-                },
+                  ),
+                );
+              },
 
-              ),
             ),
           ),
         ],

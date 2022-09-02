@@ -1,7 +1,6 @@
 import 'package:lottie/lottie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:prayer_time_gi/Constants.dart';
 
 class LoadingIndicator extends StatelessWidget {
   @override
@@ -10,7 +9,7 @@ class LoadingIndicator extends StatelessWidget {
 
     return Container(
       alignment: Alignment.center,
-      child:  Lottie.asset(Constants().compassLottiePath, height: 80),
+      child:  Lottie.asset("assets/loding.json", height: 80),
     );
   }
 }

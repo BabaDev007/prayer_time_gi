@@ -12,10 +12,9 @@ import '../../Constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share/share.dart';
 import '../../PageTransition/PageTransition.dart';
-import 'package:html/parser.dart' as parser;
 import '../../StateManagement/StateManagement.dart';
-import '../../ThemeService/ThemeDataService.dart';
-
+import 'package:lottie/lottie.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 class SettingsPage extends StatefulWidget {
 
   @override
@@ -31,6 +30,7 @@ class _SettingsPageState extends State<SettingsPage> {
   var currentTime;
   var url = "1425";
   var isLoading = false;
+
   Future<void> getData(String url)async{
     setState((){
       isLoading = true;
@@ -42,6 +42,7 @@ class _SettingsPageState extends State<SettingsPage> {
       if (response.statusCode == 200) {
         currentTime = jsonData["data"];
         box.write("time", currentTime);
+        c.cityname = box.read("c.cityname");
 
 
     }  }
@@ -58,21 +59,35 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constants.primaryColor,
-
+extendBodyBehindAppBar: true,
       appBar:
-           AppBar(
-             leading: IconButton(icon: Icon(Icons.home_filled), onPressed: (){Navigator.pop(context);},),
-
-              backgroundColor: Colors.transparent,
-
-
-              centerTitle: true,
-              title: Text("Düzəlişlər", style: TextStyle(fontFamily: "Oswald"),),
+      PreferredSize(
+        preferredSize: Size(
+          double.infinity,
+          56.0,
+        ),
+        child: ClipRRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: AppBar(
+leading: SizedBox(),
               elevation: 0,
+
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
+              ),
+
+              backgroundColor: Constants.primaryColor.withOpacity(.6),
+              centerTitle: true,
+              shadowColor: Colors.transparent,
+              title: Text("Düzəlişlər", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
             ),
+          ),
+        ),
+      ) ,
 
       body: isLoading ? Center(child: Container(
-        height: Get.size.height/7,
+        height: Get.size.height/5,
           width: Get.size.width/1.4,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -81,8 +96,12 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircularProgressIndicator(color: Constants.primaryColor,),
-              Text("Verilənlər yüklənir.\n Zəhmət olmasa gözləyin", textAlign: TextAlign.center, style: TextStyle(fontFamily: "Oswald"))
+              SizedBox(height: 10,),
+              Lottie.asset("assets/loding.json", height: 80),
+              SizedBox(height: 10,),
+              Text("Zəhmət olmasa gözləyin", textAlign: TextAlign.center, style: TextStyle(fontFamily: "Oswald", color: Constants.primaryColor)),
+              SizedBox(height: 10,)
+
             ],
           )),) : Center(
         child: Scrollbar(
@@ -93,6 +112,9 @@ class _SettingsPageState extends State<SettingsPage> {
               mainAxisSize: MainAxisSize.max,
 
               children: [
+                SizedBox(
+                  height: 100,
+                ),
 
                 Padding(
                   padding: const EdgeInsets.all(15.0),
@@ -110,8 +132,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(height: 30,),
-                           Image.asset("assets/logo.png"),
-                          Text("www.namazvaxti.org", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22, fontFamily: "Oswald", color: Constants.primaryColor),),
+                           SvgPicture.asset("assets/svgmosque.svg", height: 70,),
+                          Text("NamazVaxti.org", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22, fontFamily: "Oswald", color: Constants.primaryColor),),
                           SizedBox(height: 10,),
                           ListTile(title: Text("Namaz Vaxtları",style: TextStyle(color: Colors.black38 ,fontWeight: FontWeight.w600) )),
                           ListTile(
@@ -151,18 +173,101 @@ class _SettingsPageState extends State<SettingsPage> {
                                   setState(() {
                                     _value = value;
                                     url = value!;
-      isLoading = true;
+                                    isLoading = true;
+
+
+
+
+
+
+                                    switch(_value){
+                                      case "1423": c.cityname = "Ağdam" as RxString;
+                                      break;
+                                      case "1424": c.cityname = "Şirvan"as RxString;
+                                      break;
+                                      case "1425":  c.cityname ="Bakı"as RxString;
+                                      break;case "1426":  c.cityname ="Bərdə"as RxString;
+                                    break;case "1427": c.cityname ="Fizuli"as RxString;
+                                    break;case "1428":c.cityname = "Gəncə"as RxString;
+                                    break;case "1432": c.cityname ="Lənkəran"as RxString;
+                                    break;case "1435": c.cityname ="Mingəçevir"as RxString;
+                                    break;case "1437":c.cityname = "Sabirabad"as RxString;
+                                    break;case "1438": c.cityname ="Səlyan"as RxString;
+                                    break;case "1439": c.cityname ="Şəki"as RxString;
+                                    break;case "1440": c.cityname ="Sumqayıt"as RxString;
+                                    break;case "1441": c.cityname ="Zaqatala"as RxString;
+                                    break;case "1443": c.cityname ="Şuşa"as RxString;
+                                    break;case "1445": c.cityname ="Naxçıvan"as RxString;
+                                    break;case "1447": c.cityname ="Culfa"as RxString;
+                                    break;case "21319": c.cityname ="Tovuz"as RxString;
+                                    break;case "38073": c.cityname ="Ağdaş"as RxString;
+                                    break;case "38172": c.cityname ="İmişli"as RxString;
+                                    break;case "38174": c.cityname ="Gədəbəy"as RxString;
+                                    break;case "38179": c.cityname ="Ağdərə"as RxString;
+                                    break;case "38193": c.cityname ="Saatlı"as RxString;
+                                    break;case "38290": c.cityname ="Kəngərli"as RxString;
+                                    break;case "38356": c.cityname ="Daşkəsən"as RxString;
+                                    break;case "38457": c.cityname ="Göyçay"as RxString;
+                                    break;case "38654": c.cityname ="Lerik"as RxString;
+                                    break;case "38788": c.cityname ="Qubadlı"as RxString;
+                                    break;case "38875": c.cityname ="Siyəzən"as RxString;
+                                    break;case "38904": c.cityname ="Biləsuvar"as RxString;
+                                    break;case "38944": c.cityname ="Yardımlı"as RxString;
+                                    break;case "38985": c.cityname ="Xankəndi"as RxString;
+                                    break;case "43363": c.cityname ="Ağsu"as RxString;
+                                    break;
+                                    case "43392":c.cityname = "Neftçala"as RxString;
+                                    break;
+                                      case "43395":c.cityname = "Quba"as RxString;
+                                      break; case "43397": c.cityname ="Ucar"as RxString;
+                                    break; case "43398": c.cityname ="Xaçmaz"as RxString;
+                                    break; case "43661": c.cityname ="Tərtər"as RxString;
+                                    break; case "43649": c.cityname ="Astara"as RxString;
+                                    break; case "43873": c.cityname ="Beyləqan"as RxString;
+                                    break; case "60075": c.cityname ="İsmayıllı"as RxString;
+                                    break; case "62280": c.cityname ="Qusar"as RxString;
+                                    break;
+                                      case "62281": c.cityname ="Ordubad"as RxString;
+                                      break; case "62282":c.cityname = "Şamaxı"as RxString;
+                                    break; case "43392":c.cityname = "Goranboy"as RxString;
+                                    break; case "62728":c.cityname = "Balakən"as RxString;
+                                    break; case "65729": c.cityname ="Qax"as RxString;
+                                    break; case "65732": c.cityname ="Şəmkir"as RxString;
+                                    break; case "65737":c.cityname = "Yevlax"as RxString;
+                                    break; case "65739": c.cityname ="Laçın" as RxString;
+                                    break; case "65744": c.cityname ="Cəlilabad"as RxString;
+                                    break; case "67957": c.cityname ="Oğuz"as RxString;
+                                    break; case "70928": c.cityname ="Qəbələ"as RxString;
+                                    break; case "82092": c.cityname ="Ağcabədi"as RxString;
+                                    break; case "92768": c.cityname ="Göygöl"as RxString;
+                                    break; case "92807": c.cityname ="Zəngilan"as RxString;
+                                    break; case "21320": c.cityname ="Qazax"as RxString;
+
+                                    break;
+                                    }
+
+
+
+
+
+
+
+
                                   });
 try {
   final result = await InternetAddress.lookup("www.google.com");
   if (result.isNotEmpty&& result[0].rawAddress.isNotEmpty){
 
                                   await getData(_value!);
+                                  setState((){
+
+
+                                  });
                                   Navigator.pushReplacement(context, SizeTransition2(HomeScreen()));
                                   }
   }on SocketException catch(_){
   Get.defaultDialog(
-    title: "System", middleText: "İnternet bağlantınızı yoxlayın və bir daha cəhd edin", onConfirm: (){
+    title: "System", middleText: "İnternet bağlantınızı yoxlayın", middleTextStyle: TextStyle(color: Constants.primaryColor, fontFamily: "Oswald"), onConfirm: (){
     Navigator.pushReplacement(context, SizeTransition2(HomeScreen()));
 
 
@@ -171,15 +276,12 @@ try {
   }
 },
 
-                                hint: Text(box.read("time")["1"]["cityOfName"].toString()),
+                                hint: Text("${box.read("c.cityname")}"),
                                 value: _value,
                               ),
 
                                ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Divider(),
-                          ),
+
                           ListTile( leading: Icon(FontAwesomeIcons.font, size: 20, color: Constants.primaryColor,),
                             title: Text("Hikmətli Sözlər", style: TextStyle(fontWeight: FontWeight.w600, color: Constants.primaryColor),) ,
                             subtitle: Text("Hikmətli sözlər panelini görünür et", textAlign: TextAlign.left,)

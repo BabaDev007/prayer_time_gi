@@ -8,6 +8,9 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'PageViewPage/PageViewPage.dart';
 
 class MyCustomSplashScreen extends StatefulWidget {
   MyCustomSplashScreen({
@@ -35,7 +38,23 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
 
   var currentTime;
   var url = Uri.parse("https://prayer-time-ws.herokuapp.com/api/dates/json/1.0/allDataYearly?indexOfCity=1425");
-
+  Future<void> getDataMovzu() async {
+    var response = await http.get(_url);
+    final body = response.body;
+    final document = parser.parse(body);
+    var res = document.getElementsByClassName("col-md-8 col-sm-12 col-xs-12")
+        .forEach((element) async {
+      setState(() {
+        bashliq =
+            element.children[1].children[0].children[2].children[0].children[0]
+                .children[0].children[0].text.toString();
+        metin = element.children[1].children[0].children[5].text.toString();
+      });
+      box.write("bashliq", bashliq);
+      box.write("metin", metin);
+    }
+    );
+  }
   Future<void> getData()async{
 if(box.read("time") == null) {
   var response = await http.get(url);
@@ -59,8 +78,9 @@ if(box.read("time") == null) {
   var _link2;
   var _metin2;
   var _url = Uri.parse("https://www.gozelislam.com/");
-
-
+  Timer? mytimer;
+var count = 0;
+bool progress = false;
 
   Future<void> getHikmet() async {
     var response = await http.get(_url);
@@ -74,7 +94,6 @@ if(box.read("time") == null) {
     });
   }
 
-  var _metin3;
 
   Future<void> getMovzuDialog() async {
     var _url = Uri.parse("https://www.gozelislam.com/");
@@ -141,14 +160,21 @@ if(box.read("time") == null) {
 
     Timer(Duration(seconds: 4), () async{
       getMovzuPage();
-      getMovzuDialog();
       getHikmet();
+       getDataMovzu();
      await getData();
 
 
-       Navigator.pushReplacement(context, PageTransition(HomeScreen()));
+       Navigator.pushReplacement(context, PageTransition(PageViewPage()));
 
     });
+    mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState((){
+        count++;
+        if(count == 7){
+          progress = true;
+        }
+      });});
   }
 
   @override
@@ -177,7 +203,7 @@ if(box.read("time") == null) {
                 duration: Duration(milliseconds: 1000),
                 opacity: _textOpacity,
                 child: Text(
-                  'www.namazvaxtı.org',
+                  'NamazVaxtı.org',
                   style: TextStyle(
                     fontFamily: "Oswald",
                     color: Colors.white,
@@ -203,7 +229,17 @@ if(box.read("time") == null) {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 // child: Image.asset('assets/images/file_name.png')
-                child: FittedBox(child: Icon(Icons.mosque_outlined, color: Colors.white, size: 70,))
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FittedBox(child: SvgPicture.asset("assets/svgmosque.svg")),
+                    SizedBox(height: 15,),
+
+                    Visibility(visible: progress,
+                        child: Center(child: CircularProgressIndicator(color: Colors.white,),))
+                  ],
+                )
               ),
             ),
           ),

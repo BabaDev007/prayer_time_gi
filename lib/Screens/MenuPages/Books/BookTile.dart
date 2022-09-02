@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Books/PdfViewer.dart';
 
+import '../../../Constants.dart';
 import '../../../PaddingManager.dart';
 import '../../../PageTransition/PageTransition.dart';
-
 class BookTile extends StatelessWidget {
 
 
@@ -24,6 +24,7 @@ class BookTile extends StatelessWidget {
             // Navigator.of(context).push(SizeTransition3(BookReader(path: bookLink, pathWord: bookTitle,)));
           },
           child: Container(
+            height: 80 ,
               decoration: BoxDecoration(
                 color: Theme.of(context).errorColor,
                 boxShadow: [
@@ -39,9 +40,9 @@ class BookTile extends StatelessWidget {
 
               child: ListTile(
                 leading: Image.asset("$bookPngPath", fit: BoxFit.cover, ),
-                title: Text(bookTitle),
-                trailing: Icon(Icons.chevron_right),
-                subtitle: Text(subtitle),
+                title: Text(bookTitle, textAlign: TextAlign.center, style: TextStyle(fontSize: 15,overflow: TextOverflow.ellipsis),),
+                trailing: Icon(Icons.chevron_right, color: Constants.primaryColor,),
+                subtitle: Text(subtitle, textAlign: TextAlign.center),
 
               )),
         ));

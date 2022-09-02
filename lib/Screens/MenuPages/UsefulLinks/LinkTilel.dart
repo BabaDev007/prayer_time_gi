@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:prayer_time_gi/Constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -42,9 +43,9 @@ class LinkTile  extends StatelessWidget {
 
 
               child: ListTile(
-                leading: Icon(Icons.link),
+                leading: Icon(Icons.link, color: Constants.primaryColor,),
                 title: AutoSizeText(name, maxLines: 1,),
-                trailing: Icon(Icons.chevron_right),
+                trailing: Icon(Icons.chevron_right, color: Constants.primaryColor,),
                 subtitle: AutoSizeText(subtitle, maxLines: 1,),
 
               )),

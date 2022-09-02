@@ -1,12 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/services.dart'; // we need this for the vibrations
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import '../../../Constants.dart';
+import '../../../PageTransition/PageTransition.dart';
+import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 import 'Buttons.dart';
+import 'ZikirlerPage.dart';
 
 
 class ZikrPage extends StatefulWidget {
@@ -17,6 +21,7 @@ class ZikrPage extends StatefulWidget {
 }
 
 class _ZikrPageState extends State<ZikrPage> {
+  var _turns = 0;
   @override
   void initState() {
     _iconButtonVibr = box.read("icon") ?? false;
@@ -47,25 +52,13 @@ class _ZikrPageState extends State<ZikrPage> {
   }
 
 
-  void _decrementCounter() {
-    box.write("counter", _counter);
 
-    _iconButtonVibr ?_switchButton.play("s3.wav") :
-    HapticFeedback.vibrate();
-    setState((){
-      if(_counter >0){
-        _counter--;
-      };
-
-    });
-
-  }
 
   void _restart() {
     box.write("counter", _counter);
 
     _iconButtonVibr ?_switchButton.play("s3.wav") :
-    HapticFeedback.vibrate();
+    HapticFeedback.heavyImpact();
     setState((){
       _counter = 0;
 
@@ -89,8 +82,51 @@ class _ZikrPageState extends State<ZikrPage> {
 
       extendBodyBehindAppBar: true,
 
-      appBar: AppBar(
+      appBar: AppBar(leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+      }, icon: Icon(Icons.chevron_left, size: 30,),),
         actions: [
+
+          IconButton(onPressed: (){
+
+            Navigator.push(context, SizeTransition2(ZikirlerPage()));
+          }, icon: Icon(Icons.list)),
+          AnimatedRotation(
+            turns: _turns.toDouble(),
+            duration: Duration(milliseconds: 100),
+            child: IconButton(
+
+
+              onPressed: (){
+                Get.defaultDialog(
+                    onConfirm: (){
+                      var timer =  Timer.periodic(Duration(milliseconds: 100), (timer) {
+                        setState(() {
+                          _turns++;
+                          if(_turns == 4 || _turns >4){
+                            _turns = 0;
+                            timer.cancel();
+                          }
+                        });
+                      });
+                      _restart();
+                      Navigator.of(context).pop();
+                    },
+                    middleText: "Sıfırlansın",
+                    confirmTextColor: Colors.white,
+                    title: "System",
+                    textConfirm: "Bəli",
+                    textCancel: "Xeyr"
+
+                );
+              }
+              //_restart
+              ,
+              icon:  Icon(
+                Icons.restart_alt, color: Colors.white,
+
+              ),
+            ),
+          ),
 
           IconButton(onPressed: (){
             setState((){
@@ -147,76 +183,27 @@ class _ZikrPageState extends State<ZikrPage> {
                      ),
                    ),
                  ),
-                Expanded(
-                  child: SizedBox(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(child: GestureDetector(
-                          onTap: _decrementCounter,
-                        )),
-                        Expanded(child: GestureDetector(
-                          onTap: _incrementCounter,
-                        )),
 
-
-                      ],
-                    ),
-                    height: 100,
-                  ),
-                ),
 
 
 
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    padding: const EdgeInsets.all(10.0),
+                    child: Stack(
                       children: [
 
-                         Expanded(child: ZikrButton(metod: _decrementCounter, buttonName: "-", )),
 
 
-
-                        Expanded(
-                          child: FloatingActionButton(
-                              mini: true,
-                              backgroundColor: Colors.transparent,
-                              elevation: 0,
-                              onPressed: (){
-                                Get.defaultDialog(
-                                  onConfirm: (){
-                                    _restart();
-                                    Navigator.of(context).pop();
-                                  },
-                                  middleText: "Sayağacı sıfırlamaqda əminsiniz",
-                                    confirmTextColor: Colors.white,
-                                  title: "System",
-                                  textConfirm: "Bəli",
-                                  textCancel: "Xeyr"
-
-                                );
-                              }
-                              //_restart
-                               ,
-                              child:  Icon(
-                                Icons.restart_alt,
-                                size: w/10,
-                              ),
-                            ),
-                        ),
-
-
-                       Expanded(child: ZikrButton(metod: _incrementCounter, buttonName: "+"))
+                       Align(
+                           alignment: Alignment.center,
+                           child: ZikrButton(metod: _incrementCounter, buttonName: "kliklə",))
 
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: h/9 ,
-                ),
+
               ],
             ),
           ),

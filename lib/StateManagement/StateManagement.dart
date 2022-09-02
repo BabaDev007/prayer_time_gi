@@ -8,6 +8,18 @@ class Controller extends GetxController {
   var difference =Jiffy().dayOfYear.obs;
   var difference2 = Jiffy().dayOfYear.obs;
   var cityname = "Bakı".obs;
+  var daylyCounter = 0.obs;
+  var allCounter = 0.obs;
+  var zikrSayisi = 0.obs;
+
+
+
+
+
+
+
+
+
   void lastDay(){
     if(!(difference < 0)){
       difference--;

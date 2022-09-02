@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class Constants{
+
   static var primaryColor = Color(0xFF104FA2);
   static var kTransparentColor =  Colors.transparent;
   static double kZero = 0;
@@ -27,4 +28,9 @@ class Constants{
      "surəsini oxuması, özünün və ya başqasının səvətəyninə, yəni iki dəstəmaz pozma üzvlərinə əlin ovucunun (içi) ilə toxunarsa və nikah ilə alması haram olan 18 qadından başqa qadının dərisinə dərisi dəyərsə dəstəmaz alması, dəstəmaza niyyət etməsi və az nəcasətdən də çəkinməsi lazımdır. Qurani-Kərimi tutacağı zaman da Şafii məzhəbinə görə dəstəmazlı olmalıdır. Hənəfi məzhəbində olan bir yolçunun Şafii məzhəbini təqlid edə"
      "rək, zöhr ilə əsr, şam ilə işa namazlarını cəm edərək birlikdə qıla bilməsi üçün Şafii məzhəbinə görə dəstəmazlı olması lazımdır.";
 }
+
+
+
+
+
 

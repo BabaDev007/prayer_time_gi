@@ -38,15 +38,24 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flip_card: ^0.6.0
+  animated_text_kit: any
+  card_swiper: ^2.0.4
+  data_table_2: any
+  google_maps_flutter: ^2.1.12
+  flutter_inappwebview: ^5.4.3+7
+  quran: any
+  backdrop: any
+  google_fonts: any
   flutter_lints: any
   flutter_staggered_animations: any
   url_launcher: any
   flutter_markdown: any
   auto_size_text: any
   share: any
+  share_plus: any
   flutter_qiblah: any
   flutter_svg: any
-  google_maps_flutter: any
   lottie: any
   get: any
   get_storage: any
@@ -64,15 +73,18 @@ dev_dependencies:
   flutter_native_splash: any
   intl: any
   flutter_email_sender: any
-  image_picker: any
   get_it: any
-
+  flutter_launcher_icons: any
+flutter_icons:
+    android: "launcher_icon"
+    ios: true
+    image_path: "assets/pngmosque.png"
 
 
 
 flutter_native_splash:
   color: 104FA2
-  fullscreen: true
+  fullscreen: false
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -90,6 +102,8 @@ flutter:
     - assets/music/s3.wav
     - assets/books/
     - assets/books/namaz.pdf
+    - assets/surah.json
+    - fonts/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -126,62 +140,14 @@ flutter:
     - family: PlayfairDisplay
       fonts:
         - asset: fonts/PlayfairDisplay-VariableFont_wght.ttf
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+    - family: NotoNastaliqUrdu
+      fonts:
 
-  # Platform specific images can be specified with the following parameters, which will override
-  # the respective image parameter.  You may specify all, selected, or none of these parameters:
-  #image_andriod: assets/splash-andriod.png
-  #image_dark_android: assets/splash-invert-android.png
-  #image_ios: assets/splash-ios.png
-  #image_dark_ios: assets/splash-invert-ios.png
-  #image_web: assets/splash-web.png
-  #image_dark_web: assets/splash-invert-web.png
-  #background_image_android: "assets/background-android.png"
-  #background_image_dark_android: "assets/dark-background-android.png"
-  #background_image_ios: "assets/background-ios.png"
-  #background_image_dark_ios: "assets/dark-background-ios.png"
-  #background_image_web: "assets/background-web.png"
-  #background_image_dark_web: "assets/dark-background-web.png"
-  #branding_andriod: assets/brand-android.png
-  #branding_dark_android: assets/dart_dark-android.png
-  #branding_ios: assets/brand-ios.png
-  #branding_dark_ios: assets/dart_dark-ios.png
+        - asset: fonts/NotoNastaliqUrdu-Regular.ttf
+          #         style: italic
+    - family: Kitab
+      fonts:
+        - asset: fonts/kitab.ttf
+          #       - asset: fonts/TrajanPro_Bold.ttf
+          #         weight: 700
 
-  # The position of the splash image can be set with android_gravity, ios_content_mode, and
-  # web_image_mode parameters.  All default to center.
-  #
-  # android_gravity can be one of the following Android Gravity (see
-  # https://developer.android.com/reference/android/view/Gravity): bottom, center,
-  # center_horizontal, center_vertical, clip_horizontal, clip_vertical, end, fill, fill_horizontal,
-  # fill_vertical, left, right, start, or top.
-  #android_gravity: center
-  #
-  # ios_content_mode can be one of the following iOS UIView.ContentMode (see
-  # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill,
-  # scaleAspectFit, scaleAspectFill, center, top, bottom, left, right, topLeft, topRight,
-  # bottomLeft, or bottomRight.
-  #ios_content_mode: center
-  #
-  # web_image_mode can be one of the following modes: center, contain, stretch, and cover.
-  #web_image_mode: center
-
-  # The screen orientation can be set in Android with the android_screen_orientation parameter.
-  # Valid parameters can be found here:
-  # https://developer.android.com/guide/topics/manifest/activity-element#screen
-  #android_screen_orientation: sensorLandscape
-
-  # To hide the notification bar, use the fullscreen parameter.  Has no effect in web since web
-  # has no notification bar.  Defaults to false.
-  # NOTE: Unlike Android, iOS will not automatically show the notification bar when the app loads.
-  #       To show the notification bar, add the following code to your Flutter app:
-  #       WidgetsFlutterBinding.ensureInitialized();
-  #       SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom, SystemUiOverlay.top]);
-
-
-  # If you have changed the name(s) of your info.plist file(s), you can specify the filename(s)
-  # with the info_plist_files parameter.  Remove only the # characters in the three lines below,
-  # do not remove any spaces:
-  #info_plist_files:
-  #  - 'ios/Runner/Info-Debug.plist'
-  #  - 'ios/Runner/Info-Release.plist'

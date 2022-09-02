@@ -3,9 +3,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:get/get.dart';
+
+import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 
 class SendEmail extends StatefulWidget {
   @override
@@ -68,6 +69,8 @@ class _SendEmailState extends State<SendEmail> {
       backgroundColor: Constants.primaryColor,
         key: _scaffoldKey,
         appBar: AppBar(
+          leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+          }, icon: Icon(Icons.chevron_left, size: 30,),),
           elevation: 0,
           backgroundColor: Colors.transparent,
           centerTitle: true,
@@ -145,12 +148,14 @@ class _SendEmailState extends State<SendEmail> {
                            border: OutlineInputBorder()),
                     ),
                   ),
-                  Text("* Dini sual soruşarkən aşağıdakı qaydalara riayət etməyiniz rica olunur:\n \n"
-                      "1.Sual göndərməmişdən əvvəl o mövzu ilə bağlı məlumatı saytdan oxumaq (www.gozelislam.com).\n \n"
-                      "2.Dolğun cavab almaq üçün sualı geniş şəkildə yazmaq.\n \n"
-                  "3.Namaz vaxtı ilə bağlı sualların cavablarını www.namazvakti.com www.namazvaxti.org saytından və ya bilgi@namazvakti.com elektron ünvana e-mail göndərməklə əldə edə bilərsiniz.\n \n"
-                      "4.Sualınıza cavab almaq üçün e-mail-ı DÜZGÜN qeyd etmək.", style: TextStyle(color: Colors.white),),
-                  imagePath,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("* Dini sual soruşarkən aşağıdakı qaydalara riayət etməyiniz rica olunur:\n \n"
+                        "1.Sual göndərməmişdən əvvəl o mövzu ilə bağlı məlumatı saytdan oxumaq (www.gozelislam.com).\n \n"
+                        "2.Dolğun cavab almaq üçün sualı geniş şəkildə yazmaq.\n \n"
+                    "3.Namaz vaxtı ilə bağlı sualların cavablarını www.namazvakti.com www.namazvaxti.org saytından və ya bilgi@namazvakti.com elektron ünvana e-mail göndərməklə əldə edə bilərsiniz.\n \n"
+                        "4.Sualınıza cavab almaq üçün e-mail-ı DÜZGÜN qeyd etmək.", style: TextStyle(color: Colors.white, fontSize: 13),),
+                  ),
                 ],
               ),
             ),

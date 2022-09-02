@@ -1,9 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../Constants.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:internet_file/internet_file.dart';
-
+import 'package:lottie/lottie.dart';
 class BookReader extends StatefulWidget {
   final String path;
   final String pathWord;
@@ -26,6 +28,7 @@ var page = 1;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      extendBodyBehindAppBar: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       floatingActionButton: Visibility(
         visible: isShow,
@@ -63,36 +66,55 @@ var page = 1;
         ),
       ),
       backgroundColor: Constants.primaryColor,
-      appBar: AppBar(
+      appBar:
+      PreferredSize(
+        preferredSize: Size(
+          double.infinity,
+          56.0,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30)),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: AppBar(
 
+              leading: IconButton(onPressed: () {      Navigator.pop(context);}, icon: Icon(Icons.chevron_left, size: 30,),),
+              elevation: 0,
 
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        title: Text('${widget.pathWord}' , style: TextStyle(fontFamily: "Oswald"),),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
+              ),
 
-      ),
+              backgroundColor: Constants.primaryColor.withOpacity(.6),
+              centerTitle: true,
+              shadowColor: Colors.transparent,
+              title: Text('${widget.pathWord}', style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
+            ),
+          ),
+        ),
+      ) ,
       body: Stack(
 alignment: Alignment.center,
         children: [
-          PdfView(
-            onPageChanged: (index){
-              setState((){
-               page = index ;
+          SafeArea(
+            child: PdfView(
+              onPageChanged: (index){
+                setState((){
+                 page = index ;
 
-              });
-            },
-            physics: BouncingScrollPhysics(),
-            controller: pdfController,
-            builders: PdfViewBuilders<DefaultBuilderOptions>(
-              options: const DefaultBuilderOptions(
-                loaderSwitchDuration: const Duration(seconds: 1),
+                });
+              },
+              physics: BouncingScrollPhysics(),
+              controller: pdfController,
+              builders: PdfViewBuilders<DefaultBuilderOptions>(
+                options: const DefaultBuilderOptions(
+                  loaderSwitchDuration: const Duration(seconds: 1),
 
-              ),
-              documentLoaderBuilder: (_) =>
+                ),
+                documentLoaderBuilder: (_) =>
 
-              const Center(child: CircularProgressIndicator( color: Colors.white,)),
-              pageLoaderBuilder: (_) {
+                 Center(child:  Lottie.asset("assets/loding.json", height: 80),),
+                pageLoaderBuilder: (_) {
 if(isShow == false ){
   setState((){
     isShow = true;
@@ -101,16 +123,17 @@ if(isShow == false ){
 
 
 
-                return const Center(child: CircularProgressIndicator(color: Colors.white,));
-              },
-              errorBuilder: (_, error) {
+                  return  Center(child:  Lottie.asset("assets/loding.json", height: 80),);
+                },
+                errorBuilder: (_, error) {
 
 
-                return Center(child: Container(
-                  color: Constants.primaryColor,
-                  child: CircularProgressIndicator(color: Colors.white,),
-                ));},
+                  return Center(child: Container(
+                    color: Constants.primaryColor,
+                    child:  Lottie.asset("assets/loding.json", height: 80),
+                  ));},
 
+              ),
             ),
           ),
           Positioned(
@@ -229,7 +252,7 @@ class _BookReaderNamazState extends State<BookReaderNamaz> {
                 ),
                 documentLoaderBuilder: (_) =>
 
-                const Center(child: CircularProgressIndicator( color: Colors.white,)),
+                 Center(child:  Lottie.asset("assets/loding.json", height: 80),),
                 pageLoaderBuilder: (_) {
                   if(isShow == false ){
                     setState((){
@@ -239,14 +262,14 @@ class _BookReaderNamazState extends State<BookReaderNamaz> {
 
 
 
-                  return const Center(child: CircularProgressIndicator(color: Colors.white,));
+                  return Center(child:  Lottie.asset("assets/loding.json", height: 80),);
                 },
                 errorBuilder: (_, error) {
 
 
                   return Center(child: Container(
                     color: Constants.primaryColor,
-                    child: CircularProgressIndicator(color: Colors.white,),
+                    child:  Lottie.asset("assets/loding.json", height: 80),
                   ));},
 
               ),

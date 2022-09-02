@@ -1,7 +1,12 @@
 
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:prayer_time_gi/Constants.dart';
+
+import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 class AboutPrayerTimes extends StatelessWidget {
 
 
@@ -111,13 +116,9 @@ class AboutPrayerTimes extends StatelessWidget {
   müstəvisinə Rasidin **"Üfüqi-səthi"** deyilir. HK=Günəşin kənarının
   üfüqi-zahiri xətti üzərindəki K nöqtəsindən irtifasıdır. Bu irtifa
   günəşin səthi üfüqə nəzərən ZS irtifasına bərabərdir.
-
   D = C = Ç = Üfüqün alçalma dərəcəsi.
-
   M = Məhəllin hər hansı bir yüksək yeri.
-
   ZMF= Günəşin riyadi irtifa dərəcəsi.
-
   > ZS = Günəşin səthi üfüqə nəzərən irtifasını göstərən, səmadakı səmt
   > dairəsi qövsüdür. Bu qövsün dərəcəsi, HK qövsünün dərəcəsinə
   > müsavidir.
@@ -730,16 +731,39 @@ class AboutPrayerTimes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constants.primaryColor,
-      appBar: AppBar(
-        centerTitle: true,
+      appBar:  PreferredSize(
+        preferredSize: Size(
+          double.infinity,
+          56.0,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30)),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: AppBar(
+              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return
 
-        title: Text("Vaxtların Hesablanması" , style: TextStyle(fontFamily: "Oswald"),),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-      ),
+                PageViewPage(); }));
+              }, icon: Icon(Icons.chevron_left, size: 30,),),
+              elevation: 0,
+
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
+              ),
+
+              backgroundColor: Constants.primaryColor.withOpacity(.6),
+              centerTitle: true,
+              shadowColor: Colors.transparent,
+              title: Text("Vaxtlar Haqqında", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
+            ),
+          ),
+        ),
+      ) ,
       body: Scrollbar(
         child: Markdown(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          physics: BouncingScrollPhysics(),
+          styleSheet: MarkdownStyleSheet.fromCupertinoTheme(CupertinoThemeData.raw(Brightness.light, Constants.primaryColor, Colors.green, CupertinoTextThemeData(), Colors.yellow, Constants.primaryColor)),
           data: _markdownData,
           selectable: true,
           imageDirectory: "assets/",

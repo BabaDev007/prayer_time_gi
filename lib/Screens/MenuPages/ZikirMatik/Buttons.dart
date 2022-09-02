@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import '../../../PaddingManager.dart';
-import 'package:marquee/marquee.dart';
-
+import '../../../Constants.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 class ZikrButton extends StatefulWidget {
   final Function() metod;
   final String buttonName;
@@ -32,83 +30,35 @@ class _ZikrButtonState extends State<ZikrButton>
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         curve: Curves.fastLinearToSlowEaseIn,
-        height: isTapped ? 90 : 100,
-        width: isTapped ? 170 : 180,
+        height: isTapped ? 150 : 160,
+        width: isTapped ? 200 : 210,
         decoration: BoxDecoration(
+          border: Border.all(color: isTapped ? Colors.red :Colors.green,  width: 4),
+          shape: BoxShape.circle,
           color: Colors.white,
-          borderRadius: BorderRadius.all(
-            Radius.circular(30),
-          ),
+
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.3),
-              blurRadius: 30,
-              offset: Offset(3, 7),
+              blurRadius: 100,
+              offset: Offset(1, 1),
             ),
           ],
         ),
         child: Center(
-          child: Text(
-            '${widget.buttonName}',
-            style: TextStyle(
-              color: Colors.black.withOpacity(0.7),
-              fontWeight: FontWeight.w500,
-              fontSize: 50,
+          child: AnimatedTextKit(animatedTexts: [
+            ScaleAnimatedText(
+              '${widget.buttonName}' ,
+              textStyle: TextStyle(
+                color: Constants.primaryColor,
+                fontWeight: FontWeight.w100,
+                fontSize: isTapped ? 30 : 40,
+              ),
             ),
-          ),
+          ],)
         ),
       ),
     );
   }
 }
 
-class TesbihatList extends StatefulWidget {
-final String title;
-final int number;
-final Function()  metod;
-  TesbihatList(this.title, this.number, this.metod,  );
-
-  @override
-  State<TesbihatList> createState() => _TesbihatListState();
-}
-
-class _TesbihatListState extends State<TesbihatList> {
-  @override
-  Widget build(BuildContext context) {
-
-    return Padding(
-      padding: PaddingManager().prayerTimeWidgetPadding,
-
-      child: Container(
-      height: 60,
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.3),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.white.withOpacity(.2),
-                blurRadius: 30,
-                offset: Offset(20, 30),
-              ),
-            ],
-            borderRadius: BorderRadius.circular(25),
-          ),
-
-
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: ListTile(
-              onTap: widget.metod,
-              trailing: CircleAvatar(
-                backgroundColor: Colors.teal,
-                child: AutoSizeText("${widget.number}", maxLines: 1,),
-              ),
-              title: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Text("${widget.title}", maxLines: 2, style: Theme.of(context).textTheme.headline6?.
-                copyWith(color: Colors.white70, fontWeight: FontWeight.w300),),
-              )
-            ),
-          )),
-    );
-  }
-}

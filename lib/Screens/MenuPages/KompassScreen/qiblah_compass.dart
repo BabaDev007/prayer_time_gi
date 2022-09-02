@@ -5,6 +5,7 @@ import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../Constants.dart';
+import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 import 'loading_indicator.dart';
 import 'location_error_widget.dart';
 
@@ -32,9 +33,9 @@ class _QiblahCompassState extends State<QiblahCompass> {
 
       appBar: AppBar(
 
-        title: Text("Kompass", style: TextStyle(fontFamily: "Oswald"),),
-        leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.chevron_left, size: 30,)),
-        centerTitle: true,
+        title: Text("Kompass", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
+        leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+        }, icon: Icon(Icons.chevron_left, size: 30,),),             centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         shadowColor: Colors.transparent,
@@ -107,9 +108,13 @@ class _QiblahCompassState extends State<QiblahCompass> {
 }
 
 class QiblahCompassWidget extends StatelessWidget {
-  final _compassSvg = SvgPicture.asset('assets/compass.svg', color: Colors.white70,);
+  final _kaabaSvg = SvgPicture.asset('assets/4.svg', height: 300,);
+
+  final _compassSvg = SvgPicture.asset('assets/5.svg', color: Colors.white70,);
   final _needleSvg = SvgPicture.asset(
-    'assets/needle.svg',
+
+    'assets/3.svg',
+    color: Colors.white,
     fit: BoxFit.contain,
     height: 300,
     alignment: Alignment.center,
@@ -132,17 +137,13 @@ class QiblahCompassWidget extends StatelessWidget {
             alignment: Alignment.center,
             children: <Widget>[
               Transform.rotate(
-                
-                filterQuality: FilterQuality.high,
-                angle: (qiblahDirection.direction * (pi / 180) * -1),
-                child: _compassSvg,
-              ),
-              Transform.rotate(
                 filterQuality: FilterQuality.high,
                 angle: (qiblahDirection.qiblah * (pi / 180) * -1),
-                alignment: Alignment.center,
-                child: _needleSvg,
+                child: _compassSvg,
               ),
+              _kaabaSvg,
+               _needleSvg,
+
               Positioned(
                 bottom: 8,
                 child: Text(" Qiblə dərəcəsi ${qiblahDirection.offset.toStringAsFixed(3)}°",

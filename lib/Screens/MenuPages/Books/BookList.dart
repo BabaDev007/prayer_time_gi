@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Books/BookTile.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../../Constants.dart';
+import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 import '../../HomeScreen/Widgets.dart';
 import 'BookNameClass.dart';
 import 'EbookListTile.dart';
@@ -23,65 +26,92 @@ class _BookListState extends State<BookList> {
     return Scaffold(
       backgroundColor: Constants.primaryColor,
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        actions: [
-          IconButton(onPressed: (){
-            Get.defaultDialog(
-                onConfirm: (){
-                  Get.back();
-                },
-              title: "Məlumat",
-              middleText: "Təqdim olunmuş kitabların hər biri  Dini Qurumlarla İş Üzrə Dövlət Komitəsi tərəfindən yoxlanışdan keçərək, nəzarət markası ilə markalanmışdır."
-                              );
+      appBar:
+      PreferredSize(
+        preferredSize: Size(
+          double.infinity,
+          56.0,
+        ),
+        child: ClipRRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: AppBar(
+              actions: [
+                IconButton(onPressed: (){
+                  Get.defaultDialog(
+                      onConfirm: (){
+                        Get.back();
+                      },
+                      title: "Məlumat",
+                      middleText: "Təqdim olunmuş kitabların hər biri  Dini Qurumlarla İş Üzrə Dövlət Komitəsi tərəfindən yoxlanışdan keçərək, nəzarət markası ilə markalanmışdır."
+                  );
 
-          }, icon: Icon(Icons.info_outline_rounded))
-        ],
-        title: Text("Dini Kitablar", style: TextStyle(fontFamily: "Oswald"),),
-        leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.chevron_left, size: 30,)),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-      ),
+                }, icon: Icon(Icons.info_outline_rounded))
+              ],
+              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+              }, icon: Icon(Icons.chevron_left, size: 30,),),
+              elevation: 0,
 
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
+              ),
 
-
-      body: SafeArea(
-        child: AnimationLimiter(
-          child:  ListView.builder(
-              padding: EdgeInsets.all( _w /30),
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              itemCount: BookListDart.BookListView.length,
-              itemBuilder: (BuildContext context, int index) {
-              return AnimationConfiguration.staggeredList(
-                  position: index,
-                  delay: Duration(milliseconds: 80),
-                child: SlideAnimation(
-                duration: Duration(milliseconds: 1800),
-                curve: Curves.fastLinearToSlowEaseIn,
-                horizontalOffset: 30,
-                verticalOffset: 300.0,
-                child: FlipAnimation(
-                duration: Duration(milliseconds: 3000),
-                curve: Curves.fastLinearToSlowEaseIn,
-                flipAxis: FlipAxis.y,
-                child: BookTile(
-
-                  BookListDart.BookListView[index].bookPngPath,
-                BookListDart.BookListView[index].bookTitle,
-                BookListDart.BookListView[index].subtitle,
-                BookListDart.BookListView[index].bookLink,
-
-
-                ),
-                ),
-                ),
-              );
-            },
-
+              backgroundColor: Constants.primaryColor.withOpacity(.6),
+              centerTitle: true,
+              shadowColor: Colors.transparent,
+              title: Text("Dini Kitablar", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
             ),
           ),
-      ),
+        ),
+      ) ,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      body: AnimationLimiter(
+        child:  ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: _w /30, vertical: 100),
+            physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            itemCount: BookListDart.BookListView.length,
+            itemBuilder: (BuildContext context, int index) {
+            return AnimationConfiguration.staggeredList(
+                position: index,
+                delay: Duration(milliseconds: 80),
+              child: SlideAnimation(
+              duration: Duration(milliseconds: 1800),
+              curve: Curves.fastLinearToSlowEaseIn,
+              horizontalOffset: 30,
+              verticalOffset: 300.0,
+              child: FlipAnimation(
+              duration: Duration(milliseconds: 3000),
+              curve: Curves.fastLinearToSlowEaseIn,
+              flipAxis: FlipAxis.y,
+              child: BookTile(
+
+                BookListDart.BookListView[index].bookPngPath,
+              BookListDart.BookListView[index].bookTitle,
+              BookListDart.BookListView[index].subtitle,
+              BookListDart.BookListView[index].bookLink,
+
+
+              ),
+              ),
+              ),
+            );
+          },
+
+          ),
+        ),
     );
   }
 }
@@ -98,66 +128,86 @@ class _EBookListState extends State<EBookList> {
     var _w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        actions: [ IconButton(onPressed: (){
-          Get.defaultDialog(
-            onConfirm: (){
-              Get.back();
-            },
-              title: "Məlumat",
-              middleText: "Təqdim olunmuş kitabların hər biri Dini İşlər üzrə komitənin yoxlanılmasından keçmiş, həqiqi İslam alimlərinin"
-                  " əsərləridir."            );
+        backgroundColor: Constants.primaryColor,
 
-        }, icon: Icon(Icons.info_outline_rounded))],
+        extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: Size(
+          double.infinity,
+          56.0,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30)),
 
-        title: Text("Dini Kitablar", style: TextStyle(fontFamily: "Oswald"),),
-        leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.chevron_left, size: 30,)),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-      ),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: AppBar(
+              actions: [
+                IconButton(onPressed: (){
+                  Get.defaultDialog(
+                      onConfirm: (){
+                        Get.back();
+                      },
+                      title: "Məlumat",
+                      middleText: "Təqdim olunmuş kitabların hər biri  Dini Qurumlarla İş Üzrə Dövlət Komitəsi tərəfindən yoxlanışdan keçərək, nəzarət markası ilə markalanmışdır."
+                  );
+
+                }, icon: Icon(Icons.info_outline_rounded))
+              ],
+              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+              }, icon: Icon(Icons.chevron_left, size: 30,),),
+              elevation: 0,
+
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
+              ),
+
+              backgroundColor: Constants.primaryColor.withOpacity(.6),
+              centerTitle: true,
+              shadowColor: Colors.transparent,
+              title: Text("Dini Kitablar", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
+            ),
+          ),
+        ),
+      ) ,
 
 
 
       body: Stack(
         children: [
           Stack1(),
-          SafeArea(
-            child: AnimationLimiter(
-              child:  ListView.builder(
-                padding: EdgeInsets.all( _w /30),
-                physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                itemCount: BookListDart.BookListView1.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return AnimationConfiguration.staggeredList(
-                    position: index,
-                    delay: Duration(milliseconds: 80),
-                    child: SlideAnimation(
-                      duration: Duration(milliseconds: 1800),
+          AnimationLimiter(
+            child:  ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: _w /30, vertical: 100),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              itemCount: BookListDart.BookListView1.length,
+              itemBuilder: (BuildContext context, int index) {
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  delay: Duration(milliseconds: 80),
+                  child: SlideAnimation(
+                    duration: Duration(milliseconds: 1800),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    horizontalOffset: 30,
+                    verticalOffset: 300.0,
+                    child: FlipAnimation(
+                      duration: Duration(milliseconds: 3000),
                       curve: Curves.fastLinearToSlowEaseIn,
-                      horizontalOffset: 30,
-                      verticalOffset: 300.0,
-                      child: FlipAnimation(
-                        duration: Duration(milliseconds: 3000),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                        flipAxis: FlipAxis.y,
-                        child: EBookTile(
+                      flipAxis: FlipAxis.y,
+                      child: EBookTile(
 
-                          BookListDart.BookListView1[index].bookPngPath,
-                          BookListDart.BookListView1[index].bookTitle,
-                          BookListDart.BookListView1[index].subtitle,
-                          BookListDart.BookListView1[index].bookLink,
+                        BookListDart.BookListView1[index].bookPngPath,
+                        BookListDart.BookListView1[index].bookTitle,
+                        BookListDart.BookListView1[index].subtitle,
+                        BookListDart.BookListView1[index].bookLink,
 
 
-                        ),
                       ),
                     ),
-                  );
-                },
+                  ),
+                );
+              },
 
-              ),
             ),
           ),
         ],

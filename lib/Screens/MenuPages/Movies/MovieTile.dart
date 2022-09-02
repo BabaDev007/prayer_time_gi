@@ -1,10 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../Constants.dart';
 import '../../../PaddingManager.dart';
+import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 import '../../HomeScreen/Widgets.dart';
 
 class MoviesTile extends StatelessWidget {
@@ -41,7 +43,7 @@ class MoviesTile extends StatelessWidget {
 
 
               child: ListTile(
-                leading: Icon(FontAwesomeIcons.youtube, color: Colors.red.shade700,),
+                leading:  Image.asset("assets/youtube.png", color: Constants.primaryColor, width: 40, height: 40,),
                 trailing: Icon(Icons.chevron_right),
                 title: Text(movieName),
 
@@ -87,49 +89,65 @@ class Movies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _w = MediaQuery.of(context).size.width;
-    var _h = MediaQuery.of(context).size.height;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
+      appBar:
+      PreferredSize(
+        preferredSize: Size(
+          double.infinity,
+          56.0,
+        ),
+        child: ClipRRect(
+            borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30)),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: AppBar(
+              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+              }, icon: Icon(Icons.chevron_left, size: 30,),),
+              elevation: 0,
 
-        title: Text("Dini Filmlər",style: TextStyle(fontFamily: "Oswald")),
-        leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.chevron_left, size: 30,)),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-      ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
+              ),
+
+              backgroundColor: Constants.primaryColor.withOpacity(.6),
+              centerTitle: true,
+              shadowColor: Colors.transparent,
+              title: Text("Dini Filmlər", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
+            ),
+          ),
+        ),
+      ) ,
+
       body: Stack(
 
         children: [
           Stack1(),
-          SafeArea(
-            child: AnimationLimiter(
-              child: ListView.builder(
+          AnimationLimiter(
+            child: ListView.builder(
 
-                padding: EdgeInsets.all(_w / 30),
-                physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                itemCount: MovieTileList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return AnimationConfiguration.staggeredList(
-                    position: index,
-                    delay: Duration(milliseconds: 80),
-                    child: SlideAnimation(
-                      duration: Duration(milliseconds: 1800),
+              padding: EdgeInsets.symmetric(horizontal:_w / 30, vertical: 100),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              itemCount: MovieTileList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  delay: Duration(milliseconds: 80),
+                  child: SlideAnimation(
+                    duration: Duration(milliseconds: 1800),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    horizontalOffset: 30,
+                    verticalOffset: 300.0,
+                    child: FlipAnimation(
+                      duration: Duration(milliseconds: 3000),
                       curve: Curves.fastLinearToSlowEaseIn,
-                      horizontalOffset: 30,
-                      verticalOffset: 300.0,
-                      child: FlipAnimation(
-                        duration: Duration(milliseconds: 3000),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                        flipAxis: FlipAxis.y,
-                        child: MovieTileList[index]
-                      ),
+                      flipAxis: FlipAxis.y,
+                      child: MovieTileList[index]
                     ),
-                  );
-                },
+                  ),
+                );
+              },
 
-              ),
             ),
           ),
         ],

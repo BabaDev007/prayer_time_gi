@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../Constants.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 class FeedbackPage extends StatefulWidget {
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
@@ -77,8 +80,8 @@ Widget topCardWidget() {
     children: [
       Column(
         children: [
-         Icon(Icons.mosque_outlined, size: 50, color:Constants.primaryColor,),
-          Text("www.namazvaxti.org", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15 ,fontFamily: "Oswald", color:Constants.primaryColor),),
+          SvgPicture.asset("assets/svgmosque.svg", height: 70,),
+          Text("NamazVaxti.org", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15 ,fontFamily: "Oswald", color:Constants.primaryColor),),
         ],
       ),
       Text(
@@ -99,11 +102,16 @@ Widget topCardWidget() {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constants.primaryColor,
+
+
+
       appBar: AppBar(
+        leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+        }, icon: Icon(Icons.chevron_left, size: 30,),),
         centerTitle: true,
         backgroundColor: Colors.transparent,
 elevation: 0,
-        title: Text("Əlaqə", style: TextStyle(fontFamily: "Oswald"),),
+        title: Text("Əlaqə", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),

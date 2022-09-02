@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prayer_time_gi/Constants.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Books/PdfViewer.dart';
 
 import '../../../PaddingManager.dart';
@@ -41,9 +42,9 @@ class EBookTile extends StatelessWidget {
 
               child: ListTile(
                 leading: Image.asset("$bookPngPath", fit: BoxFit.cover, ),
-                title: Text(bookTitle),
-                trailing: Icon(Icons.chevron_right),
-                subtitle: Text(subtitle),
+                title: Text(bookTitle, textAlign: TextAlign.center,  style: TextStyle(fontSize: 15, overflow: TextOverflow.ellipsis),),
+                subtitle: Text(subtitle, textAlign: TextAlign.center),
+                trailing: Icon(Icons.chevron_right, color: Constants.primaryColor,),
 
               )),
         ));

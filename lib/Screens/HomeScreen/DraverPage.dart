@@ -1,19 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:prayer_time_gi/Screens/MenuPages/Books/PdfViewer.dart';
+import 'package:prayer_time_gi/Screens/MenuPages/Map/Map.dart';
+import 'package:prayer_time_gi/Screens/MenuPages/QezaNamaz/QezaNamaz.dart';
+import 'package:prayer_time_gi/Screens/MenuPages/Quran/screens/home.dart';
 import 'package:prayer_time_gi/Screens/Settings/SettingPage.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
 import '../../Constants.dart';
 import '../../PageTransition/PageTransition.dart';
 import '../MenuPages/AboutPrayerTimes/AboutPrayerTimes.dart';
 import '../MenuPages/Books/BookList.dart';
 import '../MenuPages/DiniBilgiler/DiniBilgiler.dart';
+import '../MenuPages/Dualar/Dualar.dart';
+import '../MenuPages/Ekarts/Ekarts.dart';
 import '../MenuPages/Esmail_Husna/EsmaScreen.dart';
-import '../MenuPages/Feedback/FeedbackPage.dart';
 import '../MenuPages/KompassScreen/qiblah_compass.dart';
 import '../MenuPages/Movies/MovieTile.dart';
+import '../MenuPages/Namaz/NamazPage.dart';
 import '../MenuPages/UsefulLinks/UseFulLinks.dart';
 import '../MenuPages/ZikirMatik/ZikirMatik.dart';
 import '../MenuPages/sendQuestion/sendQuestion.dart';
@@ -29,8 +32,9 @@ class DrawerPage extends  Drawer {
   Widget build(BuildContext context) {
     return Drawer(
 
-      backgroundColor:  Constants.primaryColor,
+      backgroundColor:  Constants.kTransparentColor,
       child:  Container(
+
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Scrollbar(
@@ -49,8 +53,25 @@ class DrawerPage extends  Drawer {
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
                         onPressed: (){
                           Navigator.push(context, SizeTransition2(QiblahCompass()));
-                        }, child:  Icon(FontAwesomeIcons.kaaba, size: 30, color: Constants.primaryColor ,)),
+                        }, child:  Image.asset("assets/kaaba.png", color: Constants.primaryColor, width: 150, height: 100,) ),
                   ),),
+
+                GridTile(
+                  footer: Center(child: Text("Quran", style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: CupertinoColors.white, fontSize: 9
+                  ),)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
+                        onPressed: (){
+                          Navigator.push(context, SizeTransition2(QuranPage()));
+
+                        }, child:  Image.asset("assets/quran.png", color: Constants.primaryColor, width: 150, height: 130,) ),
+                  ),),
+
                 GridTile(
                   footer: Center(child: Text("Online Kitablar", style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -77,7 +98,22 @@ class DrawerPage extends  Drawer {
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
                         onPressed: (){
                           Navigator.push(context, SizeTransition2(EBookList()));
-                        }, child:  Icon(FontAwesomeIcons.book, size: 30, color: Constants.primaryColor ,)),
+                        }, child:  Icon(FontAwesomeIcons.quran, size: 30, color: Constants.primaryColor ,)),
+                  ),),
+
+                GridTile(
+                  footer: Center(child: Text("Dini Bilgiler", style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: CupertinoColors.white, fontSize: 9
+                  ),)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
+                        onPressed: (){
+                          Navigator.push(context, SizeTransition2(DiniBilgilerPage()));
+                        }, child:  Image.asset("assets/dinibilgiler.png", color: Constants.primaryColor, scale: 4,)),
                   ),),
                 GridTile(
                   footer: Center(child: Text("Dijital Təsbih", style: TextStyle(
@@ -92,7 +128,22 @@ class DrawerPage extends  Drawer {
                         onPressed: (){
                           Navigator.push(context, SizeTransition2(ZikrPage()));
 
-                        }, child: Image.asset("assets/tasbeh.png", height: 35,)),
+                        }, child:Image.asset("assets/tasbih.png", color: Constants.primaryColor, width: 110, height: 100,)),
+                  ),),
+                GridTile(
+                  footer: Center(child: Text("Dualar", style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: CupertinoColors.white, fontSize: 9
+                  ),)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
+                        onPressed: (){
+                          Navigator.push(context, SizeTransition2(DualarPage()));
+
+                        }, child: Image.asset("assets/dua-hands.png", color: Constants.primaryColor, width: 150, height: 100,) ),
                   ),),
                 GridTile(
                   footer: Center(child: Text("Esma-i Hüsna", style: TextStyle(
@@ -107,8 +158,9 @@ class DrawerPage extends  Drawer {
                         onPressed: (){
                           Navigator.push(context, SizeTransition2(EsmaScreen()));
 
-                        }, child: SvgPicture.asset("assets/99.svg", color: Constants.primaryColor, width: 100, height: 50,) ),
+                        }, child: Image.asset("assets/allah.png", color: Constants.primaryColor, width: 150, height: 100,) ),
                   ),),
+
                 GridTile(
                   footer: Center(child: Text("Dini Mövzular", style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -122,9 +174,9 @@ class DrawerPage extends  Drawer {
                         onPressed: (){
                           Navigator.push(context, SizeTransition2(Themes()));
 
-                        }, child:  Icon(FontAwesomeIcons.mosque, size: 30
-                      , color: Constants.primaryColor ,) ),
+                        }, child: SvgPicture.asset("assets/mosq.svg", color: Constants.primaryColor, width: 50, height: 50,)  ),
                   ),),
+
                 GridTile(
                   footer: Center(child: Text("Namaz Öyrənirəm", style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -136,10 +188,41 @@ class DrawerPage extends  Drawer {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
                         onPressed: (){
-                          Navigator.push(context, SizeTransition2(BookReaderNamaz()));
+                          // Navigator.push(context, SizeTransition2(BookReaderNamaz()));
+                          Navigator.push(context, SizeTransition2(NamazPage()));
 
-                        }, child:  Icon(FontAwesomeIcons.starAndCrescent, size: 37
-                      , color: Constants.primaryColor ,) ),
+
+                        }, child:  Image.asset("assets/prayer-rug.png", color: Constants.primaryColor,) ),
+                  ),),
+                GridTile(
+                  footer: Center(child: Text("Məscidlər", style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: CupertinoColors.white, fontSize: 9
+                  ),)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
+                        onPressed: (){
+                          Navigator.push(context, SizeTransition2(MapMosque()));
+
+                        }, child: Image.asset("assets/mosqaz.png", color: Constants.primaryColor,)),
+                  ),),
+                GridTile(
+                  footer: Center(child: Text("Qəza Hesablama", style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: CupertinoColors.white, fontSize: 9
+                  ),)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
+                        onPressed: (){
+                          Navigator.push(context, SizeTransition2(QezaNamaz()));
+
+                        }, child: Icon(Icons.calculate_outlined, color: Constants.primaryColor, size: 35,)),
                   ),),
                 GridTile(
                   footer: Center(child: Text("Dini Filmlər", style: TextStyle(
@@ -172,6 +255,20 @@ class DrawerPage extends  Drawer {
                         }, child:  Icon(FontAwesomeIcons.music, size: 30, color: Constants.primaryColor ,)),
                   ),),
                 GridTile(
+                  footer: Center(child: Text("E-kartlar", style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: CupertinoColors.white, fontSize: 9
+                  ),)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
+                        onPressed: (){
+                          Navigator.push(context, SizeTransition2(Ekarts()));
+                        }, child:  Icon(FontAwesomeIcons.sheetPlastic, size: 30, color: Constants.primaryColor ,)),
+                  ),),
+                GridTile(
                   footer: Center(child: Text("Linklər", style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: CupertinoColors.white, fontSize: 9
@@ -201,6 +298,7 @@ class DrawerPage extends  Drawer {
                           Navigator.push(context, SizeTransition2(AboutPrayerTimes()));
                         }, child:  Icon(FontAwesomeIcons.info, size: 30, color: Constants.primaryColor ,)),
                   ),),
+
                 GridTile(
                   footer: Center(child: Text("Dini Sual Göndər", style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -239,6 +337,7 @@ class DrawerPage extends  Drawer {
                       , color: Constants.primaryColor ,) ),
                   ),),
 
+
                 GridTile(
                   footer: Center(child: Text("Paylaş", style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -256,20 +355,8 @@ class DrawerPage extends  Drawer {
                         child:  Icon(FontAwesomeIcons.share, size: 37
                       , color: Constants.primaryColor ,) ),
                   ),),
-                GridTile(
-                  footer: Center(child: Text("Əlaqə", style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 9
-                  ),)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
 
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
-                        onPressed: (){
-                          Navigator.push(context, SizeTransition2(FeedbackPage()));
-                        }, child:  Icon(Icons.feedback_outlined, size: 30, color: Constants.primaryColor ,)),
-                  ),),
+
 
 
 
@@ -280,7 +367,7 @@ class DrawerPage extends  Drawer {
             ),
           ),
         ),
-        color: Colors.white.withOpacity(.2),
+        color: Constants.primaryColor
       ),
     );
   }
