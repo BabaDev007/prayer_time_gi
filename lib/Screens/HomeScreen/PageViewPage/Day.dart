@@ -126,24 +126,25 @@ var scrollController = ScrollController();
     ) ,
 
     body: ListView(
+      controller: scrollController,
       children: [
        DayHeader(),
-        DayHeader(),
-        DayHeader(),
        DayButtons(),
 
 
 
 
-       // Card(
-       //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-       //   color: Colors.white,
-       //   child: Column(
-       //     children: [
-       //
-       //     ],
-       //   ),
-       // )
+
+
+        Card(
+         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+         color: Colors.white,
+         child: Column(
+           children: [
+
+           ],
+         ),
+       )
 
       ],
     )
