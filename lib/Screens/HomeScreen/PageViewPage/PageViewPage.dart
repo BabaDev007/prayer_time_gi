@@ -8,7 +8,7 @@ import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
 import '../../../Constants.dart';
 import '../../MenuPages/Quran/screens/home.dart';
 import '../../Settings/SettingPage.dart';
-import 'Day.dart';
+import 'Day/Day.dart';
 import '../Widgets.dart';
 
 class PageViewPage extends StatefulWidget {
@@ -116,6 +116,7 @@ class _PageViewPageState extends State<PageViewPage> {
           ),
         ),
         body: PageView(
+         physics: NeverScrollableScrollPhysics(),
           controller: _controller ,
           children: [
             HomeScreen(),

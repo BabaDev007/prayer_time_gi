@@ -6,12 +6,9 @@ import 'package:flutter/services.dart'; // we need this for the vibrations
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
 import '../../../Constants.dart';
-import '../../../PageTransition/PageTransition.dart';
 import '../../../StateManagement/StateManagement.dart';
 import '../../HomeScreen/PageViewPage/PageViewPage.dart';
-import '../Dualar/Dualar.dart';
 import 'Buttons.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';

@@ -97,10 +97,24 @@ leading: SizedBox(),
                       curve: Curves.fastLinearToSlowEaseIn,
                       flipAxis: FlipAxis.y,
                       child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Constants.primaryColor,
-                          child: Text(chapters[index].id.toString(), style: TextStyle(color: Colors.white),),
-                        ),
+                        leading: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Constants.primaryColor, width: .1),
+                                color: Constants.primaryColor,
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(colors: [Colors.lightBlueAccent, Constants.primaryColor]
+
+                                )
+                            ),
+                            child: FittedBox(child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Text('${index + 1}', style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white,  fontSize: 17, fontFamily: "Oswald"),),
+                            ))),
+
+
+
                         title: Text(chapters[index].name),
                         subtitle: Text(chapters[index].versesCount.toString()),
                         trailing: Text(

@@ -149,9 +149,21 @@ class _EsmaScreenState extends State<EsmaScreen> {
 
 
                                       child: ListTile(
-                                        leading: CircleAvatar(
-                                            backgroundColor: Constants.primaryColor,
-                                            child: Text('${index + 1}', style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white,  fontSize: 17, fontFamily: "Oswald"),)),
+                                        leading: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Constants.primaryColor, width: .1),
+                                            color: Constants.primaryColor,
+                                            shape: BoxShape.circle,
+                                            gradient: LinearGradient(colors: [Colors.lightBlueAccent, Constants.primaryColor]
+
+                                            )
+                                          ),
+                                            child: FittedBox(child: Padding(
+                                              padding: const EdgeInsets.all(5.0),
+                                              child: Text('${index + 1}', style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white,  fontSize: 17, fontFamily: "Oswald"),),
+                                            ))),
                                         title: Text(Esma.esmaTileListe[index], style: TextStyle(fontFamily: "GentiumBookPlus" ),),
                                         subtitle: Text('${Esma.mena[index]}'),
                                         trailing: Text(Esma.arabItem[index]),

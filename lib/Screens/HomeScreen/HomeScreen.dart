@@ -49,7 +49,6 @@ GetStorage box = GetStorage();
       backgroundColor:  Constants.primaryColor.withOpacity(.1),
      appBar: AppBar(
        centerTitle: true,
-       title:   SvgPicture.asset("assets/svgmosque.svg", width: Get.height/22, ),
        actions: [
 
          IconButton(onPressed: (){

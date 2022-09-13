@@ -25,7 +25,6 @@ class Ekarts extends StatefulWidget {
 }
 
 class _EkartsState extends State<Ekarts> with TickerProviderStateMixin{
-  int _counter = 0;
 
   late String imageData;
 
@@ -33,7 +32,6 @@ class _EkartsState extends State<Ekarts> with TickerProviderStateMixin{
 
 
   var _url = Uri.parse("https://www.gozelislam.com/e-kart/");
-  var _metin;
 
 
   var image = [];
@@ -202,7 +200,7 @@ extendBodyBehindAppBar: true,
 
                                                     onPressed: (){
 
-                                                      saveAndShare(image[index]);
+                                                      saveAndShare(image[0]);
                                                     }, child: Icon(Icons.share, size: 35,color: Colors.white,)),
                                               ),
                                             ),

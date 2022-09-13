@@ -1,7 +1,7 @@
 import 'package:jiffy/jiffy.dart';
 import 'package:get/get.dart';
-
 class Controller extends GetxController {
+
   var isShow = false.obs;
   var isShowPrayerTime = false.obs;
   var isShowHikmetliSoz = false.obs;
@@ -11,7 +11,11 @@ class Controller extends GetxController {
   var daylyCounter = 0.obs;
   var allCounter = 0.obs;
   var zikrSayisi = 0.obs;
-
+ var globalTime = "".obs;
+  var globalHicriTime = "".obs;
+  var globalTimeName = "".obs;
+var globalTimeTime = "  sadsads".obs;
+var circularPrTime = "".obs ;
 
 
 

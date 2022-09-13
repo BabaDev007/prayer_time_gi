@@ -44,7 +44,7 @@ class _ZikrPageState extends State<ZikrPage> {
 
   void _incrementCounter() {
     box.write("counter", _counter);
-    _iconButtonVibr ?_switchButton.play("s3.wav") :
+    _iconButtonVibr ?_switchButton.load("s3.wav") :
     HapticFeedback.vibrate();
      setState(() {
       _counter++;
@@ -57,7 +57,7 @@ class _ZikrPageState extends State<ZikrPage> {
   void _restart() {
     box.write("counter", _counter);
 
-    _iconButtonVibr ?_switchButton.play("s3.wav") :
+    _iconButtonVibr ?_switchButton.load("s3.wav") :
     HapticFeedback.heavyImpact();
     setState((){
       _counter = 0;

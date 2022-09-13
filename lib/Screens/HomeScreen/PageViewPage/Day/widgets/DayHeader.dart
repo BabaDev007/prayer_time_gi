@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import '../../../../Constants.dart';
+import '../../../../../Constants.dart';
 class DayHeader extends StatefulWidget {
   const DayHeader({Key? key}) : super(key: key);
 
@@ -25,7 +25,10 @@ class _DayHeaderState extends State<DayHeader> {
                 height: Get.height/6,
                 width: Get.width,
                 decoration: BoxDecoration(
-                    color: Constants.primaryColor.withOpacity(.5),
+                    gradient: LinearGradient(colors: [Colors.blueAccent.withOpacity(.4 ), Constants.primaryColor.withOpacity(.8)]
+
+                    ),
+                    color: Constants.primaryColor,
                     borderRadius: BorderRadius.circular(20)
 
                 )),
@@ -37,7 +40,7 @@ class _DayHeaderState extends State<DayHeader> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Əsr", style: TextStyle(fontSize: 30, fontFamily: "Oswald", color: Colors.white),),
-                  Text("14:25", style: TextStyle(fontSize: 30, fontFamily: "Oswald", color: Colors.white.withOpacity(.6)),),
+                  Text("14:25", style: TextStyle(fontSize: 30, fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
 
                 ],
               ),
@@ -47,14 +50,14 @@ class _DayHeaderState extends State<DayHeader> {
                 child:
 
                 Padding(
-                  padding: const EdgeInsets.only(right: 15),
+                  padding: const EdgeInsets.all(8.0),
                   child: CircularPercentIndicator(
-                      backgroundWidth: 4,
+                      backgroundWidth: 1,
                       percent: .2,
-                      progressColor: Constants.primaryColor,
+                      progressColor: Colors.white,
                       backgroundColor: Colors.white38,
-                      radius: 50.0,
-                      lineWidth: 5.0,
+                      radius: 40.0,
+                      lineWidth: 3.0,
 
 
                       center: FittedBox(
