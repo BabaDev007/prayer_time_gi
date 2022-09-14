@@ -8,11 +8,9 @@ import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
 import '../../../Constants.dart';
 import '../../MenuPages/Quran/screens/home.dart';
 import '../../Settings/SettingPage.dart';
-import 'Day/Day.dart';
-import '../Widgets.dart';
+import 'Day/DaylyBugs.dart';
 
 class PageViewPage extends StatefulWidget {
-  const PageViewPage({Key? key}) : super(key: key);
 
   @override
   State<PageViewPage> createState() => _PageViewPageState();
@@ -120,7 +118,7 @@ class _PageViewPageState extends State<PageViewPage> {
           controller: _controller ,
           children: [
             HomeScreen(),
-            DayPage(),
+            Day(),
             QuranPage(),
             SettingsPage()
 

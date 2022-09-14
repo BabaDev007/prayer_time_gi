@@ -28,7 +28,14 @@ var visual = "Oxu";
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(" Günün mövzusu", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(Icons.view_day_outlined, color: Colors.blue,),
+                    SizedBox(width: 10,),
+                    Text("Günün mövzusu", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.all(3.0),
                   child: Text("Allahü təala, insanları Müsəlman etməyə məcbur deyildir", maxLines: 2 , overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,

@@ -22,6 +22,19 @@ class ZikrPage extends StatefulWidget {
 
 class _ZikrPageState extends State<ZikrPage> {
   var _turns = 0;
+  AudioPlayer player = AudioPlayer();
+
+  Future <void>zor()async {
+    String audioasset = "assets/music/s3.wav";
+    ByteData bytes = await rootBundle.load(audioasset); //load sound from assets
+    Uint8List  soundbytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    int result = await player.playBytes(soundbytes);
+    if(result == 1){ //play success
+      print("Sound playing successful.");
+    }else{
+      print("Error while playing sound.");
+    }
+  }
   @override
   void initState() {
     _iconButtonVibr = box.read("icon") ?? false;
@@ -37,14 +50,13 @@ class _ZikrPageState extends State<ZikrPage> {
     super.dispose();
   }
  var box = GetStorage();
-  var _switchButton = AudioCache(prefix: "assets/music/") ;
 
 
   int _counter = 0;
 
   void _incrementCounter() {
     box.write("counter", _counter);
-    _iconButtonVibr ?_switchButton.load("s3.wav") :
+    _iconButtonVibr ? zor() :
     HapticFeedback.vibrate();
      setState(() {
       _counter++;
@@ -57,7 +69,7 @@ class _ZikrPageState extends State<ZikrPage> {
   void _restart() {
     box.write("counter", _counter);
 
-    _iconButtonVibr ?_switchButton.load("s3.wav") :
+    _iconButtonVibr ? zor() :
     HapticFeedback.heavyImpact();
     setState((){
       _counter = 0;

@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:prayer_time_gi/Screens/MenuPages/Books/Ebook%20reader.dart';
+import 'package:prayer_time_gi/Screens/MenuPages/DataTable/DataTable.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Dualar/Dualar.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Shuhada/Shuhada.dart';
 
 import '../../../../../Constants.dart';
 import '../../../../../PageTransition/PageTransition.dart';
+import '../../../../MenuPages/AboutPrayerTimes/AboutPrayerTimes.dart';
 import '../../../../MenuPages/Books/BookList.dart';
 import '../../../../MenuPages/DiniBilgiler/DiniBilgiler.dart';
 import '../../../../MenuPages/Ekarts/Ekarts.dart';
@@ -395,8 +398,8 @@ bool isButton = false;
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
                           onPressed: (){
-                            Navigator.push(context, SizeTransition2(Ekarts()));
-                          }, child: Icon(FontAwesomeIcons.sheetPlastic, size: 30, color: Constants.primaryColor ,) ),
+                            Navigator.push(context, SizeTransition2(DataTable1()));
+                          }, child: Icon(Icons.calendar_month, size: 30, color: Constants.primaryColor ,) ),
                     ),
                   ),
                 ),
@@ -409,8 +412,8 @@ bool isButton = false;
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
                           onPressed: (){
-                            Navigator.push(context, SizeTransition2(IlahiList()));
-                          }, child:  Center(child: Icon(FontAwesomeIcons.music, size: 30, color: Constants.primaryColor ,)) ),
+                            Navigator.push(context, SizeTransition2(AboutPrayerTimes()));
+                          }, child:  Center(child: Icon(FontAwesomeIcons.info, size: 30, color: Constants.primaryColor ,)) ),
                     ),
                   ),
                 ),
@@ -423,8 +426,8 @@ bool isButton = false;
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
                           onPressed: (){
-                            Navigator.push(context, SizeTransition2(Movies()));
-                          }, child:   Icon(Icons.movie_creation_outlined, size: 37
+                            Navigator.push(context, SizeTransition2(EBookList()));
+                          }, child:   Icon(Icons.book_outlined, size: 37
                         , color: Constants.primaryColor ,) ),
                     ),
                   ),

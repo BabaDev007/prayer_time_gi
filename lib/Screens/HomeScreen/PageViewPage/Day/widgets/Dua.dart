@@ -30,7 +30,14 @@ class _DuaCardState extends State<DuaCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(" Günün duası", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset("assets/dua-hands.png", color: Colors.blue, width: 30, height: 50,),
+                      SizedBox(width: 10,),
+                      Text("Günün duası", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+                    ],
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: AnimatedCrossFade(

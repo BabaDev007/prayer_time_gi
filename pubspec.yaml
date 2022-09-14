@@ -62,8 +62,7 @@ dev_dependencies:
   get_storage: any
   flutter_slimy_card: any
   animated_flip_counter: any
-  audioplayers: any
-  marquee: any
+  audioplayers: ^0.20.1
   epub_view: any
   font_awesome_flutter: ^10.1.0
   percent_indicator: any

@@ -122,15 +122,26 @@ class _ZikrPage1State extends State<ZikrPage1> {
     super.dispose();
   }
   var box = GetStorage();
-  var _switchButton = AudioCache(prefix: "assets/music/") ;
+  AudioPlayer player = AudioPlayer();
 
+  Future <void>zor()async {
+    String audioasset = "assets/music/s3.wav";
+    ByteData bytes = await rootBundle.load(audioasset); //load sound from assets
+    Uint8List  soundbytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    int result = await player.playBytes(soundbytes);
+    if(result == 1){ //play success
+      print("Sound playing successful.");
+    }else{
+      print("Error while playing sound.");
+    }
+  }
   int _daylyCounter = 0;
   int _allCounter = 0;
   int _counter = 0;
 
   void _incrementCounter() {
 
-    _iconButtonVibr ?_switchButton.play("s3.wav") :
+    _iconButtonVibr ? zor() :
     HapticFeedback.vibrate();
     if(_counter < widget.zikirSayisi){
     setState(() {
@@ -149,7 +160,7 @@ class _ZikrPage1State extends State<ZikrPage1> {
 
   void _restart() {
 
-    _iconButtonVibr ?_switchButton.play("s3.wav") :
+    _iconButtonVibr ? zor() :
     HapticFeedback.heavyImpact();
     setState((){
       _counter = 0;

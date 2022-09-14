@@ -14,8 +14,9 @@ class Controller extends GetxController {
  var globalTime = "".obs;
   var globalHicriTime = "".obs;
   var globalTimeName = "".obs;
-var globalTimeTime = "  sadsads".obs;
-var circularPrTime = "".obs ;
+  var globalTimeTime = "  ".obs;
+  var circularPrTime = "".obs ;
+  var scrollOffset = 4.obs;
 
 
 

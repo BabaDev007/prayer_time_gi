@@ -26,7 +26,14 @@ var zor = false;
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Text(" Hikmətli sözlər", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(Icons.legend_toggle, color: Colors.blue,),
+                SizedBox(width: 10,),
+                Text("Hikmətli sözlər", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+              ],
+            ),
             Text(" Hikmət əhli buyurdu ki,", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus"  ,),),
 
               Padding(

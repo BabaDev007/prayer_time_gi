@@ -25,45 +25,46 @@ class _KufrCardState extends State<KufrCard> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child:
-              AnimatedCrossFade(
-                
-                firstChild: Row(
+              AnimatedSwitcher(
+                duration: Duration(milliseconds: 400),
+                child:  zor ? Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Icon(Icons.info_outline_rounded, color: Colors.blue),
+                Row(
+                  children: [
+                    Icon(Icons.info_outline_rounded, color: Colors.blue),
 SizedBox(width: 10,),
-                  Text("Çox mühüm açıqlama", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  OutlinedButton(onPressed: () {
-                    setState(() {
-                      zor = !zor;
+                    Text("Çox mühüm açıqlama", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    OutlinedButton(onPressed: () {
+                      setState(() {
+                        zor = !zor;
 
-                    });
-                  },
-                      child: Row(
-                        children: [
-                          Icon(Icons.chrome_reader_mode_outlined),
-                          SizedBox(width: 10,),
-                          Text("Oxu", style: TextStyle(fontWeight: FontWeight.bold, color: Constants.primaryColor.withOpacity(.5)),),
-                        ],
-                      )),
+                      });
+                    },
+                        child: Row(
+                          children: [
+                            Icon(Icons.chrome_reader_mode_outlined),
+                            SizedBox(width: 10,),
+                            Text("Oxu", style: TextStyle(fontWeight: FontWeight.bold, color: Constants.primaryColor.withOpacity(.5)),),
+                          ],
+                        )),
 
 
 
-                ],
-              )
+                  ],
+                )
             ],
-          ),
-                secondChild:
+          )
+
+
           
-          Column(
+       :   Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -159,7 +160,7 @@ SizedBox(width: 10,),
 
 
             ],
-          ), crossFadeState: zor ?  CrossFadeState.showFirst  : CrossFadeState.showSecond, duration: Duration(milliseconds: 300),
+          ),
               )),
       ),
     );
