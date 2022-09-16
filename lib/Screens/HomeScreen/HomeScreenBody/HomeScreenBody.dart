@@ -369,6 +369,7 @@ var circularPrTime;
     c.isShowHikmetliSoz.value = hs;
     hikmet = box.read("hikmetlisoz");
 
+
     // TODO: implement initState
   }
 
@@ -439,7 +440,7 @@ var circularPrTime;
                   child: circularPrTime == null ? Center(child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CircularProgressIndicator(color: Colors.white,),
-                  ),) : Text("-${circularPrTime.toString()}", style: TextStyle(color: Colors.white.withOpacity(.8), fontWeight: FontWeight.w300 ,fontSize: 20, fontFamily: "GentiumBookPlus" ),) ),
+                  ),) : Text("-${circularPrTime.toString()}", style: TextStyle(color: Colors.white.withOpacity(.8), fontWeight: FontWeight.w300 ,fontSize: 20, fontFamily: "PlayfairDisplay-VariableFont" ),) ),
 
                   Positioned(
                       bottom: Get.height/16,
@@ -540,7 +541,7 @@ var circularPrTime;
                                             child: Image.asset("assets/sunrise2.png", color: Constants.primaryColor.withOpacity(.5), width: 25),
                                           ),
                                       ),),
-                                      Text("sübh", style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                      Text("sübh", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                     ],
                                   ),
                                 ),
@@ -548,7 +549,7 @@ var circularPrTime;
                                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                                   child: Row(
                                     children: [
-                                      AutoSizeText(zor['${c.difference}']['baseTime']['sabah'].toString(), style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                      AutoSizeText(zor['${c.difference}']['baseTime']['sabah'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 10),
                                         child: SizedBox(),
@@ -579,7 +580,7 @@ var circularPrTime;
                                               child: Image.asset("assets/sun.png", color: Constants.primaryColor.withOpacity(.5), width: 25,),
                                             ),
                                         ),),
-                                        Text("günəş", style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                        Text("günəş", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                       ],
                                     ),
                                   ),
@@ -587,7 +588,7 @@ var circularPrTime;
                                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                                     child: Row(
                                       children: [
-                                       Text(zor['${c.difference}']['baseTime']['gunes'].toString(), style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                       Text(zor['${c.difference}']['baseTime']['gunes'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 10),
                                           child: SizedBox()
@@ -619,7 +620,7 @@ var circularPrTime;
                                           child: Icon(Icons.sunny, color: Constants.primaryColor.withOpacity(.5)),
                                         ),),
                                     ),
-                                      AutoSizeText("zöhr", style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                      AutoSizeText("zöhr", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                     ],
                                   ),
                                 ),
@@ -627,7 +628,7 @@ var circularPrTime;
                                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                                   child: Row(
                                     children: [
-                                      Text(zor['${c.difference}']['baseTime']['gunorta'].toString(), style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                      Text(zor['${c.difference}']['baseTime']['gunorta'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 10),
                                         child: SizedBox(),
@@ -659,7 +660,7 @@ var circularPrTime;
                                           child: Icon(Icons.sunny_snowing, color: Constants.primaryColor.withOpacity(.5) ),
                                         ),),
                                     ),
-                                      Text("əsr", style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                      Text("əsr", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                     ],
                                   ),
                                 ),
@@ -667,7 +668,7 @@ var circularPrTime;
                                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                                   child: Row(
                                     children: [
-                                     Text(zor['${c.difference}']['baseTime']['ikindi'].toString(), style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                     Text(zor['${c.difference}']['baseTime']['ikindi'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 10),
                                         child: SizedBox(),
@@ -698,7 +699,7 @@ var circularPrTime;
                                           child: Icon(Icons.nightlight_outlined, color: Constants.primaryColor.withOpacity(.5) ),
                                         ),),
                                     ),
-                                      Text("axşam", style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                      Text("axşam", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                     ],
                                   ),
                                 ),
@@ -706,7 +707,7 @@ var circularPrTime;
                                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                                   child: Row(
                                     children: [
-                                      Text(zor['${c.difference}']['baseTime']['axsam'].toString(), style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                      Text(zor['${c.difference}']['baseTime']['axsam'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 10),
                                         child: SizedBox(),
@@ -738,7 +739,7 @@ var circularPrTime;
                                         ),),
                                     ),
 
-                                   Text("işa", style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                   Text("işa", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                     ],
                                   ),
                                 ),
@@ -746,7 +747,7 @@ var circularPrTime;
                                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                                   child: Row(
                                     children: [
-                                      Text(zor['${c.difference}']['baseTime']['yatsi'].toString(), style: TextStyle(fontSize: 18, fontFamily: "GentiumBookPlus"),),
+                                      Text(zor['${c.difference}']['baseTime']['yatsi'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 10),
                                         child: SizedBox(),
@@ -787,7 +788,7 @@ var circularPrTime;
                                        child: Column(
                                          mainAxisAlignment: MainAxisAlignment.center,
                                          children: [
-                                           AutoSizeText("imsaq", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                           AutoSizeText("imsaq", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                            AutoSizeText(zor['${c.difference}']['baseTime']['imsaq'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                          ],
                                        ),
@@ -812,7 +813,7 @@ var circularPrTime;
                                        child: Column(
                                          mainAxisAlignment: MainAxisAlignment.center,
                                          children: [
-                                           AutoSizeText("sübh", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                           AutoSizeText("sübh", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                            AutoSizeText(zor['${c.difference}']['baseTime']['sabah'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                          ],
                                        ),
@@ -836,7 +837,7 @@ var circularPrTime;
                                        child: Column(
                                          mainAxisAlignment: MainAxisAlignment.center,
                                          children: [
-                                           AutoSizeText("günəş", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                           AutoSizeText("günəş", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                            AutoSizeText(zor['${c.difference}']['baseTime']['gunes'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                          ],
                                        ),
@@ -867,7 +868,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("işrak", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("işrak", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['extraTime']['israk'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -890,7 +891,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("kərahət", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("kərahət", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['extraTime']['kerahat'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -913,7 +914,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("zöhr", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("zöhr", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['baseTime']['gunorta'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -943,7 +944,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("əsr-i əvvəl", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("əsr-i əvvəl", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['baseTime']['ikindi'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -966,7 +967,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("əsr-i sani", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("əsr-i sani", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['extraTime']['asri_sani'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -989,7 +990,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("isfirar", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("isfirar", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['extraTime']['isfirar'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -1019,7 +1020,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("axşam", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("axşam", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['baseTime']['axsam'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -1042,7 +1043,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("iştibak", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("iştibak", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['extraTime']['istibak'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -1065,7 +1066,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("işa-i əvvəl", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("işa-i əvvəl", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['baseTime']['yatsi'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -1097,7 +1098,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("işa-i sani", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("işa-i sani", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['extraTime']['isa_sani'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -1121,7 +1122,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("gecə y-sı", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("gecə y-sı", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['extraTime']['midnight'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),
@@ -1152,7 +1153,7 @@ var circularPrTime;
                                      child: Column(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
-                                         AutoSizeText("təhəccüd", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "GentiumBookPlus", color: Colors.black54, ),),
+                                         AutoSizeText("təhəccüd", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
                                          AutoSizeText(zor['${c.difference}']['extraTime']['teheccud'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
                                        ],
                                      ),

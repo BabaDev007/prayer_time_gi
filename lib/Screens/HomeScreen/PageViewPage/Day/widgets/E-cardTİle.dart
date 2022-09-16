@@ -29,7 +29,7 @@ class _EkardTileState extends State<EkardTile> {
   var _metin;
 
 
-  var image;
+  var image = [];
   var isBtn2 = false;
 
   Future<Null> saveAndShare(String zor) async {
@@ -63,7 +63,9 @@ class _EkardTileState extends State<EkardTile> {
         element) async {
       setState(() {
 
-          image =  element.children[0].children[0].children[0].attributes["src"].toString();
+        image.add(
+            element.children[0].children[0].attributes["src"].toString()
+        );
           print(image);
 
       });
@@ -72,7 +74,7 @@ class _EkardTileState extends State<EkardTile> {
 
   @override
   void initState() {
-    getData();
+   // getData();
     // TODO: implement initState
     super.initState();}
 
@@ -105,10 +107,9 @@ class _EkardTileState extends State<EkardTile> {
                         ClipRRect(
                     borderRadius: BorderRadius.only(topRight:  Radius.circular(10) , topLeft: Radius.circular(10))
 ,
-        child: CachedNetworkImage(
+        child: image.isNotEmpty ? CachedNetworkImage(
                             imageUrl:
-                          "https://www.gozelislam.com/uploads/posts/2022-07/1659085294_b6f5f26c-c4e2-481a-a7be-227b0dd2de89.jpg",
-                            //"https://www.gozelislam.com${image}",
+                            "https://www.gozelislam.com${image[0]}",
                             placeholder: (context, url) => Stack(
                               alignment: Alignment.center,
                               children: [
@@ -129,7 +130,25 @@ class _EkardTileState extends State<EkardTile> {
                               ],
                             ),
                             errorWidget: (context, url, error) => Icon(Icons.error),
-                          ),
+                          ) : Stack(
+          alignment: Alignment.center,
+          children: [
+            Shimmer(
+              enabled: true,
+              gradient: LinearGradient(colors: [Constants.primaryColor, Colors.white, Colors.blueGrey]
+
+              ), child: Container(
+              width: double.infinity,
+              height: 300,
+              decoration: BoxDecoration(
+                  color: Constants.primaryColor,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))
+
+              ),
+            ), ),
+            Image.asset("assets/pngmosque.png", width: MediaQuery.of(context).size.width/3,) ,
+          ],
+        ) ,
                         ),
 
 
@@ -143,7 +162,7 @@ class _EkardTileState extends State<EkardTile> {
                               },
                                   child: Text("Daha çox", style: TextStyle(fontWeight: FontWeight.bold, color: Constants.primaryColor.withOpacity(.5)),)),
                               TextButton(onPressed: () {
-                                saveAndShare(image);
+                                saveAndShare(image[0]);
 
                               },
                                   child:  Row(

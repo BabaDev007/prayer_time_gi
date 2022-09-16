@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:get/get.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -118,8 +117,7 @@ class _DiniReaderState extends State<DiniReader> {
       break;
       case "amber" : _bacgroundColor = Colors.amber.shade100;
       break;
-      case "white" : _bacgroundColor = Colors.white;
-      break;
+
     }
 getData(widget.url);
 
@@ -149,7 +147,7 @@ getData(widget.url);
                 icon: const Icon(Icons.settings),
                 color: Colors.white,
                 onPressed: () => Get.defaultDialog(
-                    backgroundColor: Colors.teal,
+                    backgroundColor: Constants.primaryColor,
                     title: "Düzəlişlər",
                     titleStyle: TextStyle(color: Colors.white70),
                     content: Column(
@@ -168,7 +166,7 @@ getData(widget.url);
                                     onTap: (){
                                       setState((){
                                         box.write("arxaFon", "white");
-                                        _bacgroundColor = Colors.white;
+                                        _bacgroundColor = Colors.white70;
                                       });
                                     },
                                     child: Padding(
@@ -177,7 +175,7 @@ getData(widget.url);
                                         width: 30,
                                         height: 30,
                                         decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: Colors.white70,
                                           shape: BoxShape.circle,
 
                                         ),
@@ -243,26 +241,7 @@ getData(widget.url);
                                       ),
                                     ),
                                   ),
-                                  InkWell(
-                                    onTap: (){
-                                      setState((){
-                                        _bacgroundColor = Colors.white;
-                                        box.write("arxaFon", "white");
 
-                                      });
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Container(
-                                        width: 30,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            shape: BoxShape.circle
-                                        ),
-                                      ),
-                                    ),
-                                  ),
 
                                 ],
                               )

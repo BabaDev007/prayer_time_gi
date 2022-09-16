@@ -24,14 +24,14 @@ class ShareCard extends StatelessWidget {
                 children: [
                   Icon(Icons.share_outlined, color: Colors.blue),
                   SizedBox(width: 10,),
-                  Text("Tətbiqi paylaş", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+                  Text("Tətbiqi paylaş", style: TextStyle(fontWeight: FontWeight.bold, color: Constants.primaryColor ),),
                 ],
               ),
              SizedBox(height: 20,),
               Text("Abdullah İbn Amr İbn Âs -radıyallahu anhumâ-'dan- "
                   "rəvayət edildiyinə görə, Nəbi -səllallahu aleyhi və səlləm- belə buyurdu: "
                   """'Mənim tərəfimdan bir âyet belə olsa insanlara çatdırın'.""", textAlign: TextAlign.justify,
-                style: TextStyle( fontFamily: "GentiumBookPlus",  ),),
+                style: TextStyle( fontFamily: "PlayfairDisplay-VariableFont",  ),),
 
 
 

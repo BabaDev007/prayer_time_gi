@@ -86,7 +86,7 @@ class _DaylyThemeState extends State<DaylyTheme> {
             icon: const Icon(Icons.settings),
             color: Colors.white,
             onPressed: () => Get.defaultDialog(
-                backgroundColor: Colors.teal,
+                backgroundColor: Constants.primaryColor,
                 title: "Düzəlişlər",
                 titleStyle: TextStyle(color: Colors.white70),
                 content: Column(
@@ -105,7 +105,7 @@ class _DaylyThemeState extends State<DaylyTheme> {
                                 onTap: (){
                                   setState((){
                                     box.write("arxaFon", "white");
-                                    _bacgroundColor = Colors.white;
+                                    _bacgroundColor = Colors.white70;
                                   });
                                 },
                                 child: Padding(
@@ -165,7 +165,7 @@ class _DaylyThemeState extends State<DaylyTheme> {
                                 setState((){
                                   box.write("arxaFon", "amber");
 
-                                  _bacgroundColor = Colors.amber.shade300;
+                                  _bacgroundColor = Colors.amber.shade100;
                                 });
                               },
                                 child: Padding(
@@ -174,32 +174,13 @@ class _DaylyThemeState extends State<DaylyTheme> {
                                     width: 30,
                                     height: 30,
                                     decoration: BoxDecoration(
-                                        color: Colors.amber.shade300,
+                                        color: Colors.amber.shade100,
                                         shape: BoxShape.circle
                                     ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onTap: (){
-                                  setState((){
-                                    _bacgroundColor = Colors.white;
-                                    box.write("arxaFon", "white");
 
-                                  });
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Container(
-                                    width: 30,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        shape: BoxShape.circle
-                                    ),
-                                  ),
-                                ),
-                              ),
 
                             ],
                           )
@@ -428,7 +409,7 @@ getMovzuDialog();
                 icon: const Icon(Icons.settings),
                 color: Colors.white,
                 onPressed: () => Get.defaultDialog(
-                    backgroundColor: Colors.teal,
+                    backgroundColor: Constants.primaryColor,
                     title: "Düzəlişlər",
                     titleStyle: TextStyle(color: Colors.white70),
                     content: Column(
@@ -447,7 +428,7 @@ getMovzuDialog();
                                     onTap: (){
                                       setState((){
                                         box.write("arxaFon", "white");
-                                        _bacgroundColor = Colors.white;
+                                        _bacgroundColor = Colors.white70;
                                       });
                                     },
                                     child: Padding(
@@ -456,7 +437,7 @@ getMovzuDialog();
                                         width: 30,
                                         height: 30,
                                         decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: Colors.white70,
                                           shape: BoxShape.circle,
 
                                         ),
@@ -522,26 +503,7 @@ getMovzuDialog();
                                       ),
                                     ),
                                   ),
-                                  InkWell(
-                                    onTap: (){
-                                      setState((){
-                                        _bacgroundColor = Colors.white;
-                                        box.write("arxaFon", "white");
 
-                                      });
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Container(
-                                        width: 30,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            shape: BoxShape.circle
-                                        ),
-                                      ),
-                                    ),
-                                  ),
 
                                 ],
                               )
@@ -627,9 +589,9 @@ _show ?
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            bashliq10, textAlign: TextAlign.justify, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold , fontFamily: 'Oswald' ),),
+                            bashliq10, textAlign: TextAlign.center, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold , fontFamily: 'GentiumBookPlus' ),),
                         ),
-                        Text('${metin10}' ,style: TextStyle(fontSize:_fontSize, fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.9) ),),
+                        Text('${metin10}' , textAlign: TextAlign.justify, style: TextStyle(fontSize:_fontSize, fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.9) ),),
                         TextButton(onPressed: () {
                           _launchUrl('https://www.gozelislam.com');
                         },

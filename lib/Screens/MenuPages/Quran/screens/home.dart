@@ -1,9 +1,7 @@
   import 'dart:convert';
-import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Quran/screens/reading_page.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -117,10 +115,24 @@ leading: SizedBox(),
 
                         title: Text(chapters[index].name),
                         subtitle: Text(chapters[index].versesCount.toString()),
-                        trailing: Text(
-                          chapters[index].arabicName,
-                          style: GoogleFonts.akronim(
-                            fontSize: 18,
+                        trailing: SizedBox(
+                          width: MediaQuery.of(context).size.width/2.5,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  chapters[index].arabicName,
+                                  style: TextStyle(
+                                    fontSize: 20, fontFamily: "AmiriQuran-Regular"
+                                  )
+                                ),
+                                SizedBox(width: 10,),
+                                chapters[index].revelationPlace == "madinah" ?
+                                Image.asset("assets/medina.png",  width: 35) : Image.asset("assets/mekkah.png", width: 30,)
+                              ],
+                            ),
                           ),
                         ),
                         onTap: () => Navigator.push(

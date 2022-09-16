@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Books/Ebook%20reader.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/DataTable/DataTable.dart';
+import 'package:prayer_time_gi/Screens/MenuPages/DiniBilgiler/Dini1.dart';
+import 'package:prayer_time_gi/Screens/MenuPages/DiniBilgiler/DiniBilgiler1Page.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Dualar/Dualar.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Shuhada/Shuhada.dart';
 
@@ -95,7 +97,8 @@ bool isButton = false;
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
                       onPressed: (){
                         Navigator.push(context, SizeTransition2(ZikrPage()));
-                      }, child:  Image.asset("assets/tasbih.png", color: Constants.primaryColor, ) ),
+                      }, child:   Opacity(opacity: .7,
+                      child: Image.asset("assets/tasbeh1.png", width: 60, )) )
                 ),
               ),
             ),
@@ -180,7 +183,8 @@ bool isButton = false;
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
                           onPressed: (){
                             Navigator.push(context, SizeTransition2(ZikrPage()));
-                          }, child:  Image.asset("assets/tasbih.png", color: Constants.primaryColor, ) ),
+                          }, child:  Opacity(opacity: .7,
+                          child: Image.asset("assets/tasbeh1.png", width: 60, )))
                     ),
                   ),
                 ),
@@ -384,7 +388,7 @@ bool isButton = false;
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
                           onPressed: (){
-                            Navigator.push(context, SizeTransition2(UsefulLinks()));
+
                           }, child:  Icon(FontAwesomeIcons.link, size: 28, color: Constants.primaryColor ,)),
                     ),
                   ),

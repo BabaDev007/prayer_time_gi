@@ -74,7 +74,10 @@ class _DayState extends State<Day> {
     filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
     child: AppBar(
 
-    leading: Icon(Icons.view_day),
+    leading: Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Image.asset("assets/calendar.png", color: Colors.white,),
+    ),
     elevation: 0,
 
     shape: RoundedRectangleBorder(
@@ -147,7 +150,7 @@ class _DayState extends State<Day> {
     GunlukMovzuCard(),
     DuaCard(),
     EkardTile(),
-    ZikrCard(),
+     ZikrCard(),
     ShuhadaCard(),
     SualGonder(),
     ShareCard(),

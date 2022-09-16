@@ -33,18 +33,18 @@ class _DuaCardState extends State<DuaCard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Image.asset("assets/dua-hands.png", color: Colors.blue, width: 30, height: 50,),
+                      Image.asset("assets/dua-hands.png", color: Colors.blue, width: 25, height: 30,),
                       SizedBox(width: 10,),
-                      Text("Günün duası", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+                      Text("Günün duası", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "PlayfairDisplay-VariableFont", color: Constants.primaryColor ),),
                     ],
                   ),
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: AnimatedCrossFade(
                       firstChild: Text( maxLines: 4, """Hədisi-şərifdə buyuruldu ki: Dünya və axirət səadəti istəyən, Allahümmə Rabbənə ətinə fiddünyə hasənətən və fil axirəti hasənətən və qına azəbənnər. Birahmətikə ya Ərhamərrahimin duasını oxusun.""",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
-                        style: TextStyle(fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.8), ),),
+                        style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black.withOpacity(.8), ),),
                       secondChild: Text( maxLines: 1000,"""Hədisi-şərifdə buyuruldu ki: Dünya və axirət səadəti istəyən, Allahümmə Rabbənə ətinə fiddünyə hasənətən və fil axirəti hasənətən və qına azəbənnər. Birahmətikə ya Ərhamərrahimin duasını oxusun.""",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
-                        style: TextStyle(fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.8), ),) ,
+                        style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black.withOpacity(.8), ),) ,
                       crossFadeState: zor ?  CrossFadeState.showSecond : CrossFadeState.showFirst,
                       duration: Duration(milliseconds: 300),
 

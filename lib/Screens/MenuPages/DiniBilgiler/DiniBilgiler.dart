@@ -6,6 +6,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
+import 'package:prayer_time_gi/Screens/MenuPages/DiniBilgiler/DiniBilgiler1Page.dart';
 import '../../../PaddingManager.dart';
 import '../../../PageTransition/PageTransition.dart';
 import '../../HomeScreen/PageViewPage/PageViewPage.dart';
@@ -132,37 +133,31 @@ var link, link1, link2, link3, link4, link5, link6, link7;
                       flipAxis: FlipAxis.y,
                       child:   Padding(
                       padding: PaddingManager().prayerTimeWidgetPadding,
-                    child: InkWell(
-                      onTap: (){
+                    child: Container(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).errorColor,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.blue.withOpacity(.2),
+                              blurRadius: 30,
+                              offset: Offset(20, 30),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(20),
+                        ),
 
 
-                      },
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).errorColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.blue.withOpacity(.2),
-                                blurRadius: 30,
-                                offset: Offset(20, 30),
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-
-
-                          child: ListTile(
-                            onTap: (){
-                              Navigator.push(context, SizeTransition2(DiniBilgilerPage1(Uri.parse(linkMovzu[index]))));
-                            },
-                            leading:Icon(Icons.folder, color: Constants.primaryColor,),
-                            title: Text(movzuAdi[index]),
-                            trailing: Icon(Icons.chevron_right),
+                        child: ListTile(
+                          onTap: (){
+                            Navigator.push(context, SizeTransition1(DiniBilgiler1Page(link: Uri.parse(linkMovzu[index]), bashliq: movzuAdi[index],)));
+                          },
+                          leading:Icon(Icons.folder, color: Constants.primaryColor,),
+                          title: Text(movzuAdi[index]),
+                          trailing: Icon(Icons.chevron_right),
 
 
 
-                          )),
-                    ))
+                        )))
                   ),
                 ),
               );

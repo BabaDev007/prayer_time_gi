@@ -96,7 +96,7 @@ class _EbookReaderState extends State<EbookReader> {
                 icon: const Icon(Icons.settings),
                 color: Colors.white,
                 onPressed: () => Get.defaultDialog(
-                    backgroundColor: Colors.teal,
+                    backgroundColor: Constants.primaryColor,
                     title: "Düzəlişlər",
                     titleStyle: TextStyle(color: Colors.white70),
                     content: Column(
@@ -115,7 +115,7 @@ class _EbookReaderState extends State<EbookReader> {
                                     onTap: (){
                                       setState((){
                                         box.write("arxaFon", "white");
-                                        _bacgroundColor = Colors.white;
+                                        _bacgroundColor = Colors.white70;
                                       });
                                     },
                                     child: Padding(
@@ -175,7 +175,7 @@ class _EbookReaderState extends State<EbookReader> {
                                     setState((){
                                       box.write("arxaFon", "amber");
 
-                                      _bacgroundColor = Colors.amber.shade300;
+                                      _bacgroundColor = Colors.amber.shade100;
                                     });
                                   },
                                     child: Padding(
@@ -184,32 +184,13 @@ class _EbookReaderState extends State<EbookReader> {
                                         width: 30,
                                         height: 30,
                                         decoration: BoxDecoration(
-                                            color: Colors.amber.shade300,
+                                            color: Colors.amber.shade100,
                                             shape: BoxShape.circle
                                         ),
                                       ),
                                     ),
                                   ),
-                                  InkWell(
-                                    onTap: (){
-                                      setState((){
-                                        _bacgroundColor = Colors.white;
-                                        box.write("arxaFon", "white");
 
-                                      });
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Container(
-                                        width: 30,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            shape: BoxShape.circle
-                                        ),
-                                      ),
-                                    ),
-                                  ),
 
                                 ],
                               )

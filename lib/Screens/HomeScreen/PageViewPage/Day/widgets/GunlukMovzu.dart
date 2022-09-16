@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:get_storage/get_storage.dart';
 import '../../../../../Constants.dart';
-
+import 'package:share_plus/share_plus.dart';
 class GunlukMovzuCard extends StatefulWidget {
 
   @override
@@ -9,10 +9,13 @@ class GunlukMovzuCard extends StatefulWidget {
 }
 
 class _GunlukMovzuCardState extends State<GunlukMovzuCard> {
+
   int maxLines = 4;
 var visual = "Oxu";
 
   var zor = false;
+
+  GetStorage box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return  Padding(
@@ -33,22 +36,22 @@ var visual = "Oxu";
                   children: [
                     Icon(Icons.view_day_outlined, color: Colors.blue,),
                     SizedBox(width: 10,),
-                    Text("Günün mövzusu", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+                    Text("Günün mövzusu", style: TextStyle(fontWeight: FontWeight.bold, color: Constants.primaryColor ),),
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(3.0),
-                  child: Text("Allahü təala, insanları Müsəlman etməyə məcbur deyildir", maxLines: 2 , overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
-                    style: TextStyle(fontFamily: "GentiumBookPlus", fontWeight: FontWeight.bold, color: Colors.black),),
+                  child: Text(box.read("bashliq") ?? "Dişdə dolğu və diş qapağının olması", maxLines: 1 , overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
+                    style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", fontWeight: FontWeight.bold, color: Colors.black),),
                 ),
 
                 Padding(
                   padding: const EdgeInsets.all(3.0),
                   child: AnimatedCrossFade(
-                    firstChild: Text( maxLines: 4, "Allahu təalanın mərhəməti sonsuz olduğu kimi, əzabı da sonsuzdur, ədaləti də sonsuzdur. İstədiyi quluna səbəbsiz və qul özü istəmədən iman verir, ehsan edir. Səlim ağlına tabe olaraq əxlaqı və işləri yaxşı olanlara da, doğru olan, məqbul olan imanı verəcəyini bildirilmişdir. Bir insanın imanlı olaraq ölüb-ölməyəcəyi son nəfəsdə bəlli olur. Bütün ömrü iman ilə keçib, son günlərində imanı gedən, imansız ölən insan qiyamətdə imansızlar arasında olacaq. İmanla ölmək üçün hər gün dua etmək lazımdır. Allahü təala sonsuz mərhəmətilə Peyğəmbərlər göndərərək, var və bir olduğunu və inanılması lazım olan şeyləri qullarına bildirdi. İman, Peyğəmbərin (sallallahü aleyhi və səlləm) bildirdiklərini təsdiq etmək deməkdir. Peyğəmbəri təsdiq etməyən, inkar edən kafir olur. Kafirlər Cəhənnəmdə sonsuz yanacaqlar. Peyğəmbəri (aleyhissaləvətü vəttəslimat) eşitməyən insan Allahü təalanın var və bir olduğunu düşünərək, yalnız Ona iman etsə və Peyğəmbəri (aleyhissaləvətü vəttəslimat) eşitmədən ölsə, o da Cənnətə girəcəkdir. Bunları düşünmədən iman etməsə, Cənnətə girməyəcək. Peyğəmbəri (aleyhissaləvətü vəttəslimat) inkar etmədiyi üçün Cəhənnəmə də girməyəcəkdir. Qiyamət günü hesabdan sonra təkrar yox ediləcəkdir. Cəhənnəmdə sonsuz yanmaq, Peyğəmbəri (фleyhissaləvətü vəttəslimat) eşidib, amma inkar etməyin cəzasıdır. Bu alimlər arasında (rahimə-hümullahü təala) “Allahü təalanın varlığını düşünməyərək iman etməyən insan Cəhənnəmə girəcəkdir” deyənlər olsa da, bu söz Peyğəmbəri (sallallahü təala фleyhi və səlləm) eşitdikdən sonra düşünməyən deməkdir. (Hər kəsə Lazım Olan Iman s. 465)",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
-                      style: TextStyle(fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.8), ),),
-                    secondChild: Text( maxLines: 1000,"Allahu təalanın mərhəməti sonsuz olduğu kimi, əzabı da sonsuzdur, ədaləti də sonsuzdur. İstədiyi quluna səbəbsiz və qul özü istəmədən iman verir, ehsan edir. Səlim ağlına tabe olaraq əxlaqı və işləri yaxşı olanlara da, doğru olan, məqbul olan imanı verəcəyini bildirilmişdir. Bir insanın imanlı olaraq ölüb-ölməyəcəyi son nəfəsdə bəlli olur. Bütün ömrü iman ilə keçib, son günlərində imanı gedən, imansız ölən insan qiyamətdə imansızlar arasında olacaq. İmanla ölmək üçün hər gün dua etmək lazımdır. Allahü təala sonsuz mərhəmətilə Peyğəmbərlər göndərərək, var və bir olduğunu və inanılması lazım olan şeyləri qullarına bildirdi. İman, Peyğəmbərin (sallallahü aleyhi və səlləm) bildirdiklərini təsdiq etmək deməkdir. Peyğəmbəri təsdiq etməyən, inkar edən kafir olur. Kafirlər Cəhənnəmdə sonsuz yanacaqlar. Peyğəmbəri (aleyhissaləvətü vəttəslimat) eşitməyən insan Allahü təalanın var və bir olduğunu düşünərək, yalnız Ona iman etsə və Peyğəmbəri (aleyhissaləvətü vəttəslimat) eşitmədən ölsə, o da Cənnətə girəcəkdir. Bunları düşünmədən iman etməsə, Cənnətə girməyəcək. Peyğəmbəri (aleyhissaləvətü vəttəslimat) inkar etmədiyi üçün Cəhənnəmə də girməyəcəkdir. Qiyamət günü hesabdan sonra təkrar yox ediləcəkdir. Cəhənnəmdə sonsuz yanmaq, Peyğəmbəri (фleyhissaləvətü vəttəslimat) eşidib, amma inkar etməyin cəzasıdır. Bu alimlər arasında (rahimə-hümullahü təala) “Allahü təalanın varlığını düşünməyərək iman etməyən insan Cəhənnəmə girəcəkdir” deyənlər olsa da, bu söz Peyğəmbəri (sallallahü təala фleyhi və səlləm) eşitdikdən sonra düşünməyən deməkdir. (Hər kəsə Lazım Olan Iman s. 465)",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
-                  style: TextStyle(fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.8), ),) ,
+                    firstChild: Text( maxLines: 2, box.read("metin").toString().substring(6,) ?? Constants().metin,  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
+                      style: TextStyle( color: Colors.black.withOpacity(.8), ),),
+                    secondChild: Text( maxLines: 1000, box.read("metin").toString().substring(6,) ?? Constants().metin ,  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
+                  style: TextStyle(wordSpacing: 3  ,color: Colors.black.withOpacity(.8),  ),) ,
                     crossFadeState: zor ?  CrossFadeState.showSecond : CrossFadeState.showFirst,
                     duration: Duration(milliseconds: 300),
 
@@ -70,7 +73,9 @@ var visual = "Oxu";
                             Text(visual, style: TextStyle(fontWeight: FontWeight.bold, color: Constants.primaryColor.withOpacity(.5)),),
                           ],
                         )),
-                    TextButton(onPressed: () {  },
+                    TextButton(onPressed: ()async{
+                      await Share.share("${box.read("bashliq")} \n ${box.read("metin")} "
+                          "\n https://play.google.com/store/apps/details?id=com.turkiyetakvimi&gl=US");},
                         child:  Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

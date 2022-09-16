@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:prayer_time_gi/StateManagement/StateManagement.dart';
 import '../../../../../Constants.dart';
-
+import 'package:get_storage/get_storage.dart';
+import 'package:share_plus/share_plus.dart';
 class HikmetliSozCard extends StatefulWidget {
-  const HikmetliSozCard({Key? key}) : super(key: key);
 
   @override
   State<HikmetliSozCard> createState() => _HikmetliSozCardState();
 }
 
 class _HikmetliSozCardState extends State<HikmetliSozCard> {
+  Controller c = Get.put(Controller());
+  GetStorage box  = GetStorage();
   int maxLines = 4;
   var visual = "Oxu";
 var zor = false;
   @override
   Widget build(BuildContext context) {
+    final Controller c = Get.find();
+
     return  Padding(
       padding: const EdgeInsets.all(4.0),
       child: Card(
@@ -31,43 +36,26 @@ var zor = false;
               children: [
                 Icon(Icons.legend_toggle, color: Colors.blue,),
                 SizedBox(width: 10,),
-                Text("Hikmətli sözlər", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),),
+                Text("Hikmətli sözlər", style: TextStyle(fontWeight: FontWeight.bold,  color: Constants.primaryColor ),),
               ],
             ),
-            Text(" Hikmət əhli buyurdu ki,", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus"  ,),),
+            Text(" Hikmət əhli buyurdu ki,", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "PlayfairDisplay-VariableFont" ,),),
 
               Padding(
                 padding: const EdgeInsets.all(3.0),
-                child: AnimatedCrossFade(
-                  firstChild: Text( maxLines: maxLines, "Nəfsinə tabe olan pərişan olmuşdur. Ondan sonra oturub-durarkən onun yoldaşı şeytandır.",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
-                    style: TextStyle(fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.8), ),),
-                  secondChild:  Text( maxLines: maxLines, "Nəfsinə tabe olan pərişan olmuşdur. Ondan sonra oturub-durarkən onun yoldaşı şeytandır.",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
-                    style: TextStyle(fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.8),),),
-                  crossFadeState: zor ?  CrossFadeState.showSecond : CrossFadeState.showFirst,
-                  duration: Duration(milliseconds: 300),
+                child:
+                  Text( maxLines: 1000, box.read('hikmetlisoz').toString() ?? "Kim olduöu deyil kiminlə olduğun önəmlidir",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
+                    style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont",  color: Colors.black.withOpacity(.8),),),
 
-                ),
               ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  OutlinedButton(onPressed: () {
-                    setState(() {
-                      zor = !zor;
-                      zor ? maxLines = 4: 1000;
-                      maxLines == 1000 ? visual = "Bağla" : visual = "Oxu";
-
-                    });
-                  },
-                      child: Row(
-                        children: [
-                          Icon(Icons.chrome_reader_mode_outlined),
-                          SizedBox(width: 10,),
-                          Text(visual, style: TextStyle(fontWeight: FontWeight.bold, color: Constants.primaryColor.withOpacity(.5)),),
-                        ],
-                      )),
-                  TextButton(onPressed: () {  },
+                  SizedBox(),
+                  TextButton(onPressed: ()async{
+    await Share.share("Hikmət əhli buyurdu ki, \n ${box.read("hikmetlisoz")} "
+    "\n https://play.google.com/store/apps/details?id=com.turkiyetakvimi&gl=US");},
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

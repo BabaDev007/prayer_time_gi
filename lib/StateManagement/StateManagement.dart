@@ -7,6 +7,7 @@ class Controller extends GetxController {
   var isShowHikmetliSoz = false.obs;
   var difference =Jiffy().dayOfYear.obs;
   var difference2 = Jiffy().dayOfYear.obs;
+  var difference3 = Jiffy().dayOfYear.obs;
   var cityname = "Bakı".obs;
   var daylyCounter = 0.obs;
   var allCounter = 0.obs;
@@ -17,6 +18,7 @@ class Controller extends GetxController {
   var globalTimeTime = "  ".obs;
   var circularPrTime = "".obs ;
   var scrollOffset = 4.obs;
+  var hikmetliSozler = "".obs;
 
 
 

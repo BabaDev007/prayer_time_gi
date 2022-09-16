@@ -36,7 +36,7 @@ class _DiniBilgilerPage1State extends State<DiniBilgilerPage1> {
     var response = await http.get(text);
     final body = response.body;
     final document = parser.parse(body);
-    var res = document.getElementsByClassName("optionshort2").forEach
+    var res1 = document.getElementsByClassName("optionshort2").forEach
       ((element)async {
       papka = element.text.toString();
       link = element.children[0].children[1].attributes['href'].toString();
@@ -57,34 +57,7 @@ class _DiniBilgilerPage1State extends State<DiniBilgilerPage1> {
     });
 
   }
-  Future<void>getData1(Uri text)async{
-    var papka, papka1;
-    var link, link1;
-    var response = await http.get(text);
-    final body = response.body;
-    final document = parser.parse(body);
-    var res = document.getElementsByClassName("col-sm-4").forEach((element)async {
-      papka = element.children[0].children[0].text.toString();
-      papka1= element.children[0].children[1].text.toString();
 
-      link = element.children[0].children[0].children[0].attributes['href'].toString();
-      link1 = element.children[0].children[1].children[0].attributes['href'].toString();
-
-
-      setState(() {
-
-
-      });
-
-
-      print(papka);
-      print(papka1);
-      print(link);
-      print(link1);
-
-    });
-
-  }
 
   @override
   void initState() {
@@ -120,7 +93,7 @@ class _DiniBilgilerPage1State extends State<DiniBilgilerPage1> {
               backgroundColor: Constants.primaryColor.withOpacity(.6),
               centerTitle: true,
               shadowColor: Colors.transparent,
-              title: Text("Dini Bilgilər", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
+              title: Text("Dini Bilgilər 1", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
             ),
           ),
         ),

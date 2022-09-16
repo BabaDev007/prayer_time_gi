@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:prayer_time_gi/StateManagement/StateManagement.dart';
 import '../../../../../Constants.dart';
 class DayHeader extends StatefulWidget {
-  const DayHeader({Key? key}) : super(key: key);
-
   @override
   State<DayHeader> createState() => _DayHeaderState();
 }
 
 class _DayHeaderState extends State<DayHeader> {
+  Controller c = Get.put(Controller());
   @override
   Widget build(BuildContext context) {
     return  Padding(
@@ -39,8 +39,8 @@ class _DayHeaderState extends State<DayHeader> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Əsr", style: TextStyle(fontSize: 30, fontFamily: "Oswald", color: Colors.white),),
-                  Text("14:25", style: TextStyle(fontSize: 30, fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
+                  Text("${c.globalTimeName}\n${c.globalTimeTime} ".toString(), style: TextStyle(fontSize: 30, fontFamily: "Oswald", color: Colors.white),),
+
 
                 ],
               ),

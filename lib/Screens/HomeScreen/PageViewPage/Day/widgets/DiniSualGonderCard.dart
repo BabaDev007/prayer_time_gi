@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:prayer_time_gi/Screens/MenuPages/sendQuestion/sendQuestion.dart';
 
 import '../../../../../Constants.dart';
+import '../../../../../PageTransition/PageTransition.dart';
 
 class SualGonder extends StatefulWidget {
 
@@ -28,7 +30,7 @@ class _SualGonderState extends State<SualGonder> {
                 children: [
                   Icon(Icons.question_answer, color: Colors.blue,),
                   SizedBox(width: 10,),
-                  Expanded(child: Text("Sual Cavab Formu", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "GentiumBookPlus", color: Constants.primaryColor ),)),
+                  Expanded(child: Text("Sual Cavab Formu", style: TextStyle(fontWeight: FontWeight.bold,  color: Constants.primaryColor ),)),
                 ],
               ),
               SizedBox(height: 20,),
@@ -37,7 +39,7 @@ class _SualGonderState extends State<SualGonder> {
 
               TextSpan(
                   text: 'Tətbqimizdə olan bütün dini mövzularla bağlı olan məlumatları ',
-                  style: TextStyle( fontFamily: "GentiumBookPlus",  ),
+                  style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont",  ),
                   children: [
                     TextSpan(
                       text: 'www.gozelislam.com',
@@ -64,7 +66,10 @@ class _SualGonderState extends State<SualGonder> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Spacer(),
-                  TextButton(onPressed: () {  },
+                  TextButton(onPressed: () {
+                    Navigator.push(context, SizeTransition2(SendEmail()));
+
+                  },
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

@@ -33,7 +33,7 @@ class NamazPage extends StatelessWidget {
       backgroundColor: Constants.primaryColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text("Faydalı Keçidlər",style: TextStyle(fontFamily: "Oswald")),
+        title: Text("Namaz Öyrənirəm",style: TextStyle(fontFamily: "Oswald")),
         leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.chevron_left, size: 30,)),
         centerTitle: true,
         backgroundColor: Colors.transparent,
