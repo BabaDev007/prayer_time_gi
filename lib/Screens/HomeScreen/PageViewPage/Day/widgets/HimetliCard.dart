@@ -39,13 +39,13 @@ var zor = false;
                 Text("Hikmətli sözlər", style: TextStyle(fontWeight: FontWeight.bold,  color: Constants.primaryColor ),),
               ],
             ),
-            Text(" Hikmət əhli buyurdu ki,", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "PlayfairDisplay-VariableFont" ,),),
+            Text(" Hikmət əhli buyurdu ki,", style: TextStyle(fontWeight: FontWeight.bold, ),),
 
               Padding(
                 padding: const EdgeInsets.all(3.0),
                 child:
                   Text( maxLines: 1000, box.read('hikmetlisoz').toString() ?? "Kim olduöu deyil kiminlə olduğun önəmlidir",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
-                    style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont",  color: Colors.black.withOpacity(.8),),),
+                    style: TextStyle(  color: Colors.black.withOpacity(.8),),),
 
               ),
 

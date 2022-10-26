@@ -39,7 +39,7 @@ class _DayHeaderState extends State<DayHeader> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("${c.globalTimeName}\n${c.globalTimeTime} ".toString(), style: TextStyle(fontSize: 30, fontFamily: "Oswald", color: Colors.white),),
+                  Text("${c.globalTimeName}\n${c.globalTimeTime}".toString(), style: TextStyle(fontSize: 25, fontFamily: "Oswald", color: Colors.white),),
 
 
                 ],

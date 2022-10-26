@@ -5,6 +5,7 @@ import 'package:prayer_time_gi/Constants.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import '../../../PaddingManager.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 class QezaNamaz extends StatefulWidget {
@@ -15,16 +16,17 @@ class QezaNamaz extends StatefulWidget {
 }
 
 class _QezaNamazState extends State<QezaNamaz> {
-
   GetStorage box = GetStorage();
+  var currentDay = 0;
+  var currentMonth = 0;
+  var currentYear = 0;
   bool show = true;
   String? gender;
   int? _year;
   var subh, zohr, asr, sam, yatsi, vitr, oruc;
-  var _tfcontroller = TextEditingController();
   @override
   void initState() {
-   show = box.read("showQeza") ?? true;
+    show =  box.read("showQeza")??true;
      subh = box.read("subhQeza");
      zohr = box.read("zohrQeza");
      asr = box.read("asrQeza");
@@ -53,7 +55,7 @@ class _QezaNamazState extends State<QezaNamaz> {
     return Scaffold(
       backgroundColor: Constants.primaryColor,
       appBar: AppBar(
-        leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+        leading: IconButton(onPressed: () {    Navigator.pop(context);
         }, icon: Icon(Icons.chevron_left, size: 30,),),
         title: Text("Qəza Hesablama", style: TextStyle(fontFamily: "Oswald"),),
         centerTitle: true,
@@ -66,34 +68,78 @@ class _QezaNamazState extends State<QezaNamaz> {
           borderRadius: BorderRadius.circular(20)
         ),
         child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 10,),
-            Text("Qəzaya qalan illərin sayı", style: TextStyle( fontSize: 20),),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                keyboardType: TextInputType.number,
-                controller: _tfcontroller,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)
-                  )
-                ),
+              child:  Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Gün", style: TextStyle(
+                        fontSize: 20, color: Constants.primaryColor
+                      ),),
+                      NumberPicker(
+                        value: currentDay,
+                        minValue: 0,
+                        maxValue: 365,
+                        onChanged: (value){
+                          print(currentDay);
+                          setState(() => currentDay = value);},
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Ay", style: TextStyle(
+                      fontSize: 20, color: Constants.primaryColor
+                  ),),
+                      NumberPicker(
+                        value: currentMonth,
+                        minValue: 0,
+                        maxValue: 12,
+                        onChanged: (value){
+                          print(currentMonth);
+                          setState(() => currentMonth = value);},                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("İl", style: TextStyle(
+                      fontSize: 20, color: Constants.primaryColor
+                  ),),
+                      NumberPicker(
+                        value: currentYear,
+                        minValue: 0,
+                        maxValue: 100,
+                        onChanged: (value){
+                          print(currentYear);
+                          setState(() => currentYear = value);},                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
             ElevatedButton(onPressed: (){
               setState(() {
-                show = false;
-               box.write("showQeza", show );
-                _year = int.parse("${_tfcontroller.text}");
-                subh = (_year! * 365)!;
-                zohr = (_year! * 365)!;
-                asr = (_year! * 365)!;
-                sam = (_year! * 365)!;
-                yatsi = (_year! * 365)!;
-                vitr = (_year! * 365)!;
-                oruc = (_year! * 30)!;
+
+               show = false;
+               box.write("showQeza", false );
+                _year = (currentYear*365 + currentMonth*30 + currentDay);
+                subh = (_year);
+                zohr = (_year);
+                asr = (_year);
+                sam = (_year);
+                yatsi = (_year);
+                vitr = (_year);
+                oruc = (_year);
                 box.write("subhQeza", subh);
                 box.write("zohrQeza", zohr);
                 box.write("asrQeza", asr);
@@ -108,6 +154,7 @@ class _QezaNamazState extends State<QezaNamaz> {
 
 
               });
+              print(_year);
 
 
             }, child: Text("Hesabla"), style: ElevatedButton.styleFrom(backgroundColor: Constants.primaryColor),)
@@ -122,7 +169,7 @@ class _QezaNamazState extends State<QezaNamaz> {
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
 
 

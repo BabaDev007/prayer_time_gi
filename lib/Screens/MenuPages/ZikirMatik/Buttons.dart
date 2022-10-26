@@ -46,10 +46,14 @@ class _ZikrButtonState extends State<ZikrButton>
           ],
         ),
         child: Center(
-          child: AnimatedTextKit(animatedTexts: [
+          child: AnimatedTextKit(
+
+            animatedTexts: [
             ScaleAnimatedText(
               '${widget.buttonName}' ,
+              duration: Duration(milliseconds: 200),
               textStyle: TextStyle(
+
                 color: Constants.primaryColor,
                 fontWeight: FontWeight.w100,
                 fontSize: isTapped ? 30 : 40,

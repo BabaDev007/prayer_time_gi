@@ -128,23 +128,24 @@ class DrawerPage extends  Drawer {
                         onPressed: (){
                           Navigator.push(context, SizeTransition2(ZikrPage()));
 
-                        }, child:Image.asset("assets/tasbih.png", color: Constants.primaryColor, width: 110, height: 100,)),
+                        }, child:Opacity(opacity: .7,
+                        child: Image.asset("assets/tasbeh1.png", width: 60, )))
                   ),),
-                GridTile(
-                  footer: Center(child: Text("Dualar", style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 9
-                  ),)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
-                        onPressed: (){
-                          Navigator.push(context, SizeTransition2(DualarPage()));
-
-                        }, child: Image.asset("assets/dua-hands.png", color: Constants.primaryColor, width: 150, height: 100,) ),
-                  ),),
+                // GridTile(
+                //   footer: Center(child: Text("Dualar", style: TextStyle(
+                //       fontWeight: FontWeight.w600,
+                //       color: CupertinoColors.white, fontSize: 9
+                //   ),)),
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(15.0),
+                //
+                //     child: ElevatedButton(
+                //         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
+                //         onPressed: (){
+                //           Navigator.push(context, SizeTransition2(DualarPage()));
+                //
+                //         }, child: Image.asset("assets/dua-hands.png", color: Constants.primaryColor, width: 150, height: 100,) ),
+                //   ),),
                 GridTile(
                   footer: Center(child: Text("Esma-i Hüsna", style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -177,23 +178,7 @@ class DrawerPage extends  Drawer {
                         }, child: SvgPicture.asset("assets/mosq.svg", color: Constants.primaryColor, width: 50, height: 50,)  ),
                   ),),
 
-                GridTile(
-                  footer: Center(child: Text("Namaz Öyrənirəm", style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: CupertinoColors.white, fontSize: 9
-                  ),)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
 
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)), primary: Colors.white),
-                        onPressed: (){
-                          // Navigator.push(context, SizeTransition2(BookReaderNamaz()));
-                          Navigator.push(context, SizeTransition2(NamazPage()));
-
-
-                        }, child:  Image.asset("assets/prayer-rug.png", color: Constants.primaryColor,) ),
-                  ),),
                 GridTile(
                   footer: Center(child: Text("Məscidlər", style: TextStyle(
                       fontWeight: FontWeight.w600,

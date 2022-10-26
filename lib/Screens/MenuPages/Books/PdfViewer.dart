@@ -28,8 +28,7 @@ var page = 1;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      extendBodyBehindAppBar: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Visibility(
         visible: isShow,
         child: Row(

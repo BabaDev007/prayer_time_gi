@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../../../../Constants.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' as parser;
+
 class GunlukMovzuCard extends StatefulWidget {
 
   @override
@@ -12,9 +15,35 @@ class _GunlukMovzuCardState extends State<GunlukMovzuCard> {
 
   int maxLines = 4;
 var visual = "Oxu";
+  var _url = Uri.parse("https://www.gozelislam.com/");
+  var bashliq;
+  var metin;
 
   var zor = false;
+  Future<void> getDataMovzu() async {
+    var response = await http.get(_url);
+    final body = response.body;
+    final document = parser.parse(body);
+    var res = document.getElementsByClassName("col-md-8 col-sm-12 col-xs-12")
+        .forEach((element) async {
+      setState(() {
+        bashliq =
+            element.children[1].children[0].children[2].children[0].children[0]
+                .children[0].children[0].text.toString();
+        metin = element.children[1].children[0].children[5].text.toString();
+      });
+      box.write("bashliq", bashliq);
+      box.write("metin", metin);
 
+    }
+    );
+  }
+@override
+  void initState() {
+    getDataMovzu();
+    // TODO: implement initState
+    super.initState();
+  }
   GetStorage box = GetStorage();
   @override
   Widget build(BuildContext context) {
@@ -40,17 +69,17 @@ var visual = "Oxu";
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Text(box.read("bashliq") ?? "Dişdə dolğu və diş qapağının olması", maxLines: 1 , overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
-                    style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", fontWeight: FontWeight.bold, color: Colors.black),),
+                  padding: const EdgeInsets.all(3.0,),
+                  child: Text(box.read("bashliq") ?? "Dişdə dolğu və diş qapağının olması", maxLines: 2 , overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
+                    style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black),),
                 ),
 
                 Padding(
                   padding: const EdgeInsets.all(3.0),
                   child: AnimatedCrossFade(
-                    firstChild: Text( maxLines: 2, box.read("metin").toString().substring(6,) ?? Constants().metin,  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
+                    firstChild: Text( maxLines: 2, box.read("metin").toString() ?? Constants().metin,  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
                       style: TextStyle( color: Colors.black.withOpacity(.8), ),),
-                    secondChild: Text( maxLines: 1000, box.read("metin").toString().substring(6,) ?? Constants().metin ,  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
+                    secondChild: Text( maxLines: 1000, box.read("metin").toString()?? Constants().metin ,  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
                   style: TextStyle(wordSpacing: 3  ,color: Colors.black.withOpacity(.8),  ),) ,
                     crossFadeState: zor ?  CrossFadeState.showSecond : CrossFadeState.showFirst,
                     duration: Duration(milliseconds: 300),

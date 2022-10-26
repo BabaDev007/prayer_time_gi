@@ -39,7 +39,7 @@ print(element.text.toString());
 
       setState(() {
 
-        movzuAdi.add(ReadFile(Icon(Icons.article_outlined),   element.text.toString().substring(5), false, element.children[0].children[1].attributes['href'].toString() )
+        movzuAdi.add(ReadFile(Icon(Icons.text_snippet_outlined, color: Constants.primaryColor,),   element.text.toString().substring(5), false, element.children[0].children[1].attributes['href'].toString() )
 
            );
 
@@ -60,14 +60,14 @@ print(element.text.toString());
       setState(() {
         if  (element.children[0].children[0].children[0].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[0].children[0].children[0].text, true, element.children[0].children[0].children[0].children[0].attributes['href'].toString()
               ));
 
         }
         if  (element.children[0].children[0].children[1].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[0].children[0].children[1].text,true, element.children[0].children[0].children[1].children[0].attributes['href'].toString()
           ));
         }
@@ -75,98 +75,98 @@ print(element.text.toString());
 
         if  (element.children[1].children[0].children[0].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[1].children[0].children[0].text, true, element.children[1].children[0].children[0].children[0].attributes['href'].toString()
           ));
 
         }
         if  (element.children[2].children[0].children[1].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[2].children[0].children[1].text, true, element.children[2].children[0].children[1].children[0].attributes['href'].toString()
           ));
         }
 
         if  (element.children[3].children[0].children[0].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[3].children[0].children[0].text, true, element.children[3].children[0].children[0].children[0].attributes['href'].toString()
           ));
 
         }
         if  (element.children[4].children[0].children[1].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[4].children[0].children[1].text,true, element.children[4].children[0].children[1].children[0].attributes['href'].toString()
           ));
         }
 
         if  (element.children[5].children[0].children[0].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[5].children[0].children[0].text,true, element.children[5].children[0].children[0].children[0].attributes['href'].toString()
           ) );
 
         }
         if  (element.children[6].children[0].children[1].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[6].children[0].children[1].text,true, element.children[6].children[0].children[1].children[0].attributes['href'].toString()
           ) );
         }
 
         if  (element.children[7].children[0].children[0].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[7].children[0].children[0].text,true, element.children[7].children[0].children[0].children[0].attributes['href'].toString()
           ) );
 
         }
         if  (element.children[8].children[0].children[1].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[8].children[0].children[1].text,true, element.children[8].children[0].children[1].children[0].attributes['href'].toString()
           ) );
         }
 
         if  (element.children[9].children[0].children[0].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[9].children[0].children[0].text,true, element.children[9].children[0].children[0].children[0].attributes['href'].toString()
           ) );
 
         }
         if  (element.children[10].children[0].children[1].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[10].children[0].children[1].text,true, element.children[10].children[0].children[1].children[0].attributes['href'].toString()
           ));
         }
 
         if  (element.children[11].children[0].children[0].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[11].children[0].children[0].text,true, element.children[11].children[0].children[0].children[0].attributes['href'].toString()
           ));
 
         }
         if  (element.children[12].children[0].children[1].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[12].children[0].children[1].text,true, element.children[12].children[0].children[1].children[0].attributes['href'].toString()
           ) );
         }
 
         if  (element.children[13].children[0].children[0].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[13].children[0].children[0].text,true, element.children[13].children[0].children[0].children[0].attributes['href'].toString()
           ) );
 
         }
         if  (element.children[14].children[0].children[1].text != null) {
           movzuAdi.add(ReadFile(
-              Icon(Icons.folder_copy, color: Constants.primaryColor,),
+              Icon(Icons.folder, color: Constants.primaryColor,),
               element.children[14].children[0].children[1].text,true, element.children[14].children[0].children[1].children[0].attributes['href'].toString()
           ));
         }
@@ -237,67 +237,60 @@ print(element.text.toString());
       ) ,
       body: movzuAdi.isNotEmpty ? AnimationLimiter(
         child: Scrollbar(
-          child: RefreshIndicator(
-            onRefresh: () async{
-              movzuAdi.length = 0;
-              await getData();
-              print(papkaza);
-              },
-            child: ListView.builder(
+          child: ListView.builder(
 
-              padding: EdgeInsets.symmetric(horizontal:_w / 30, vertical: 100),
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              itemCount: movzuAdi.length ,
-              itemBuilder: (BuildContext context, int index) {
-                return AnimationConfiguration.staggeredList(
-                  position: index,
-                  delay: Duration(milliseconds: 80),
-                  child: SlideAnimation(
-                    duration: Duration(milliseconds: 1800),
-                    curve: Curves.fastLinearToSlowEaseIn,
-                    horizontalOffset: 30,
-                    verticalOffset: 300.0,
-                    child: FlipAnimation(
-                        duration: Duration(milliseconds: 3000),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                        flipAxis: FlipAxis.y,
-                        child:   Padding(
-                            padding: PaddingManager().prayerTimeWidgetPadding,
-                            child: Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).errorColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.blue.withOpacity(.2),
-                                      blurRadius: 30,
-                                      offset: Offset(20, 30),
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
+            padding: EdgeInsets.symmetric(horizontal:_w / 30, vertical: 100),
+            physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            itemCount: movzuAdi.length ,
+            itemBuilder: (BuildContext context, int index) {
+              return AnimationConfiguration.staggeredList(
+                position: index,
+                delay: Duration(milliseconds: 80),
+                child: SlideAnimation(
+                  duration: Duration(milliseconds: 1800),
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  horizontalOffset: 30,
+                  verticalOffset: 300.0,
+                  child: FlipAnimation(
+                      duration: Duration(milliseconds: 3000),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      flipAxis: FlipAxis.y,
+                      child:   Padding(
+                          padding: PaddingManager().prayerTimeWidgetPadding,
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).errorColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.blue.withOpacity(.2),
+                                    blurRadius: 30,
+                                    offset: Offset(20, 30),
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(20),
+                              ),
 
 
-                                child: ListTile(
-                                  onTap: (){
-                                    movzuAdi[index].metod == true ? Navigator.push(context, SizeTransition2(DiniBilgilerPage1(Uri.parse(movzuAdi[index].link)))) : Navigator.push(context, SizeTransition2(DiniReader(url: Uri.parse(movzuAdi[index].link),)));
-                                    // print(movzuAdi[index].metod == true);
-                                    // print(movzuAdi[index].name);
-                                    // print(movzuAdi[index].link);
+                              child: ListTile(
+                                onTap: (){
+                                  movzuAdi[index].metod == true ? Navigator.push(context, SizeTransition2(DiniBilgilerPage1(Uri.parse(movzuAdi[index].link), movzuAdi[index].name))) : Navigator.push(context, SizeTransition2(DiniReader(url: Uri.parse(movzuAdi[index].link),)));
+                                  // print(movzuAdi[index].metod == true);
+                                  // print(movzuAdi[index].name);
+                                  // print(movzuAdi[index].link);
 
-                                  },
-                                  leading: movzuAdi[index].icon ,
-                                  title: Text( movzuAdi[index].name, maxLines: 1 , style: TextStyle(overflow: TextOverflow.ellipsis, ),),
-                                  trailing: Icon(Icons.chevron_right),
+                                },
+                                leading: movzuAdi[index].icon ,
+                                title: Text( movzuAdi[index].name, maxLines: 1 , style: TextStyle(overflow: TextOverflow.ellipsis, ),),
+                                trailing: Icon(Icons.chevron_right),
 
 
 
-                                )))
-                    ),
+                              )))
                   ),
-                );
-              },
+                ),
+              );
+            },
 
-            ),
           ),
         ),
       ) :  Center(child: Lottie.asset("assets/loding.json", height: 80),),

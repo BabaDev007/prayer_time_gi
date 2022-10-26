@@ -34,18 +34,21 @@ class ShuhadaCard extends StatelessWidget {
                 color: Colors.white,
                 child: Container(
 
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset("assets/ks.jpg")
-                      ),
+                  width: double.infinity,
+                  child: FittedBox(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset("assets/ks.jpg", fit: BoxFit.contain,)
+                        ),
 
 
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

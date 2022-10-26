@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
 import '../../../Constants.dart';
+import '../../../StateManagement/StateManagement.dart';
 import '../../MenuPages/Quran/screens/home.dart';
 import '../../Settings/SettingPage.dart';
 import 'Day/DaylyBugs.dart';
-
+import "package:get_storage/get_storage.dart";
+import 'package:cool_alert/cool_alert.dart';
 class PageViewPage extends StatefulWidget {
 
   @override
@@ -18,19 +20,21 @@ class PageViewPage extends StatefulWidget {
 
 class _PageViewPageState extends State<PageViewPage> {
   Future<bool> showExitPopup() async {
-    return await Get.defaultDialog(
+    return await CoolAlert.show(
+      backgroundColor: Constants.primaryColor,
+      confirmBtnText: "Bəli",
+      cancelBtnText: "Xeyr",
+      context: context,
+      type: CoolAlertType.confirm,
+      title: "Əminsiniz ?",
+      onCancelBtnTap: (){
+        Navigator.pop(context);
+      },
+      onConfirmBtnTap: (){
+        exit(0);
+      }
 
-        title: "Çıxış",
-        middleText: "Çıxış et",
-        textCancel: "Xeyr",
-        textConfirm: "Bəli",
-        onConfirm: (){
-          exit(0);
-        },
-        onCancel: (){
-          Get.back(result: false);
-        }
-    )??false; //if showDialouge had returned null, then return false
+    ) ??false; //if showDialouge had returned null, then return false
   }
   var _controller = PageController();
   var currentIndex = 0;
@@ -40,8 +44,22 @@ class _PageViewPageState extends State<PageViewPage> {
     "assets/quran.png",
     "assets/setting.png",
   ];
+  GetStorage box  = GetStorage();
+  Widget widgetPage = HomeScreen();
+  @override
+  void initState() {
+    c.widgetPageObs = HomeScreen();
+    box.write("intro", true);
+
+    // TODO: implement initState
+    super.initState();
+  }
+  Controller c = Get.put(Controller());
+
   @override
   Widget build(BuildContext context) {
+    final Controller c = Get.find();
+
     return WillPopScope(
       onWillPop: showExitPopup,
       child: Scaffold(
@@ -66,13 +84,38 @@ class _PageViewPageState extends State<PageViewPage> {
                 setState(() {
                     currentIndex = index;
                     switch(currentIndex){
-                      case 0: _controller.jumpToPage(0);
+                      case 0: setState(() {
+                        c.widgetPageObs = HomeScreen() ;
+                      });
                       break;
-                      case 1: _controller.jumpToPage(1);
+                      case 1: setState(() {
+                        c.widgetPageObs = Day() ;
+                      });
                       break;
-                      case 2: _controller.jumpToPage(2);
+                      case 2: setState(() {
+                        c.widgetPageObs = QuranPage() ;
+                      });
                       break;
-                      case 3: _controller.jumpToPage(3);
+                      case 3: setState(() {
+                        c.widgetPageObs = SettingsPage()  ;
+                      });
+                      break;
+
+
+
+
+
+
+
+                      // case 0: _controller.jumpToPage(0,);
+                      // break;
+                      // case 1: _controller.jumpToPage(1,);
+                      // break;
+                      // case 2: _controller.jumpToPage(2,);
+                      // break;
+                      // case 3: _controller.jumpToPage(3,);
+
+
                     }
                   },
                 );
@@ -113,17 +156,19 @@ class _PageViewPageState extends State<PageViewPage> {
             ),
           ),
         ),
-        body: PageView(
-         physics: NeverScrollableScrollPhysics(),
-          controller: _controller ,
-          children: [
-            HomeScreen(),
-            Day(),
-            QuranPage(),
-            SettingsPage()
+        body: c.widgetPageObs as Widget
 
-          ],
-        ),
+        // PageView(
+        //  physics: NeverScrollableScrollPhysics(),
+        //   controller: _controller ,
+        //   children: [
+        //     HomeScreen(),
+        //     Day(),
+        //     QuranPage(),
+        //     SettingsPage()
+        //
+        //   ],
+        // ),
       ),
     );
   }

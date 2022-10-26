@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:prayer_time_gi/Screens/MenuPages/Books/Ebook%20reader.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/DataTable/DataTable.dart';
-import 'package:prayer_time_gi/Screens/MenuPages/DiniBilgiler/Dini1.dart';
-import 'package:prayer_time_gi/Screens/MenuPages/DiniBilgiler/DiniBilgiler1Page.dart';
+
 import 'package:prayer_time_gi/Screens/MenuPages/Dualar/Dualar.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Shuhada/Shuhada.dart';
 
@@ -25,6 +23,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../MenuPages/İlahiler/IlahiList.dart';
 import '../../../Widgets.dart';
+import 'YouTubeCard/screens/home_screen.dart';
 
 class DayButtons extends StatefulWidget {
   @override
@@ -222,8 +221,8 @@ bool isButton = false;
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
                           onPressed: (){
-                            Navigator.push(context, SizeTransition2(DualarPage()));
-                          }, child:   Image.asset("assets/dua-hands.png", color: Constants.primaryColor, width: 150, height: 100,) ),
+                            Navigator.push(context, SizeTransition2(Movies()));
+                          }, child:  Icon(Icons.movie_creation_outlined, color: Constants.primaryColor, size: 35,)),
                     ),
                   ),
                 ),
@@ -346,91 +345,7 @@ bool isButton = false;
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
                           onPressed: (){
-                            Navigator.push(context, SizeTransition2(Movies()));
-                          }, child:   Icon(Icons.movie_creation_outlined, size: 37
-                        , color: Constants.primaryColor ,) ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: AspectRatio(
-                      aspectRatio: 1/1,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
-                          onPressed: (){
-                            Navigator.push(context, SizeTransition2(NamazPage()));
-
-                          }, child:  Image.asset("assets/prayer-rug.png", color: Constants.primaryColor,) ),
-                    ),
-                  ),
-                ),
-
-
-
-
-
-
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: AspectRatio(
-                      aspectRatio: 1/1,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
-                          onPressed: (){
-
-                          }, child:  Icon(FontAwesomeIcons.link, size: 28, color: Constants.primaryColor ,)),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: AspectRatio(
-                      aspectRatio: 1/1,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
-                          onPressed: (){
-                            Navigator.push(context, SizeTransition2(DataTable1()));
-                          }, child: Icon(Icons.calendar_month, size: 30, color: Constants.primaryColor ,) ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: AspectRatio(
-                      aspectRatio: 1/1,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
-                          onPressed: (){
-                            Navigator.push(context, SizeTransition2(AboutPrayerTimes()));
-                          }, child:  Center(child: Icon(FontAwesomeIcons.info, size: 30, color: Constants.primaryColor ,)) ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: AspectRatio(
-                      aspectRatio: 1/1,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), primary: Colors.white),
-                          onPressed: (){
-                            Navigator.push(context, SizeTransition2(EBookList()));
+                            Navigator.push(context, SizeTransition2(BookList()));
                           }, child:   Icon(Icons.book_outlined, size: 37
                         , color: Constants.primaryColor ,) ),
                     ),
@@ -448,14 +363,14 @@ bool isButton = false;
                             Navigator.push(context, SizeTransition2(Shuhada()));
 
                           }, child:  Container(
-                                width: 50,
-                            decoration: BoxDecoration(
+                          width: 50,
+                          decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(color: Constants.primaryColor, width: 2)
-                            ),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Image.asset("assets/ks.jpg"))) ),
+                          ),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.asset("assets/ks.jpg"))) ),
                     ),
                   ),
                 ),
@@ -467,6 +382,7 @@ bool isButton = false;
 
               ],
             ),
+
 
           ],
         ),

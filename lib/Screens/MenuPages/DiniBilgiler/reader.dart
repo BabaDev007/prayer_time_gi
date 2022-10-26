@@ -318,14 +318,14 @@ getData(widget.url);
 
             Container(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        bashliq10.toString(), textAlign: TextAlign.justify, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold , fontFamily: 'Oswald' ),),
+                        bashliq10.toString(), textAlign: TextAlign.center, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold , ),),
 
-                      Text('${metin10.toString()}' ,style: TextStyle(fontSize:_fontSize, fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.9) ),),
+                      Text('${metin10.toString()}' , textAlign:TextAlign.justify, style: TextStyle(fontSize:_fontSize, fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.9) ),),
                     ],
                   ),
                 )),

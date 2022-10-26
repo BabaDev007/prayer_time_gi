@@ -30,8 +30,8 @@ class ShareCard extends StatelessWidget {
              SizedBox(height: 20,),
               Text("Abdullah İbn Amr İbn Âs -radıyallahu anhumâ-'dan- "
                   "rəvayət edildiyinə görə, Nəbi -səllallahu aleyhi və səlləm- belə buyurdu: "
-                  """'Mənim tərəfimdan bir âyet belə olsa insanlara çatdırın'.""", textAlign: TextAlign.justify,
-                style: TextStyle( fontFamily: "PlayfairDisplay-VariableFont",  ),),
+                  """'Mənim tərəfimdən bir âyət belə olsa insanlara çatdırın'.""", textAlign: TextAlign.justify,
+                style: TextStyle(   ),),
 
 
 

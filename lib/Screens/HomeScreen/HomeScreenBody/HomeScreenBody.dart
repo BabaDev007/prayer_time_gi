@@ -8,7 +8,9 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import '../../../Constants.dart';
 import '../../../StateManagement/StateManagement.dart';
-
+import 'package:flutter_carousel_slider/carousel_slider.dart';
+import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
+import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
 class Body extends StatefulWidget {
 
 
@@ -18,6 +20,7 @@ class Body extends StatefulWidget {
 
 
 class _BodyState extends State<Body> {
+
   GetStorage box = GetStorage();
   var bashliq;
   var metin;
@@ -32,6 +35,8 @@ class _BodyState extends State<Body> {
 
   Controller c = Get.put(Controller());
   var _url = Uri.parse("https://www.gozelislam.com/");
+
+  var _controller = CarouselSliderController();
 
   Future<void> getData() async {
     var response = await http.get(_url);
@@ -65,27 +70,8 @@ class _BodyState extends State<Body> {
 
   var _metin3;
 
-  Future<void> getMovzuDialog() async {
-    var _url = Uri.parse("https://www.gozelislam.com/");
-    var response = await http.get(_url);
-    final body = response.body;
-    final document = parser.parse(body);
-    var res = document.getElementsByClassName("costom4").forEach((element) {
-      setState(() {
-        _bashliq2 =
-            element.children[0].children[0].children[0].children[0].children[0]
-                .text.toString();
-        _metin2 = element.children[0].children[0].children[1].text.toString();
-      });
-      box.write("_metin2", _metin2);
-      box.write("_bashliq2", _bashliq2);
-      box.write("_link2",
-          element.children[0].children[0].children[0].children[0]
-              .attributes['href'].toString());
-    });
-    print(box.read("_link2"));
-  }
 
+var _sliderKey = GlobalKey();
   Future<void> getMovzuPage() async {
     var _url = Uri.parse(box.read("_link2"));
     var response = await http.get(_url);
@@ -106,8 +92,25 @@ class _BodyState extends State<Body> {
 
   List weekday = ["Bzr. ertəsi", "Çər. axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə", "Bazar"];
 
-
+  Future<void> getDataMovzu() async {
+    var response = await http.get(_url);
+    final body = response.body;
+    final document = parser.parse(body);
+    var res = document.getElementsByClassName("col-md-8 col-sm-12 col-xs-12")
+        .forEach((element) async {
+      setState(() {
+        bashliq =
+            element.children[1].children[0].children[2].children[0].children[0]
+                .children[0].children[0].text.toString();
+        metin = element.children[1].children[0].children[5].text.toString();
+      });
+      box.write("bashliq", bashliq);
+      box.write("metin", metin);
+    }
+    );
+  }
  DateTime? subh,
+
      zohr,
      ikindi,
      axsam,
@@ -360,14 +363,14 @@ var circularPrTime;
 
       });
     });
+
     mytimer;
-    pr = box.read("prayertime") ?? true;
+    pr = box.read("prayertime") ?? false;
     hs = box.read("hikmet") ?? true;
     getHikmet();
-    getMovzuDialog();
+    getDataMovzu();
     c.isShowPrayerTime.value = pr;
     c.isShowHikmetliSoz.value = hs;
-    hikmet = box.read("hikmetlisoz");
 
 
     // TODO: implement initState
@@ -376,6 +379,717 @@ var circularPrTime;
   @override
   Widget build(BuildContext context) {
     final Controller c = Get.find();
+    var pageList = [
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10),
+        child: Card(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
+
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child:Padding(
+                                    padding: const EdgeInsets.only(left: 4),
+                                    child: Image.asset("assets/sunrise2.png", color: Constants.primaryColor.withOpacity(.5), width: 25),
+                                  ),
+                                ),),
+                              Text("sübh", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Container(
+
+                              width: 70,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xDE46BE8D).withOpacity(.85),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      colors: [
+                                        Color(0xDE46BE8D), Constants.primaryColor
+                                      ]
+                                  )
+                              ) ,
+                              child: Center(child:
+                              AutoSizeText(zor['${c.difference}']['baseTime']['sabah'].toString(),
+                                style: TextStyle(fontSize: 18, color: Colors.white, fontFamily: "PlayfairDisplay-VariableFont"),))),
+                        )
+                      ],
+                    ),
+                  ),
+                  Divider(thickness: 1),
+
+                  Expanded(
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    child:Padding(
+                                      padding: const EdgeInsets.only(left: 4),
+                                      child: Image.asset("assets/sun.png", color: Constants.primaryColor.withOpacity(.5), width: 25,),
+                                    ),
+                                  ),),
+                                Text("günəş", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Container(
+
+                                width: 70,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Color(0xDE46BE8D).withOpacity(.85),
+                                    gradient: LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        colors: [
+                                          Color(0xDE46BE8D), Constants.primaryColor
+                                        ]
+                                    )
+                                ) ,
+                                child: Center(child:
+                                AutoSizeText(zor['${c.difference}']['baseTime']['gunes'].toString(),
+                                  style: TextStyle(fontSize: 18, color: Colors.white, fontFamily: "PlayfairDisplay-VariableFont"),))),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Divider(thickness: 1),
+
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child:
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: Icon(Icons.sunny, color: Constants.primaryColor.withOpacity(.5)),
+                                  ),),
+                              ),
+                              AutoSizeText("zöhr", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Container(
+
+                              width: 70,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xDE46BE8D).withOpacity(.85),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      colors: [
+                                        Color(0xDE46BE8D), Constants.primaryColor
+                                      ]
+                                  )
+                              ) ,
+                              child: Center(child:
+                              AutoSizeText(zor['${c.difference}']['baseTime']['gunorta'].toString(),
+                                style: TextStyle(fontSize: 18, color: Colors.white, fontFamily: "PlayfairDisplay-VariableFont"),))),
+                        )
+                      ],
+                    ),
+                  ),
+                  Divider(thickness: 1),
+
+
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child:
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: Icon(Icons.sunny_snowing, color: Constants.primaryColor.withOpacity(.5) ),
+                                  ),),
+                              ),
+                              Text("əsr", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Container(
+
+                              width: 70,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xDE46BE8D).withOpacity(.85),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      colors: [
+                                        Color(0xDE46BE8D), Constants.primaryColor
+                                      ]
+                                  )
+                              ) ,
+                              child: Center(child:
+                              AutoSizeText(zor['${c.difference}']['baseTime']['ikindi'].toString(),
+                                style: TextStyle(fontSize: 18, color: Colors.white, fontFamily: "PlayfairDisplay-VariableFont"),))),
+                        )
+                      ],
+                    ),
+                  ),
+                  Divider(thickness: 1),
+
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child:
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: Icon(Icons.nightlight_outlined, color: Constants.primaryColor.withOpacity(.5) ),
+                                  ),),
+                              ),
+                              Text("axşam", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Container(
+
+                              width: 70,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xDE46BE8D).withOpacity(.85),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      colors: [
+                                        Color(0xDE46BE8D), Constants.primaryColor
+                                      ]
+                                  )
+                              ) ,
+                              child: Center(child:
+                              AutoSizeText(zor['${c.difference}']['baseTime']['axsam'].toString(),
+                                style: TextStyle(fontSize: 18, color: Colors.white, fontFamily: "PlayfairDisplay-VariableFont"),))),
+                        )
+                      ],
+                    ),
+                  ),
+                  Divider(thickness: 1),
+
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child:
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: Icon(Icons.nightlight, color: Constants.primaryColor.withOpacity(.5), ),
+                                  ),),
+                              ),
+
+                              Text("işa", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Container(
+
+                              width: 70,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xDE46BE8D).withOpacity(.85),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      colors: [
+                                        Color(0xDE46BE8D), Constants.primaryColor
+                                      ]
+                                  )
+                              ) ,
+                              child: Center(child:
+                              AutoSizeText(zor['${c.difference}']['baseTime']['yatsi'].toString(),
+                                style: TextStyle(fontSize: 18, color: Colors.white, fontFamily: "PlayfairDisplay-VariableFont"),))),
+                        )
+                      ],
+                    ),
+                  ),
+
+
+
+                ],
+              ),
+            )
+
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 33),
+        child: Container(
+          child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(
+                              child: FittedBox(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      AutoSizeText("imsaq", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                      AutoSizeText(zor['${c.difference}']['baseTime']['imsaq'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(15))
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(
+                              child: FittedBox(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      AutoSizeText("sübh", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                      AutoSizeText(zor['${c.difference}']['baseTime']['sabah'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(
+                              child: FittedBox(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      AutoSizeText("günəş", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                      AutoSizeText(zor['${c.difference}']['baseTime']['gunes'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(topRight: Radius.circular(15))
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("işrak", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['extraTime']['israk'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("kərahət", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['extraTime']['kerahat'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("zöhr", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['baseTime']['gunorta'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("əsr əvvəl", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['baseTime']['ikindi'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("əsr sani", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['extraTime']['asri_sani'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("isfirar", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['extraTime']['isfirar'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("axşam", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['baseTime']['axsam'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("iştibaq", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['extraTime']['istibak'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("işa əvvəl", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['baseTime']['yatsi'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("işa sani", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['extraTime']['isa_sani'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15))
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("gecə y-sı", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.white.withOpacity(.8), ),),
+                                    AutoSizeText(zor['${c.difference}']['extraTime']['midnight'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+
+                                color: Color(0xDE46BE8D),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(.5),
+                            child: Container(child: FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AutoSizeText("təhəccüd", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.black54, ),),
+                                    AutoSizeText(zor['${c.difference}']['extraTime']['teheccud'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                              width: Get.width/3.5,
+                              height: Get.height/6,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(15))
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+
+
+                ],
+              )
+          ),
+        ),
+      )
+    ];
     return // c.globalTimeName == null ? Center(child: Lottie.asset("assets/loding.json", height: 80),) :
 
     Center(
@@ -436,19 +1150,58 @@ var circularPrTime;
                   ),
                   Positioned(
                   bottom: Get.height/16,
-                  right: 30,
+                  right: 10,
                   child: circularPrTime == null ? Center(child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CircularProgressIndicator(color: Colors.white,),
-                  ),) : Text("-${circularPrTime.toString()}", style: TextStyle(color: Colors.white.withOpacity(.8), fontWeight: FontWeight.w300 ,fontSize: 20, fontFamily: "PlayfairDisplay-VariableFont" ),) ),
+                  ),) : Container(
+                    width: Get.width/2.9,
+                    decoration: BoxDecoration(
+                      color: Constants.primaryColor.withOpacity(.3),
+                      borderRadius: BorderRadius.circular(20)
+
+                    ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+
+                            decoration: BoxDecoration(
+                                color: Constants.primaryColor.withOpacity(.1),
+                                borderRadius: BorderRadius.circular(20)
+
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(circularPrName, style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500 ,fontSize: 17, ),),
+                                  Text(circularPrPmName, style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500 ,fontSize: 17, ),),
+                                  Text("-${circularPrTime.toString().substring(0,7)}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300 ,fontSize: 20, fontFamily: "PlayfairDisplay-VariableFont" ),),
+                                ],
+                              ),
+                            )),
+                      )) ),
 
                   Positioned(
                       bottom: Get.height/16,
-                      left: 30,
+                      left: 10,
                       child: c.globalTimeTime == null ||  c.globalTimeName == null ? Center(child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CircularProgressIndicator(color: Colors.white,),
-                      ),) : Text("${c.globalTimeName}\n${c.globalTimeTime}", textAlign: TextAlign.center ,style: TextStyle(color: Colors.white, fontSize: 25,  fontFamily: "Oswald"),) ),
+                      ),) : Container(
+                        width: Get.width/5,
+                        height: Get.height/8,
+                        decoration: BoxDecoration(
+                            color: Constants.primaryColor.withOpacity(.3),
+                            borderRadius: BorderRadius.circular(20)
+
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: FittedBox(child: Text("${c.globalTimeName}\n${c.globalTimeTime}", textAlign: TextAlign.left ,style: TextStyle(color: Colors.white, fontSize: 25,  fontFamily: "Oswald"),)),
+                        ),
+                      ) ),
 
 
 
@@ -461,12 +1214,14 @@ var circularPrTime;
                mainAxisSize: MainAxisSize.max,
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
-                 IconButton(onPressed: (){
-                   setState(() {
-                     c.difference--;
-                   });
+                 FittedBox(
+                   child: IconButton(onPressed: (){
+                     setState(() {
+                       c.difference--;
+                     });
 
-                 }, icon: Icon(Icons.chevron_left, size: 25, color: Constants.primaryColor)),
+                   }, icon: Icon(Icons.chevron_left,  color: Constants.primaryColor)),
+                 ),
                  FittedBox(
                    child: Column(
                      mainAxisSize: MainAxisSize.min,
@@ -476,20 +1231,20 @@ var circularPrTime;
                                   .difference}']['baseTime']["todayDate"]}").day} ${months[DateTime.parse("${zor['${c
                        .difference}']['baseTime']["todayDate"]}").month - 1]}, ${weekday[DateTime.parse("${zor['${c
                        .difference}']['baseTime']["todayDate"]}").weekday - 1]}", style: TextStyle( fontSize: 14,color: Colors.black87, fontWeight: FontWeight.w600)),
-                Text(
-
-                               "${"${zor['${c
+                Text(                   "${"${zor['${c
                                    .difference}']['baseTime']["todayHijrahDate"]}".capitalize}",
                                maxLines: 1,  style: TextStyle( fontSize: 13, color: Colors.black38),)
                      ],
                    ),
                  ),
-                 IconButton(onPressed: (){
-                   setState(() {
-                     c.difference++;
-                   });
+                 FittedBox(
+                   child: IconButton(onPressed: (){
+                     setState(() {
+                       c.difference++;
+                     });
 
-                 }, icon: Icon(Icons.chevron_right, size: 25, color: Constants.primaryColor,))
+                   }, icon: Icon(Icons.chevron_right, size: 25, color: Constants.primaryColor,)),
+                 )
                ],
              ),
              height: Get.height/20,
@@ -507,679 +1262,33 @@ var circularPrTime;
               child:
            Padding(
               padding: const EdgeInsets.all(4.0),
-              child: PageView(
-
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10),
-                    child: Card(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-
-
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, ),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: CircleAvatar(
-                                          backgroundColor: Colors.transparent,
-                                          child:Padding(
-                                            padding: const EdgeInsets.only(left: 4),
-                                            child: Image.asset("assets/sunrise2.png", color: Constants.primaryColor.withOpacity(.5), width: 25),
-                                          ),
-                                      ),),
-                                      Text("sübh", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                  child: Row(
-                                    children: [
-                                      AutoSizeText(zor['${c.difference}']['baseTime']['sabah'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: SizedBox(),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Divider(thickness: 1),
-
-                          Expanded(
-                            child: Container(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 10, ),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: CircleAvatar(
-                                            backgroundColor: Colors.transparent,
-                                            child:Padding(
-                                              padding: const EdgeInsets.only(left: 4),
-                                              child: Image.asset("assets/sun.png", color: Constants.primaryColor.withOpacity(.5), width: 25,),
-                                            ),
-                                        ),),
-                                        Text("günəş", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                    child: Row(
-                                      children: [
-                                       Text(zor['${c.difference}']['baseTime']['gunes'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: SizedBox()
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Divider(thickness: 1),
-
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, ),
-                                  child: Row(
-                                    children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                                      child: CircleAvatar(
-                                      backgroundColor: Colors.transparent,
-                                        child:
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: Icon(Icons.sunny, color: Constants.primaryColor.withOpacity(.5)),
-                                        ),),
-                                    ),
-                                      AutoSizeText("zöhr", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                  child: Row(
-                                    children: [
-                                      Text(zor['${c.difference}']['baseTime']['gunorta'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: SizedBox(),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Divider(thickness: 1),
-
-
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, ),
-                                  child: Row(
-                                    children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                                      child: CircleAvatar(
-                                      backgroundColor: Colors.transparent,
-                                        child:
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: Icon(Icons.sunny_snowing, color: Constants.primaryColor.withOpacity(.5) ),
-                                        ),),
-                                    ),
-                                      Text("əsr", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                  child: Row(
-                                    children: [
-                                     Text(zor['${c.difference}']['baseTime']['ikindi'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: SizedBox(),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Divider(thickness: 1),
-
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, ),
-                                  child: Row(
-                                    children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                                      child: CircleAvatar(
-                                      backgroundColor: Colors.transparent,
-                                        child:
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: Icon(Icons.nightlight_outlined, color: Constants.primaryColor.withOpacity(.5) ),
-                                        ),),
-                                    ),
-                                      Text("axşam", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                  child: Row(
-                                    children: [
-                                      Text(zor['${c.difference}']['baseTime']['axsam'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: SizedBox(),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Divider(thickness: 1),
-
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, ),
-                                  child: Row(
-                                    children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                                      child: CircleAvatar(
-                                      backgroundColor: Colors.transparent,
-                                        child:
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                                          child: Icon(Icons.nightlight, color: Constants.primaryColor.withOpacity(.5), ),
-                                        ),),
-                                    ),
-
-                                   Text("işa", style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                  child: Row(
-                                    children: [
-                                      Text(zor['${c.difference}']['baseTime']['yatsi'].toString(), style: TextStyle(fontSize: 18, fontFamily: "PlayfairDisplay-VariableFont"),),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: SizedBox(),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-
-
-
-                        ],
-                      ),
-                    )
-
-                ),
+              child: CarouselSlider.builder(
+                   controller: _controller,
+                  initialPage: pr ? 1 : 0,
+                  // onSlideChanged: (value){
+                  //   setState(() {
+                  //     slidePage = value - slidePage1;
+                  //     if(slidePage == 22){
+                  //       slidePage = 0;
+                  //       slidePage1  = slidePage1 + 22;
+                  //     }
+                  //   });
+                  //   print(slidePage);
+                  // },
+                  key: _sliderKey,
+                  unlimitedMode: false,
+                  slideBuilder: (index) {
+                    return pageList[index];
+                  },
+                  slideTransform: CubeTransform(
+                    rotationAngle: 80
                   ),
-                  Padding(
-               padding: const EdgeInsets.all(10.0),
-               child: Container(
-                 child: Center(
-                   child: Column(
-                     mainAxisAlignment: MainAxisAlignment.center,
-                     children: [
-                       Expanded(
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(
-                                   child: FittedBox(
-                                     child: Padding(
-                                       padding: const EdgeInsets.all(10.0),
-                                       child: Column(
-                                         mainAxisAlignment: MainAxisAlignment.center,
-                                         children: [
-                                           AutoSizeText("imsaq", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                           AutoSizeText(zor['${c.difference}']['baseTime']['imsaq'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                         ],
-                                       ),
-                                     ),
-                                   ),
-                                  width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                     color: Colors.white,
-                                     borderRadius: BorderRadius.only(topLeft: Radius.circular(15))
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(
-                                   child: FittedBox(
-                                     child: Padding(
-                                       padding: const EdgeInsets.all(10.0),
-                                       child: Column(
-                                         mainAxisAlignment: MainAxisAlignment.center,
-                                         children: [
-                                           AutoSizeText("sübh", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                           AutoSizeText(zor['${c.difference}']['baseTime']['sabah'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                         ],
-                                       ),
-                                     ),
-                                   ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                       color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(
-                                   child: FittedBox(
-                                     child: Padding(
-                                       padding: const EdgeInsets.all(10.0),
-                                       child: Column(
-                                         mainAxisAlignment: MainAxisAlignment.center,
-                                         children: [
-                                           AutoSizeText("günəş", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                           AutoSizeText(zor['${c.difference}']['baseTime']['gunes'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                         ],
-                                       ),
-                                     ),
-                                   ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                       color: Colors.white,
-                                       borderRadius: BorderRadius.only(topRight: Radius.circular(15))
-                                   ),
-                                 ),
-                               ),
-                             )
-                           ],
-                         ),
-                       ),
-                       Expanded(
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("işrak", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['extraTime']['israk'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                       color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("kərahət", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['extraTime']['kerahat'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                     color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("zöhr", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['baseTime']['gunorta'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                       color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             )
-                           ],
-                         ),
-                       ),
-                       Expanded(
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("əsr-i əvvəl", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['baseTime']['ikindi'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                     color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("əsr-i sani", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['extraTime']['asri_sani'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                     color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("isfirar", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['extraTime']['isfirar'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                     color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             )
-                           ],
-                         ),
-                       ),
-                       Expanded(
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("axşam", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['baseTime']['axsam'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                     color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("iştibak", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['extraTime']['istibak'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                     color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("işa-i əvvəl", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['baseTime']['yatsi'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                     color: Colors.white,
-                                   ),
-                                 ),
-                               ),
-                             )
-                           ],
-                         ),
-                       ),
-
-
-                       Expanded(
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("işa-i sani", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['extraTime']['isa_sani'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                       color: Colors.white,
-                                       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15))
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("gecə y-sı", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['extraTime']['midnight'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                     gradient: LinearGradient(
-                                       colors:
-                                         [
-                                           Colors.teal,
-                                           // Constants.primaryColor.withOpacity(.8),
-                                           Colors.tealAccent
-                                         ]
-                                     ),
-                                     color: Constants.primaryColor.withOpacity(.4),
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             Expanded(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(1.5),
-                                 child: Container(child: FittedBox(
-                                   child: Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child: Column(
-                                       mainAxisAlignment: MainAxisAlignment.center,
-                                       children: [
-                                         AutoSizeText("təhəccüd", minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black54, ),),
-                                         AutoSizeText(zor['${c.difference}']['extraTime']['teheccud'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(fontFamily: "Oswald",color: Colors.black54),),
-                                       ],
-                                     ),
-                                   ),
-                                 ),
-                                   width: Get.width/3.5,
-                                   height: Get.height/6,
-                                   decoration: BoxDecoration(
-                                       color: Colors.white,
-                                       borderRadius: BorderRadius.only(bottomRight: Radius.circular(15))
-                                   ),
-                                 ),
-                               ),
-                             )
-                           ],
-                         ),
-                       )
-
-
-                     ],
-                   )
-                 ),
-               ),
-             )
-
-                ]),
+                  slideIndicator: CircularSlideIndicator(
+                    indicatorBackgroundColor: Colors.black12,
+                    currentIndicatorColor: Colors.blue,
+                    padding: EdgeInsets.only(bottom: 10),
+                  ),
+                  itemCount: pageList.length),
             ),
           )
 
@@ -1194,7 +1303,9 @@ var circularPrTime;
 
 
     );
+
   }
+
 
 // List of items in our dropdown menu
 }

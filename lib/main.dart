@@ -18,9 +18,7 @@ void main() async{
         SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
           systemNavigationBarColor: Constants.primaryColor,
-          statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
-          systemNavigationBarIconBrightness: Brightness.light
 
        ));
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,8 +54,7 @@ builder: (context, child){
       darkTheme: ThemeService().darkTheme,
       themeMode: ThemeService().getThemeMode(),
       home: MyCustomSplashScreen(
-        analytics: analytics,
-        observer: observer,
+
       ),
     );
   }

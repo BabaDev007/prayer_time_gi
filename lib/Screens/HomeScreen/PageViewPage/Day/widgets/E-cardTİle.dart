@@ -114,15 +114,19 @@ class _EkardTileState extends State<EkardTile> {
                               alignment: Alignment.center,
                               children: [
                                 Shimmer(
+                                  period: Duration(seconds: 5),
+                                  direction: ShimmerDirection.ltr,
                                   enabled: true,
-                                  gradient: LinearGradient(colors: [Constants.primaryColor, Colors.white, Colors.blueGrey]
+                                  gradient: LinearGradient(
+                                      begin: Alignment.bottomCenter,
+                                      colors: [ Constants.primaryColor,  Constants.primaryColor.withOpacity(.7), Constants.primaryColor,]
 
                                   ), child: Container(
                                   width: double.infinity,
-                                  height: 300,
+                                  height: 200,
                                   decoration: BoxDecoration(
-                                    color: Constants.primaryColor,
-                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))
+                                      color: Constants.primaryColor,
+                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))
 
                                   ),
                                 ), ),
@@ -134,12 +138,16 @@ class _EkardTileState extends State<EkardTile> {
           alignment: Alignment.center,
           children: [
             Shimmer(
+              period: Duration(seconds: 5),
+              direction: ShimmerDirection.ltr,
               enabled: true,
-              gradient: LinearGradient(colors: [Constants.primaryColor, Colors.white, Colors.blueGrey]
+              gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  colors: [ Constants.primaryColor,  Constants.primaryColor.withOpacity(.7), Constants.primaryColor,]
 
               ), child: Container(
               width: double.infinity,
-              height: 300,
+              height: 200,
               decoration: BoxDecoration(
                   color: Constants.primaryColor,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))

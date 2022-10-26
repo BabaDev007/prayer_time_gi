@@ -77,8 +77,9 @@ class _EbookReaderState extends State<EbookReader> {
   @override
   Widget build(BuildContext context) =>
       Scaffold(
+        backgroundColor: _bacgroundColor,
 
-    extendBodyBehindAppBar: true,
+
     appBar:
     PreferredSize(
       preferredSize: Size(
@@ -86,7 +87,6 @@ class _EbookReaderState extends State<EbookReader> {
         56.0,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30)),
 
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
@@ -239,7 +239,6 @@ class _EbookReaderState extends State<EbookReader> {
             elevation: 0,
 
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
             ),
 
             backgroundColor: Constants.primaryColor.withOpacity(.6),
@@ -272,6 +271,7 @@ class _EbookReaderState extends State<EbookReader> {
           color: _bacgroundColor,
         ),
         EpubView(
+
           builders: EpubViewBuilders<DefaultBuilderOptions>(
             options:  DefaultBuilderOptions(
 

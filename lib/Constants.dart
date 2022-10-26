@@ -13,6 +13,8 @@ class Constants{
   String aboveWidgetImageAsset = "assets/pngwing.com.png";
   var borderRadius = BorderRadius.circular(20);
   var scaffolColor = Colors.greenAccent.shade100;
+  String apiKey = "AIzaSyAJSlHRht2QpRi9T_kGt4xplUhjycHZsEc";
+
   String compassLottiePath = "assets/kompass_lottie.json";
   String lottieasset = "assets/53164-light-dark-mode-button.json";
  String metin =  "Hənəfi məzhəbində dişlərin arası və diş çuxurları islanmazsa, qüsl olmaz. Bunun üçün dişə diş qapağı qoyulduqda və dolğu "

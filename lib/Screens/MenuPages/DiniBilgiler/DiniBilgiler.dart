@@ -95,7 +95,7 @@ var link, link1, link2, link3, link4, link5, link6, link7;
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
             child: AppBar(
-              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+              leading: IconButton(onPressed: () {      Navigator.pop(context);
               }, icon: Icon(Icons.chevron_left, size: 30,),),
               elevation: 0,
 
@@ -151,7 +151,7 @@ var link, link1, link2, link3, link4, link5, link6, link7;
                           onTap: (){
                             Navigator.push(context, SizeTransition1(DiniBilgiler1Page(link: Uri.parse(linkMovzu[index]), bashliq: movzuAdi[index],)));
                           },
-                          leading:Icon(Icons.folder, color: Constants.primaryColor,),
+                          leading: Icon(Icons.folder_copy, color: Constants.primaryColor,),
                           title: Text(movzuAdi[index]),
                           trailing: Icon(Icons.chevron_right),
 

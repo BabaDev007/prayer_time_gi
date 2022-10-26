@@ -94,7 +94,7 @@ class _ZikrPageState extends State<ZikrPage> {
 
       extendBodyBehindAppBar: true,
 
-      appBar: AppBar(leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+      appBar: AppBar(leading: IconButton(onPressed: () {      Navigator.pop(context);
       }, icon: Icon(Icons.chevron_left, size: 30,),),
         actions: [
 

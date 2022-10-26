@@ -34,7 +34,7 @@ class _QiblahCompassState extends State<QiblahCompass> {
       appBar: AppBar(
 
         title: Text("Kompass", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
-        leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+        leading: IconButton(onPressed: () {      Navigator.pop(context);
         }, icon: Icon(Icons.chevron_left, size: 30,),),             centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,

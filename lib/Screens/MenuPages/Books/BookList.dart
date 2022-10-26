@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 import '../../HomeScreen/Widgets.dart';
 import 'BookNameClass.dart';
 import 'EbookListTile.dart';
-import 'package:get/get.dart';
+import 'package:cool_alert/cool_alert.dart';
 
 
 class BookList extends StatefulWidget {
@@ -38,17 +39,27 @@ class _BookListState extends State<BookList> {
             child: AppBar(
               actions: [
                 IconButton(onPressed: (){
-                  Get.defaultDialog(
-                      onConfirm: (){
-                        Get.back();
-                      },
+                  CoolAlert.show(
+                      backgroundColor: Constants.primaryColor,
+                      confirmBtnText: "Anladım",
+                      cancelBtnText: "Xeyr",
+                      context: context,
+                      type: CoolAlertType.info,
+                      text: "Təqdim olunmuş kitabların hər biri  Dini Qurumlarla İş Üzrə Dövlət Komitəsi tərəfindən yoxlanışdan keçərək, nəzarət markası ilə markalanmışdır.",
                       title: "Məlumat",
-                      middleText: "Təqdim olunmuş kitabların hər biri  Dini Qurumlarla İş Üzrə Dövlət Komitəsi tərəfindən yoxlanışdan keçərək, nəzarət markası ilə markalanmışdır."
-                  );
+
+                      onConfirmBtnTap: (){
+                        Navigator.pop(context);
+                      }
+
+                  ) ??false;
+
+
+
 
                 }, icon: Icon(Icons.info_outline_rounded))
               ],
-              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+              leading: IconButton(onPressed: () {     Navigator.pop(context);
               }, icon: Icon(Icons.chevron_left, size: 30,),),
               elevation: 0,
 
@@ -144,17 +155,27 @@ class _EBookListState extends State<EBookList> {
             child: AppBar(
               actions: [
                 IconButton(onPressed: (){
-                  Get.defaultDialog(
-                      onConfirm: (){
-                        Get.back();
-                      },
+                  CoolAlert.show(
+                      backgroundColor: Constants.primaryColor,
+                      confirmBtnText: "Anladım",
+                      cancelBtnText: "Xeyr",
+                      context: context,
+                      type: CoolAlertType.info,
+                      text: "Təqdim olunmuş kitabların hər biri  Dini Qurumlarla İş Üzrə Dövlət Komitəsi tərəfindən yoxlanışdan keçərək, nəzarət markası ilə markalanmışdır.",
                       title: "Məlumat",
-                      middleText: "Təqdim olunmuş kitabların hər biri  Dini Qurumlarla İş Üzrə Dövlət Komitəsi tərəfindən yoxlanışdan keçərək, nəzarət markası ilə markalanmışdır."
-                  );
+                      onCancelBtnTap: (){
+
+                      },
+                      onConfirmBtnTap: (){
+                        Navigator.pop(context);
+
+                      }
+
+                  ) ??false;
 
                 }, icon: Icon(Icons.info_outline_rounded))
               ],
-              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+              leading: IconButton(onPressed: () {     Navigator.pop(context);
               }, icon: Icon(Icons.chevron_left, size: 30,),),
               elevation: 0,
 

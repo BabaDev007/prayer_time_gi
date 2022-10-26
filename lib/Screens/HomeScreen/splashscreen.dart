@@ -2,25 +2,17 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Constants.dart';
-import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:html/parser.dart' as parser;
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:cool_alert/cool_alert.dart';
+import 'IntroScreen.dart';
 import 'PageViewPage/PageViewPage.dart';
+import 'package:get/get.dart';
 
+import 'SplashError.dart';
 class MyCustomSplashScreen extends StatefulWidget {
-  MyCustomSplashScreen({
-    Key? key,
 
-    required this.analytics,
-    required this.observer,
-  }) : super(key: key);
-  final FirebaseAnalytics analytics;
-  final FirebaseAnalyticsObserver observer;
   @override
   _MyCustomSplashScreenState createState() => _MyCustomSplashScreenState();
 }
@@ -37,33 +29,19 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
   GetStorage box = GetStorage();
 
   var currentTime;
+  var isSucces = false;
   var url = Uri.parse("https://prayer-time-ws.herokuapp.com/api/dates/json/1.0/allDataYearly?indexOfCity=1425");
-  Future<void> getDataMovzu() async {
-    var response = await http.get(_url);
-    final body = response.body;
-    final document = parser.parse(body);
-    var res = document.getElementsByClassName("col-md-8 col-sm-12 col-xs-12")
-        .forEach((element) async {
-      setState(() {
-        bashliq =
-            element.children[1].children[0].children[2].children[0].children[0]
-                .children[0].children[0].text.toString();
-        metin = element.children[1].children[0].children[5].text.toString();
-      });
-      box.write("bashliq", bashliq);
-      box.write("metin", metin);
-    }
-    );
-  }
+  var isIntroUpdated = false;
   Future<void> getData()async{
 if(box.read("time") == null) {
   var response = await http.get(url);
-
   var json = response.body;
   var jsonData = jsonDecode(utf8.decode(json.runes.toList()).toString());
   if (response.statusCode == 200) {
     currentTime = jsonData["data"];
     box.write("time", currentTime);
+
+
   }
 }  }
   var bashliq;
@@ -82,58 +60,19 @@ if(box.read("time") == null) {
 var count = 0;
 bool progress = false;
 
-  Future<void> getHikmet() async {
-    var response = await http.get(_url);
-    final body = response.body;
-    final document = parser.parse(body);
-    var res = document.getElementsByClassName("top-block2").forEach((element) {
-      setState(() {
-        hikmetliSoz = element.children[0].children[2].text.toString();
-      });
-      box.write("hikmetlisoz", hikmetliSoz);
-    });
-  }
 
 
-  Future<void> getMovzuDialog() async {
-    var _url = Uri.parse("https://www.gozelislam.com/");
-    var response = await http.get(_url);
-    final body = response.body;
-    final document = parser.parse(body);
-    var res = document.getElementsByClassName("costom4").forEach((element) {
-      setState(() {
-        _bashliq2 =
-            element.children[0].children[0].children[0].children[0].children[0]
-                .text.toString();
-        _metin2 = element.children[0].children[0].children[1].text.toString();
-      });
-      box.write("_metin2", _metin2);
-      box.write("_bashliq2", _bashliq2);
-      box.write("_link2",
-          element.children[0].children[0].children[0].children[0]
-              .attributes['href'].toString());
-    });
-    print(box.read("_link2"));
-  }
-
-  Future<void> getMovzuPage() async {
-    var _url = Uri.parse(box.read("_link2"));
-    var response = await http.get(_url);
-    final body = response.body;
-    final document = parser.parse(body);
-    var res = document.getElementsByClassName("blog-info").forEach((
-        element) async {
 
 
-    });
-  }
+
+
 
   @override
   void initState() {
     super.initState();
 
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 3));
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
 
     animation1 = Tween<double>(begin: 50, end: 25).animate(CurvedAnimation(
         parent: _controller, curve: Curves.fastLinearToSlowEaseIn))
@@ -145,27 +84,49 @@ bool progress = false;
 
     _controller.forward();
 
-    Timer(Duration(seconds: 1), () {
+    Timer(Duration(milliseconds: 400), () {
       setState(() {
         _fontSize = 1.06;
       });
     });
 
-    Timer(Duration(seconds: 1), () {
+    Timer(Duration(milliseconds: 400), () {
       setState(() {
         _containerSize = 2;
         _containerOpacity = 1;
       });
     });
 
-    Timer(Duration(seconds: 4), () async{
-      getMovzuPage();
-      getHikmet();
-       getDataMovzu();
-     await getData();
+    Timer(Duration(seconds: 2), () async{
+ try{
+   await getData();
+
+   box.read("intro") ?? false ?
+   Navigator.pushReplacement(context, PageTransition(PageViewPage())) :
+   Navigator.pushReplacement(context, PageTransition(IntroScreen()));
+ }catch(e){
+   Navigator.pushReplacement(context, PageTransition(SplashError()));
+   // CoolAlert.show(
+   //     barrierDismissible: false,
+   //     lottieAsset: "assets/75267-no-wifi.json",
+   //     backgroundColor: Constants.primaryColor,
+   //     confirmBtnText: "OK",
+   //     cancelBtnText: "Xeyr",
+   //     context: context,
+   //     type: CoolAlertType.error,
+   //     text:  'İnternet bağlantısını yoxlayın və bir daha cəhd edin',
+   //     title: "İnternet Yoxdur",
+   //     onCancelBtnTap: (){
+   //       Navigator.pop(context);
+   //     },
+   //     onConfirmBtnTap: (){
+   //
+   //        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyCustomSplashScreen()));
+   //     }
+   // );
+ }
 
 
-       Navigator.pushReplacement(context, PageTransition(PageViewPage()));
 
     });
     mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
@@ -188,62 +149,67 @@ bool progress = false;
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      backgroundColor: Constants.primaryColor,
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              AnimatedContainer(
-                  duration: Duration(milliseconds: 2000),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  height: _height / _fontSize/1.2
-              ),
-              AnimatedOpacity(
-                duration: Duration(milliseconds: 1000),
-                opacity: _textOpacity,
-                child: Text(
-                  'NamazVaxtı.org',
-                  style: TextStyle(
-                    fontFamily: "Oswald",
-                    color: Colors.white,
-                    fontSize: animation1.value,
+    return WillPopScope(
+      onWillPop: ()async {
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Constants.primaryColor,
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                AnimatedContainer(
+                    duration: Duration(milliseconds: 2000),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    height: _height / _fontSize/1.2
+                ),
+                AnimatedOpacity(
+                  duration: Duration(milliseconds: 1000),
+                  opacity: _textOpacity,
+                  child: Text(
+                    'Namaz Vaxtı',
+                    style: TextStyle(
+                      fontFamily: "Oswald",
+                      color: Colors.white,
+                      fontSize: animation1.value,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Center(
-            child: AnimatedOpacity(
-              duration: Duration(milliseconds: 2000),
-              curve: Curves.fastLinearToSlowEaseIn,
-              opacity: _containerOpacity,
-              child: AnimatedContainer(
+              ],
+            ),
+            Center(
+              child: AnimatedOpacity(
                 duration: Duration(milliseconds: 2000),
                 curve: Curves.fastLinearToSlowEaseIn,
-                height: _width / _containerSize,
-                width: _width / _containerSize,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                // child: Image.asset('assets/images/file_name.png')
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FittedBox(child: SvgPicture.asset("assets/svgmosque.svg")),
-                    SizedBox(height: 15,),
+                opacity: _containerOpacity,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 2000),
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  height: _width / _containerSize,
+                  width: _width / _containerSize,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  // child: Image.asset('assets/images/file_name.png')
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FittedBox(child: SvgPicture.asset("assets/svgmosque.svg")),
+                      SizedBox(height: 15,),
 
-                    Visibility(visible: progress,
-                        child: Center(child: CircularProgressIndicator(color: Colors.white,),))
-                  ],
-                )
+                      Visibility(visible: progress,
+                          child: Center(child: CircularProgressIndicator(color: Colors.white,),))
+                    ],
+                  )
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

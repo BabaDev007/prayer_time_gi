@@ -238,26 +238,25 @@ class _DaylyThemeState extends State<DaylyTheme> {
           physics: BouncingScrollPhysics(),
           children: <Widget>[
 
-            Container(
-              height: Get.size.height/7,
-              child: Center(child: Padding(
+
+
+               Center(child: Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: AutoSizeText(
                   bashliq, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold , fontFamily: 'Oswald' ),),
-              )),),
-            Container(
-                child: Padding(
+              )),
+            Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(metin,style: TextStyle(fontSize: _fontSize, fontFamily: "GentiumBookPlus",  fontWeight: FontWeight.w100, color: Colors.black.withOpacity(.7) ),),
-                )),
-            Container(
-                child: Padding(
+                  child: Text(metin, style: TextStyle(fontSize: _fontSize, fontFamily: "GentiumBookPlus",  fontWeight: FontWeight.w100, color: Colors.black.withOpacity(.7) ),),
+                ),
+
+                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextButton(onPressed: () {
                     _launchUrl('https://www.gozelislam.com');
                   },
                       child: Center(child: Text('www.gozelislam.com' ,style: TextStyle(fontSize: 15, fontWeight: FontWeight.w100, color: Colors.blue ),))),
-                )),
+                ),
 
             //3
 
@@ -404,7 +403,7 @@ getMovzuDialog();
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
             child: AppBar(
-              leading: SizedBox(),
+
               actions: [ IconButton(
                 icon: const Icon(Icons.settings),
                 color: Colors.white,
@@ -577,21 +576,22 @@ _show ?
             getMovzuPage();
           },
           child: ListView(
+            physics: BouncingScrollPhysics(),
             children: <Widget>[
 
 
               Container(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            bashliq10, textAlign: TextAlign.center, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold , fontFamily: 'GentiumBookPlus' ),),
+                            bashliq10, textAlign: TextAlign.center, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold ,  ),),
                         ),
-                        Text('${metin10}' , textAlign: TextAlign.justify, style: TextStyle(fontSize:_fontSize, fontFamily: "GentiumBookPlus", fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.9) ),),
+                        Text('${metin10}' , textAlign: TextAlign.justify, style: TextStyle(fontSize:_fontSize, fontWeight: FontWeight.w400, color: Colors.black.withOpacity(.9) ),),
                         TextButton(onPressed: () {
                           _launchUrl('https://www.gozelislam.com');
                         },

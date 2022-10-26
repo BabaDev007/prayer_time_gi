@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../Constants.dart';
+import '../../../../MenuPages/Dualar/DualarClass.dart';
+import 'package:jiffy/jiffy.dart';
 
 class DuaCard extends StatefulWidget {
   const DuaCard({Key? key}) : super(key: key);
@@ -15,6 +17,11 @@ class _DuaCardState extends State<DuaCard> {
   var visual = "Oxu";
 
   var zor = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
     @override
     Widget build(BuildContext context) {
       return  Padding(
@@ -41,9 +48,9 @@ class _DuaCardState extends State<DuaCard> {
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: AnimatedCrossFade(
-                      firstChild: Text( maxLines: 4, """Hədisi-şərifdə buyuruldu ki: Dünya və axirət səadəti istəyən, Allahümmə Rabbənə ətinə fiddünyə hasənətən və fil axirəti hasənətən və qına azəbənnər. Birahmətikə ya Ərhamərrahimin duasını oxusun.""",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
+                      firstChild: Text( maxLines: 4, Dualar.dualar2[Jiffy().dayOfYear].metin,  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
                         style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black.withOpacity(.8), ),),
-                      secondChild: Text( maxLines: 1000,"""Hədisi-şərifdə buyuruldu ki: Dünya və axirət səadəti istəyən, Allahümmə Rabbənə ətinə fiddünyə hasənətən və fil axirəti hasənətən və qına azəbənnər. Birahmətikə ya Ərhamərrahimin duasını oxusun.""",  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
+                      secondChild: Text( maxLines: 1000, Dualar.dualar2[Jiffy().dayOfYear].metin,  overflow: TextOverflow.ellipsis, textAlign: TextAlign.justify,
                         style: TextStyle(fontFamily: "PlayfairDisplay-VariableFont", color: Colors.black.withOpacity(.8), ),) ,
                       crossFadeState: zor ?  CrossFadeState.showSecond : CrossFadeState.showFirst,
                       duration: Duration(milliseconds: 300),

@@ -13,8 +13,9 @@ import 'package:lottie/lottie.dart';
 
 class DiniBilgilerPage1 extends StatefulWidget {
   final Uri url;
+  final String bashliq;
 
-  DiniBilgilerPage1(this.url);
+  DiniBilgilerPage1(this.url, this.bashliq);
 
   @override
   State<DiniBilgilerPage1> createState() => _DiniBilgilerPage1State();
@@ -93,7 +94,7 @@ class _DiniBilgilerPage1State extends State<DiniBilgilerPage1> {
               backgroundColor: Constants.primaryColor.withOpacity(.6),
               centerTitle: true,
               shadowColor: Colors.transparent,
-              title: Text("Dini Bilgilər 1", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
+              title: Text("${widget.bashliq}", style: TextStyle(fontFamily: "Oswald", color: Colors.white.withOpacity(.8)),),
             ),
           ),
         ),

@@ -1,14 +1,22 @@
 import 'package:jiffy/jiffy.dart';
 import 'package:get/get.dart';
+import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreen.dart';
 class Controller extends GetxController {
 
   var isShow = false.obs;
   var isShowPrayerTime = false.obs;
-  var isShowHikmetliSoz = false.obs;
+  var isShowHikmetliSoz = true.obs;
+  var widgetPageObs;
+  var isShowEKart = true.obs;
+  var isShowDua = true.obs;
+  var isShowShuhada = true.obs;
+  var isShowBook = true.obs;
+  var isShowGunlukMovzu = true.obs;
   var difference =Jiffy().dayOfYear.obs;
   var difference2 = Jiffy().dayOfYear.obs;
   var difference3 = Jiffy().dayOfYear.obs;
   var cityname = "Bakı".obs;
+  var loadingTime = false.obs;
   var daylyCounter = 0.obs;
   var allCounter = 0.obs;
   var zikrSayisi = 0.obs;

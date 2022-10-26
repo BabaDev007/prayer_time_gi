@@ -80,7 +80,7 @@ class _ShuhadaState extends State<Shuhada> {
             }, icon: Icon(Icons.share_outlined))
               ],
 
-              leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+              leading: IconButton(onPressed: () {     Navigator.pop(context);
               }, icon: Icon(Icons.chevron_left, size: 30,),),
               elevation: 0,
 
