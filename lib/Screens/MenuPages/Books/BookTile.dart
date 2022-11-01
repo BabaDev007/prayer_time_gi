@@ -34,6 +34,8 @@ class BookTile extends StatelessWidget {
 
 
 
+
+
                   onConfirmBtnTap: (){
                     Navigator.pop(context);
                     Navigator.of(context).push(SizeTransition3(BookReader(path: bookLink, pathWord: bookTitle,)));
