@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Books/BookTile.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -20,6 +20,7 @@ class BookList extends StatefulWidget {
 }
 
 class _BookListState extends State<BookList> {
+
   @override
   Widget build(BuildContext context) {
     var _w = MediaQuery.of(context).size.width;

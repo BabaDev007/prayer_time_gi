@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/Books/PdfViewer.dart';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:cool_alert/cool_alert.dart';
 import '../../../Constants.dart';
 import '../../../PaddingManager.dart';
 import '../../../PageTransition/PageTransition.dart';
@@ -18,8 +19,30 @@ class BookTile extends StatelessWidget {
     return Padding(
         padding: PaddingManager().prayerTimeWidgetPadding,
         child: InkWell(
-          onTap: (){
-             Navigator.of(context).push(SizeTransition3(BookReader(path: bookLink, pathWord: bookTitle,)));
+          onTap: ()async{
+            var connectivityResult = await (Connectivity().checkConnectivity());
+            if (connectivityResult == ConnectivityResult.mobile) {
+              CoolAlert.show(
+                lottieAsset: "assets/mobile_data.json",
+                  backgroundColor: Constants.primaryColor,
+                  confirmBtnText: "Anladım",
+                  cancelBtnText: "Xeyr",
+                  context: context,
+                  type: CoolAlertType.info,
+                  text: "Bu əməliyyatı yerinə yetirərkən sizdən internet trafikinizə uyğun olaraq məbləğ çıxıla bilər",
+                  title: "Məlumat",
+
+                  onConfirmBtnTap: (){
+                    Navigator.pop(context);
+                    Navigator.of(context).push(SizeTransition3(BookReader(path: bookLink, pathWord: bookTitle,)));
+                  }
+
+              ) ??false;
+// I am connected to a mobile network.
+            } else if (connectivityResult == ConnectivityResult.wifi) {
+// I am connected to a wifi network.
+            }
+
 
             // Navigator.of(context).push(SizeTransition3(BookReader(path: bookLink, pathWord: bookTitle,)));
           },

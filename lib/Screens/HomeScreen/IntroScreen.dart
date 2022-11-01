@@ -15,17 +15,45 @@ class IntroScreen extends StatelessWidget {
         },
         controllerColor: Colors.blue,
         pageBackgroundColor: Constants.primaryColor.withOpacity(.1),
-        headerBackgroundColor: Colors.transparent,
+        headerBackgroundColor: Constants.primaryColor,
         finishButtonText: 'Başla',
-        skipTextButton: Text('Keç'),
-        trailing: Text('Şəhər seç'),
+        skipTextButton: Text('Ötür', style: TextStyle(color: Colors.white),),
+        trailing: SizedBox(),
         background: [
-          Image.asset('assets/pn', ),
-          Image.asset('assets/slide_2.png'),
-          Image.asset('assets/slide_1.png'),
-          Image.asset('assets/slide_2.png'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset('assets/1112.jpg', scale: 5, ),
+          ),
+          Visibility(visible: true , child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Image.asset('assets/1116.jpg', scale: 4,),
+          )),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset('assets/2226.jpg', scale: 5,),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset('assets/2223.jpg', scale: 5,),
+          ),
+          Visibility(
+            visible: false,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset('assets/1115.jpg', scale: 5,),
+            ),
+          ),
+          Visibility(
+            visible: false,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset('assets/1115.jpg', scale: 5,),
+            ),
+          ),
+
+
         ],
-        totalPage: 4,
+        totalPage: 6,
         speed: 1.8,
         pageBodies: [
           Container(
@@ -33,10 +61,10 @@ class IntroScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
+                  child: Image.asset('assets/1111.jpg', scale: 5, ),
                   height: 480,
                 ),
-                Text("Azərbaycanın müxtəlif şəhər və rayonlarının namaz, imsaq, "
-                    "iftar vaxtlarını ən rahat şəkildə və reklam olmadan tətbiqimizdən əldə edə bilərsiniz",
+                Text("Azərbaycanın müxtəlif şəhər və rayonlarının namaz, imsaq və iftar vaxtları",
                 style: TextStyle(
                   fontSize: 24,
                   color: Constants.primaryColor,
@@ -48,55 +76,124 @@ class IntroScreen extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
+            child: Stack(
+              alignment: Alignment.bottomCenter,
               children: <Widget>[
+                SizedBox(height: 40,),
+
                 SizedBox(
+                  child: Image.asset('assets/1117.jpg', scale: 1, ),
+                  height: 500,
+                ),
+
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Hikmətli sözlər və dini kitablar",
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Constants.primaryColor,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    SizedBox(height: 50,)
+                  ],
+                ),
+
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                SizedBox(height: 40,),
+
+                SizedBox(
+                  child: Image.asset('assets/2224.jpg', scale: 3, ),
                   height: 480,
                 ),
-                Text("Günlük hikmətli sözlər, dini söhbətlər, mövzular və videolar",
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: Constants.primaryColor,
-                      fontWeight: FontWeight.bold
-                  ),
+
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Dini söhbətlər,  mövzular və videolar",
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Constants.primaryColor,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    SizedBox(height: 30,)
+                  ],
                 ),
+
               ],
             ),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 40),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 SizedBox(
-                  height: 480,
+                  child: Image.asset('assets/2222.jpg', scale: 5, ),
+                  height: 400,
                 ),
-                Text("Qibləni təyin etmək üçün kompas",
+                Text("Qibləni təyin etmək üçün kompas və rahat zikr etməniz üçün təsbih",
                   style: TextStyle(
                       fontSize: 24,
                       color: Constants.primaryColor,
                       fontWeight: FontWeight.bold
                   ),
                 ),
+                SizedBox(height: 20,)
+
               ],
             ),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 40),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 SizedBox(
-                  height: 480,
+                  child: Image.asset('assets/1113.jpg', scale: 4, ),
+                  height: 400,
                 ),
-                Text("Daha rahat zikr etməniz üçün təsbih",
+                Text("Bir çox faydalı funksiyalar",
                   style: TextStyle(
                       fontSize: 24,
                       color: Constants.primaryColor,
                       fontWeight: FontWeight.bold
                   ),
                 ),
+                SizedBox(height: 100,)
               ],
             ),
           ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(
+                  child: Image.asset('assets/pngmosque.png', scale: 4, ),
+                  height: 400,
+                ),
+                Text("www.namazvaxtı.org",
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Constants.primaryColor,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                SizedBox(height: 100,)
+              ],
+            ),
+          ),
+
         ],
       ),
     );
