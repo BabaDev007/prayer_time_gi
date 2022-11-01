@@ -32,6 +32,8 @@ class BookTile extends StatelessWidget {
                   text: "Bu əməliyyatı yerinə yetirərkən sizdən internet trafikinizə uyğun olaraq məbləğ çıxıla bilər",
                   title: "Məlumat",
 
+
+
                   onConfirmBtnTap: (){
                     Navigator.pop(context);
                     Navigator.of(context).push(SizeTransition3(BookReader(path: bookLink, pathWord: bookTitle,)));
