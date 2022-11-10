@@ -323,9 +323,9 @@ getData(widget.url);
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        bashliq10.toString(), textAlign: TextAlign.center, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold , ),),
+                        bashliq10.toString(), textAlign: TextAlign.center, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold ,  ),),
 
-                      Text('${metin10.toString()}' , textAlign:TextAlign.justify, style: TextStyle(fontSize:_fontSize, fontWeight: FontWeight.w300, color: Colors.black.withOpacity(.9) ),),
+                      Text('${metin10.toString()}' , textAlign:TextAlign.justify, style: TextStyle(fontSize:_fontSize, fontWeight: FontWeight.w400, color: Colors.black.withOpacity(.9) ),),
                     ],
                   ),
                 )),

@@ -147,16 +147,16 @@ class _SohbetCardState extends State<SohbetCard> {
                                 alignment: Alignment.bottomCenter,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    gradient: LinearGradient(colors: [Constants.primaryColor, Constants.primaryColor.withOpacity(.3)]
+                                    gradient: LinearGradient(colors: [Constants.primaryColor.withOpacity(.75), Constants.primaryColor.withOpacity(.01)]
                                     , begin: Alignment.bottomCenter, end: Alignment.topCenter
                                     )
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text("${video!.title}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: "Oswald"),),
+                                    child: Center(child: Text("${video!.title}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: "Oswald"),)),
                                   ),
                                   // color: Constants.primaryColor.withOpacity(.3),
-                                  height: 50,
+                                  height: 70,
                                   width: double.infinity,
                                 ),
                               )

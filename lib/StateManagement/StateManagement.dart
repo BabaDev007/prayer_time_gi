@@ -27,7 +27,7 @@ class Controller extends GetxController {
   var circularPrTime = "".obs ;
   var scrollOffset = 4.obs;
   var hikmetliSozler = "".obs;
-
+  var duration ;
 
 
 

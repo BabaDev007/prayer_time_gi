@@ -61,7 +61,7 @@ class _DayHeaderState extends State<DayHeader> {
 
 
                       center: FittedBox(
-                        child: Text("-4:25:14", style: TextStyle(fontSize: 20, fontFamily: "Oswald", color: Colors.white  )),)),
+                        child: Text(c.duration.toString().substring(0,7), style: TextStyle(fontSize: 20, fontFamily: "Oswald", color: Colors.white  )),)),
                 ))
 
 

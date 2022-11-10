@@ -266,6 +266,7 @@ var circularPrTime;
            circularPrPmName = "namazına";
            circularPrTime = ikindi!.difference(now);
            var difPrToPr = ikindi!.difference(zohr!).inMinutes;
+           c.duration = ikindi!.difference(now);
            var difPrToNow = ikindi!.difference(now).inMinutes;
            percent = 1-  difPrToNow/difPrToPr.toDouble();
            c.globalTimeName = "Əsr".obs;
@@ -345,12 +346,24 @@ var circularPrTime;
 
            colors();
 
-          }
-           else if(geceyarisi!.isBefore(DateTime.now())){
-            circularPrName = "Sübh";
-            circularPrPmName = "namazına";
-            circularPrTime = subh!.difference(now);
-            c.globalTimeName = "Sübh".obs;
+          }else if(isasani!.isBefore(DateTime.now())){
+             circularPrName = "Gecə yarısına";
+             circularPrPmName = "";
+             circularPrTime = isasani!.difference(now);
+             var difPrToPr = isasani!.difference(yatsi!).inMinutes;
+             var difPrToNow = isasani!.difference(now).inMinutes;
+             percent = 1-  difPrToNow/difPrToPr.toDouble();
+             c.globalTimeName = "Gecə yarısı".obs;
+             c.globalTimeTime = "${zor['${c.difference2}']['baseTime']['midnight']}".obs;
+
+             colors();
+
+           }
+           else if(teheccud!.isAfter(DateTime.now())){
+            circularPrName = "Təhəccüd";
+            circularPrPmName = "vaxtına";
+            circularPrTime = teheccud!.difference(now);
+            c.globalTimeName = "Təhəccüd".obs;
             c.globalTimeTime = "${zor['${c.difference2}']['baseTime']['sabah']}".obs;
 
 
@@ -1040,7 +1053,7 @@ var circularPrTime;
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    AutoSizeText("gecə y-sı", minFontSize:15, maxFontSize: 25 ,style: TextStyle( color: Colors.white.withOpacity(.8), ),),
+                                    AutoSizeText("gecə y-sı", minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54, ),),
                                     AutoSizeText(zor['${c.difference}']['extraTime']['midnight'].toString(), minFontSize:15, maxFontSize: 25 ,style: TextStyle(color: Colors.black54),),
                                   ],
                                 ),
@@ -1050,7 +1063,7 @@ var circularPrTime;
                               height: Get.height/6,
                               decoration: BoxDecoration(
 
-                                color: Color(0xDE46BE8D),
+                                color: Colors.white,
                               ),
                             ),
                           ),

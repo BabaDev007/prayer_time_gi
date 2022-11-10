@@ -64,7 +64,7 @@ class _DaylyThemeState extends State<DaylyTheme> {
       break;
       case "grey" : _bacgroundColor = Colors.grey;
       break;
-      case "amber" : _bacgroundColor = Colors.amber.shade300;
+      case "amber" : _bacgroundColor =  Colors.amber.shade100;
       break;
       case "white" : _bacgroundColor = Colors.white;
       break;
