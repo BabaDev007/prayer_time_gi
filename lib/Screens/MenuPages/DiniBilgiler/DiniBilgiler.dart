@@ -151,8 +151,10 @@ var link, link1, link2, link3, link4, link5, link6, link7;
                           onTap: (){
                             Navigator.push(context, SizeTransition1(DiniBilgiler1Page(link: Uri.parse(linkMovzu[index]), bashliq: movzuAdi[index],)));
                           },
-                          leading: Icon(Icons.folder_copy, color: Constants.primaryColor,),
-                          title: Text(movzuAdi[index]),
+                          leading: Icon(Icons.folder_copy, color: Colors.greenAccent,),
+                          title: Text(movzuAdi[index], style: TextStyle(
+                            fontWeight: FontWeight.bold
+                          ),),
                           trailing: Icon(Icons.chevron_right),
 
 

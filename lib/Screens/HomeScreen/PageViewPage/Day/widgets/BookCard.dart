@@ -41,36 +41,42 @@ class _BookCardState extends State<BookCard> {
                   Text("Dini Kitablar", style: TextStyle(fontWeight: FontWeight.bold, color: Constants.primaryColor ),),
                 ],
               ),
-          Container(
-            height: 200,
-            child: CarouselSlider.builder(
-              controller: _controller,
-              onSlideChanged: (value){
-                setState(() {
-              slidePage = value - slidePage1;
-              if(slidePage == 22){
-                slidePage = 0;
-                slidePage1  = slidePage1 + 22;
-              }
-                });
-                print(slidePage);
-              },
-                key: _sliderKey,
-                enableAutoSlider: true,
-                unlimitedMode: true,
-                slideBuilder: (index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(BookListDart.BookListView[index].bookPngPath),
-                  );
+          InkWell(
+            onTap: (){
+               Navigator.push(context, SizeTransition2(BookReader(path: BookListDart.BookListView[slidePage].bookLink, pathWord: BookListDart.BookListView[slidePage].bookTitle,)));
+
+            },
+            child: Container(
+              height: 200,
+              child: CarouselSlider.builder(
+                controller: _controller,
+                onSlideChanged: (value){
+                  setState(() {
+                slidePage = value - slidePage1;
+                if(slidePage == 22){
+                  slidePage = 0;
+                  slidePage1  = slidePage1 + 22;
+                }
+                  });
+                  print(slidePage);
                 },
-                slideTransform: FlipHorizontalTransform(),
-                slideIndicator: CircularSlideIndicator(
-                  indicatorBackgroundColor: Colors.black12,
-                  currentIndicatorColor: Colors.blue,
-                  padding: EdgeInsets.only(bottom: 10),
-                ),
-                itemCount: BookListDart.BookListView.length),
+                  key: _sliderKey,
+                  enableAutoSlider: true,
+                  unlimitedMode: true,
+                  slideBuilder: (index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(BookListDart.BookListView[index].bookPngPath),
+                    );
+                  },
+                  slideTransform: FlipHorizontalTransform(),
+                  slideIndicator: CircularSlideIndicator(
+                    indicatorBackgroundColor: Colors.black12,
+                    currentIndicatorColor: Colors.blue,
+                    padding: EdgeInsets.only(bottom: 10),
+                  ),
+                  itemCount: BookListDart.BookListView.length),
+            ),
           ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

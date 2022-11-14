@@ -9,54 +9,44 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 
-
-void main() async{
-
-
+void main() async {
   await GetStorage.init();
-
-        SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          systemNavigationBarColor: Constants.primaryColor,
-        statusBarColor: Colors.transparent,
-
-       ));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: Constants.primaryColor,
+    statusBarColor: Colors.transparent,
+  ));
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom, SystemUiOverlay.top]);
+  SystemChrome.setEnabledSystemUIOverlays(
+      [SystemUiOverlay.bottom, SystemUiOverlay.top]);
 
-        await Firebase.initializeApp();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    runApp( PrayerTimeApp());
+    runApp(PrayerTimeApp());
   });
-
-
 }
-
 
 class PrayerTimeApp extends StatelessWidget {
   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(analytics: analytics);
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       navigatorObservers: <NavigatorObserver>[observer],
-builder: (context, child){
-  return MediaQuery(
-    data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
-    child: child ?? Container(),
-  );
-},
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+          child: child ?? Container(),
+        );
+      },
       debugShowCheckedModeBanner: false,
       title: 'Gözəl İslam NamazApp',
       theme: ThemeService().lightTheme,
       darkTheme: ThemeService().darkTheme,
       themeMode: ThemeService().getThemeMode(),
-      home: MyCustomSplashScreen(
-
-      ),
+      home: MyCustomSplashScreen(),
     );
   }
 }
-

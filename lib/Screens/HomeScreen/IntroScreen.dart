@@ -4,54 +4,76 @@ import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/PageViewPage/PageViewPage.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/splashscreen.dart';
 import '../../Constants.dart';
+
 class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: OnBoardingSlider(
-        onFinish: (){
+        onFinish: () {
           Navigator.pushReplacement(context, PageTransition(PageViewPage()));
         },
         controllerColor: Colors.blue,
         pageBackgroundColor: Constants.primaryColor.withOpacity(.1),
         headerBackgroundColor: Constants.primaryColor,
         finishButtonText: 'Başla',
-        skipTextButton: Text('Ötür', style: TextStyle(color: Colors.white),),
+        skipTextButton: Text(
+          'Ötür',
+          style: TextStyle(color: Colors.white),
+        ),
         trailing: SizedBox(),
         background: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/1112.jpg', scale: 5, ),
-          ),
-          Visibility(visible: true , child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Image.asset('assets/1116.jpg', scale: 4,),
-          )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/2226.jpg', scale: 5,),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/2223.jpg', scale: 5,),
+            child: Image.asset(
+              'assets/1112.jpg',
+              scale: 5,
+            ),
           ),
           Visibility(
-            visible: false,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset('assets/1115.jpg', scale: 5,),
+              visible: true,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Image.asset(
+                  'assets/1116.jpg',
+                  scale: 4,
+                ),
+              )),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/2226.jpg',
+              scale: 5,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              'assets/2223.jpg',
+              scale: 5,
             ),
           ),
           Visibility(
             visible: false,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Image.asset('assets/1115.jpg', scale: 5,),
+              child: Image.asset(
+                'assets/1115.jpg',
+                scale: 5,
+              ),
             ),
           ),
-
-
+          Visibility(
+            visible: false,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/1115.jpg',
+                scale: 5,
+              ),
+            ),
+          ),
         ],
         totalPage: 6,
         speed: 1.8,
@@ -61,15 +83,18 @@ class IntroScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  child: Image.asset('assets/1111.jpg', scale: 5, ),
+                  child: Image.asset(
+                    'assets/1111.jpg',
+                    scale: 5,
+                  ),
                   height: 480,
                 ),
-                Text("Azərbaycanın müxtəlif şəhər və rayonlarının namaz, imsaq və iftar vaxtları",
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Constants.primaryColor,
-                  fontWeight: FontWeight.bold
-                ),
+                Text(
+                  "Azərbaycanın müxtəlif şəhər və rayonlarının namaz, imsaq və iftar vaxtları",
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Constants.primaryColor,
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -79,27 +104,31 @@ class IntroScreen extends StatelessWidget {
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: <Widget>[
-                SizedBox(height: 40,),
-
                 SizedBox(
-                  child: Image.asset('assets/1117.jpg', scale: 1, ),
+                  height: 40,
+                ),
+                SizedBox(
+                  child: Image.asset(
+                    'assets/1117.jpg',
+                    scale: 1,
+                  ),
                   height: 500,
                 ),
-
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("Hikmətli sözlər və dini kitablar",
+                    Text(
+                      "Hikmətli sözlər və dini kitablar",
                       style: TextStyle(
                           fontSize: 24,
                           color: Constants.primaryColor,
-                          fontWeight: FontWeight.bold
-                      ),
+                          fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 50,)
+                    SizedBox(
+                      height: 50,
+                    )
                   ],
                 ),
-
               ],
             ),
           ),
@@ -108,27 +137,31 @@ class IntroScreen extends StatelessWidget {
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: <Widget>[
-                SizedBox(height: 40,),
-
                 SizedBox(
-                  child: Image.asset('assets/2224.jpg', scale: 3, ),
+                  height: 40,
+                ),
+                SizedBox(
+                  child: Image.asset(
+                    'assets/2224.jpg',
+                    scale: 3,
+                  ),
                   height: 480,
                 ),
-
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("Dini söhbətlər,  mövzular və videolar",
+                    Text(
+                      "Dini söhbətlər,  mövzular və videolar",
                       style: TextStyle(
                           fontSize: 24,
                           color: Constants.primaryColor,
-                          fontWeight: FontWeight.bold
-                      ),
+                          fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 30,)
+                    SizedBox(
+                      height: 30,
+                    )
                   ],
                 ),
-
               ],
             ),
           ),
@@ -138,18 +171,22 @@ class IntroScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 SizedBox(
-                  child: Image.asset('assets/2222.jpg', scale: 5, ),
+                  child: Image.asset(
+                    'assets/2222.jpg',
+                    scale: 5,
+                  ),
                   height: 400,
                 ),
-                Text("Qibləni təyin etmək üçün kompas və rahat zikr etməniz üçün təsbih",
+                Text(
+                  "Qibləni təyin etmək üçün kompas və rahat zikr etməniz üçün təsbih",
                   style: TextStyle(
                       fontSize: 24,
                       color: Constants.primaryColor,
-                      fontWeight: FontWeight.bold
-                  ),
+                      fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 20,)
-
+                SizedBox(
+                  height: 20,
+                )
               ],
             ),
           ),
@@ -159,17 +196,22 @@ class IntroScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 SizedBox(
-                  child: Image.asset('assets/1113.jpg', scale: 4, ),
+                  child: Image.asset(
+                    'assets/1113.jpg',
+                    scale: 4,
+                  ),
                   height: 400,
                 ),
-                Text("Bir çox faydalı funksiyalar",
+                Text(
+                  "Bir çox faydalı funksiyalar",
                   style: TextStyle(
                       fontSize: 24,
                       color: Constants.primaryColor,
-                      fontWeight: FontWeight.bold
-                  ),
+                      fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 100,)
+                SizedBox(
+                  height: 100,
+                )
               ],
             ),
           ),
@@ -179,21 +221,25 @@ class IntroScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 SizedBox(
-                  child: Image.asset('assets/pngmosque.png', scale: 4, ),
+                  child: Image.asset(
+                    'assets/pngmosque.png',
+                    scale: 4,
+                  ),
                   height: 400,
                 ),
-                Text("www.namazvaxtı.org",
+                Text(
+                  "www.namazvaxtı.org",
                   style: TextStyle(
                       fontSize: 24,
                       color: Constants.primaryColor,
-                      fontWeight: FontWeight.bold
-                  ),
+                      fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 100,)
+                SizedBox(
+                  height: 100,
+                )
               ],
             ),
           ),
-
         ],
       ),
     );

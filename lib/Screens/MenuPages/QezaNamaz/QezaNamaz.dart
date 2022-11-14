@@ -139,7 +139,7 @@ class _QezaNamazState extends State<QezaNamaz> {
                 sam = (_year);
                 yatsi = (_year);
                 vitr = (_year);
-                oruc = (0);
+                oruc = (currentYear);
                 box.write("subhQeza", subh);
                 box.write("zohrQeza", zohr);
                 box.write("asrQeza", asr);

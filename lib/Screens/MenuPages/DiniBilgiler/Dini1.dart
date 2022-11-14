@@ -143,7 +143,7 @@ class _DiniBilgilerPage1State extends State<DiniBilgilerPage1> {
                                 child: ListTile(
                    leading: Icon(Icons.text_snippet_outlined, color: Constants.primaryColor,),
                                   title: Text(movzuAdi1[index].toString().substring(7,), maxLines: 1,
-                                  style: TextStyle(overflow: TextOverflow.ellipsis, ),),
+                                  style: TextStyle(overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold ),),
                                   trailing:
 
                                   Icon(Icons.chevron_right),
