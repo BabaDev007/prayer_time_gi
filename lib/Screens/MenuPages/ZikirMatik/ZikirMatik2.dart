@@ -18,6 +18,7 @@ final String isim;
 final int siraSayi;
 final int zikirSayisi;
 
+
   const ZikrPage1({super.key, required this.isim, required this.siraSayi, required this.zikirSayisi});
 
   @override
@@ -27,10 +28,12 @@ final int zikirSayisi;
 class _ZikrPage1State extends State<ZikrPage1> {
   Controller c = Get.put(Controller());
   var _turns = 0;
-
+  var bugun = 0;
+  var umumi = 0;
   @override
   void initState() {
-
+    bugun = box.read("0${widget.siraSayi}${c.difference2}")??0;
+    umumi = box.read("00${widget.siraSayi}")??0;
     switch(widget.siraSayi){
       case 1: _counter = box.read("1")?? 0; _daylyCounter = box.read("01${c.difference3}")?? 0; _allCounter = box.read("001") ?? 0;
       break;
@@ -143,11 +146,107 @@ class _ZikrPage1State extends State<ZikrPage1> {
 
     _iconButtonVibr ? zor() :
     HapticFeedback.vibrate();
-    if(_counter < widget.zikirSayisi){
+    if(_counter +1 < widget.zikirSayisi){
     setState(() {
+      switch(widget.siraSayi){
+        case 1: box.write("1", _counter); box.write("01${c.difference3}", _daylyCounter); box.write("001", _allCounter);
+        break;
+        case 2: box.write("2", _counter); box.write("02${c.difference3}", _daylyCounter); box.write("002", _allCounter);
+        break;
+        case 3: box.write("3", _counter); box.write("03${c.difference3}", _daylyCounter); box.write("003", _allCounter);
+        break;
+        case 4: box.write("4", _counter); box.write("04${c.difference3}", _daylyCounter); box.write("004", _allCounter);
+        break;
+        case 5: box.write("5", _counter); box.write("05${c.difference3}", _daylyCounter); box.write("005", _allCounter);
+        break;
+        case 6: box.write("6", _counter); box.write("06${c.difference3}", _daylyCounter); box.write("006", _allCounter);
+        break;
+        case 7: box.write("7", _counter);box.write("07${c.difference3}", _daylyCounter); box.write("007", _allCounter);
+        break;
+        case 8: box.write("8", _counter);box.write("08${c.difference3}", _daylyCounter); box.write("008", _allCounter);
+        break;
+        case 9: box.write("9", _counter);box.write("09${c.difference3}", _daylyCounter); box.write("009", _allCounter);
+        break;
+        case 10: box.write("10", _counter);box.write("010${c.difference3}", _daylyCounter); box.write("0010", _allCounter);
+        break;
+        case 11: box.write("11", _counter);box.write("011${c.difference3}", _daylyCounter); box.write("0011", _allCounter);
+        break;
+        case 12: box.write("12", _counter);box.write("012${c.difference3}", _daylyCounter); box.write("0012", _allCounter);
+        break;
+        case 13: box.write("13", _counter);box.write("013${c.difference3}", _daylyCounter); box.write("0013", _allCounter);
+        break;
+        case 14: box.write("14", _counter);box.write("014${c.difference3}", _daylyCounter); box.write("0014", _allCounter);
+        break;
+        case 15: box.write("15", _counter);box.write("015${c.difference3}", _daylyCounter); box.write("0015", _allCounter);
+        break;
+        case 16: box.write("16", _counter);box.write("016${c.difference3}", _daylyCounter); box.write("0016", _allCounter);
+        break;
+        case 17: box.write("17", _counter);box.write("017${c.difference3}", _daylyCounter); box.write("0017", _allCounter);
+        break;
+        case 18: box.write("18", _counter);box.write("018${c.difference3}", _daylyCounter); box.write("0018", _allCounter);
+        break;
+        case 19: box.write("19", _counter);box.write("019${c.difference3}", _daylyCounter); box.write("0019", _allCounter);
+        break;
+        case 20: box.write("20", _counter);box.write("020${c.difference3}", _daylyCounter); box.write("0020", _allCounter);
+        break;
+        case 21: box.write("21", _counter);box.write("021${c.difference3}", _daylyCounter); box.write("0021", _allCounter);
+        break;
+        case 22: box.write("22", _counter);box.write("022${c.difference3}", _daylyCounter); box.write("0022", _allCounter);
+        break;
+      }
+      umumi = box.read("00${widget.siraSayi}")??0;
+      bugun = box.read("00${widget.siraSayi}")??0;
       _counter++;
     });} else{
       setState((){
+        switch(widget.siraSayi){
+          case 1: box.write("1", _counter); box.write("01${c.difference3}", _daylyCounter); box.write("001", _allCounter);
+          break;
+          case 2: box.write("2", _counter); box.write("02${c.difference3}", _daylyCounter); box.write("002", _allCounter);
+          break;
+          case 3: box.write("3", _counter); box.write("03${c.difference3}", _daylyCounter); box.write("003", _allCounter);
+          break;
+          case 4: box.write("4", _counter); box.write("04${c.difference3}", _daylyCounter); box.write("004", _allCounter);
+          break;
+          case 5: box.write("5", _counter); box.write("05${c.difference3}", _daylyCounter); box.write("005", _allCounter);
+          break;
+          case 6: box.write("6", _counter); box.write("06${c.difference3}", _daylyCounter); box.write("006", _allCounter);
+          break;
+          case 7: box.write("7", _counter);box.write("07${c.difference3}", _daylyCounter); box.write("007", _allCounter);
+          break;
+          case 8: box.write("8", _counter);box.write("08${c.difference3}", _daylyCounter); box.write("008", _allCounter);
+          break;
+          case 9: box.write("9", _counter);box.write("09${c.difference3}", _daylyCounter); box.write("009", _allCounter);
+          break;
+          case 10: box.write("10", _counter);box.write("010${c.difference3}", _daylyCounter); box.write("0010", _allCounter);
+          break;
+          case 11: box.write("11", _counter);box.write("011${c.difference3}", _daylyCounter); box.write("0011", _allCounter);
+          break;
+          case 12: box.write("12", _counter);box.write("012${c.difference3}", _daylyCounter); box.write("0012", _allCounter);
+          break;
+          case 13: box.write("13", _counter);box.write("013${c.difference3}", _daylyCounter); box.write("0013", _allCounter);
+          break;
+          case 14: box.write("14", _counter);box.write("014${c.difference3}", _daylyCounter); box.write("0014", _allCounter);
+          break;
+          case 15: box.write("15", _counter);box.write("015${c.difference3}", _daylyCounter); box.write("0015", _allCounter);
+          break;
+          case 16: box.write("16", _counter);box.write("016${c.difference3}", _daylyCounter); box.write("0016", _allCounter);
+          break;
+          case 17: box.write("17", _counter);box.write("017${c.difference3}", _daylyCounter); box.write("0017", _allCounter);
+          break;
+          case 18: box.write("18", _counter);box.write("018${c.difference3}", _daylyCounter); box.write("0018", _allCounter);
+          break;
+          case 19: box.write("19", _counter);box.write("019${c.difference3}", _daylyCounter); box.write("0019", _allCounter);
+          break;
+          case 20: box.write("20", _counter);box.write("020${c.difference3}", _daylyCounter); box.write("0020", _allCounter);
+          break;
+          case 21: box.write("21", _counter);box.write("021${c.difference3}", _daylyCounter); box.write("0021", _allCounter);
+          break;
+          case 22: box.write("22", _counter);box.write("022${c.difference3}", _daylyCounter); box.write("0022", _allCounter);
+          break;
+        }
+        umumi = box.read("00${widget.siraSayi}")??0;
+        bugun = box.read("00${widget.siraSayi}")??0;
         _counter = 0;
         _allCounter++;
         _daylyCounter++;
@@ -332,6 +431,52 @@ Future<bool>geri()async{
               ],
             ),
           ),
+          Align(
+            alignment: Alignment.bottomCenter,
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text("Bügün", style: TextStyle(
+                              color: Colors.white
+                            ),),
+                            SizedBox(width: 10,),
+                            AnimatedFlipCounter(
+                              textStyle: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white, ),
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.decelerate,
+                              value: bugun, /* pass in a number like 2014 */
+                            ),
+                          ],
+                        ),
+
+                        Row(
+                          children: [
+                            Text("Ümumi", style: TextStyle(
+                                color: Colors.white
+                            ),),
+                            SizedBox(width: 10,),
+                            AnimatedFlipCounter(
+                              textStyle: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white, ),
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.decelerate,
+                              value: umumi, /* pass in a number like 2014 */
+                            ),
+                          ],
+                        ),
+
+                      ],
+                    ),
+
+                  ],
+                ),
+              ))
         ],
       ),
     );

@@ -78,6 +78,7 @@ dev_dependencies:
   flutter_native_splash: any
   flutter_email_sender: any
   get_it: any
+
   flutter_launcher_icons: any
 flutter_icons:
     android: "launcher_icon"

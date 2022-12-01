@@ -11,6 +11,7 @@ import '../../../StateManagement/StateManagement.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
+import 'package:jiffy/jiffy.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -165,6 +166,9 @@ class _BodyState extends State<Body> {
         "${zor['${c.difference2}']['baseTime']["todayHijrahDate"]}".obs;
     c.globalTime =
         "${DateTime.parse("${zor['${c.difference2}']['baseTime']["todayDate"]}").day} ${months[DateTime.parse("${zor['${c.difference2}']['baseTime']["todayDate"]}").month - 1]}, ${weekday[DateTime.parse("${zor['${c.difference2}']['baseTime']["todayDate"]}").weekday - 1]}"
+            .obs;
+    c.globalTime2 =
+        "${DateTime.parse("${zor['${c.difference2}']['baseTime']["todayDate"]}").day} ${months[DateTime.parse("${zor['${c.difference2}']['baseTime']["todayDate"]}").month - 1]} ${Jiffy().year}"
             .obs;
     imsak = DateTime.parse(
         "${zor['${c.difference2}']['baseTime']["todayDate"]}" +
@@ -408,25 +412,30 @@ class _BodyState extends State<Body> {
               "${zor['${c.difference2}']['baseTime']['midnight']}".obs;
 
           colors();
-        } else if (isasani!.isBefore(DateTime.now())) {
+        } else if (isasani!.isBefore(DateTime.now())&&
+            geceyarisi!.isAfter(DateTime.now())) {
           circularPrName = "Gecə yarısına";
           circularPrPmName = "";
-          circularPrTime = isasani!.difference(now);
-          var difPrToPr = isasani!.difference(yatsi!).inMinutes;
-          var difPrToNow = isasani!.difference(now).inMinutes;
+          circularPrTime = geceyarisi!.difference(now);
+          var difPrToPr = geceyarisi!.difference(yatsi!).inMinutes;
+          var difPrToNow = geceyarisi!.difference(now).inMinutes;
           percent = 1 - difPrToNow / difPrToPr.toDouble();
           c.globalTimeName = "Gecə yarısı".obs;
           c.globalTimeTime =
-              "${zor['${c.difference2}']['baseTime']['midnight']}".obs;
+              "${zor['${c.difference2}']['extraTime']['midnight']}".obs;
 
           colors();
-        } else if (teheccud!.isAfter(DateTime.now())) {
+        } else if (geceyarisi!.isBefore(DateTime.now())) {
           circularPrName = "Təhəccüd";
           circularPrPmName = "vaxtına";
-          circularPrTime = teheccud!.difference(now);
+          circularPrTime = teheccud!.difference(now)+Duration(hours: 24);
+          var difPrToPr = teheccud!.difference(geceyarisi!).inMinutes;
+          var difPrToNow = teheccud!.difference(now).inMinutes;
+          percent = 1 - difPrToNow / difPrToPr.toDouble();
           c.globalTimeName = "Təhəccüd".obs;
+
           c.globalTimeTime =
-              "${zor['${c.difference2}']['baseTime']['sabah']}".obs;
+              "${zor['${c.difference2}']['extraTime']['teheccud']}".obs;
 
           // var difPrToPr = geceyarisi!.difference(isasani!).inMinutes;
           // var difPrToNow = geceyarisi!.difference(now).inMinutes;
@@ -869,12 +878,28 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['baseTime']['imsaq']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['baseTime']['imsaq']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -907,13 +932,29 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['baseTime']['sabah']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['baseTime']['sabah']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -944,13 +985,29 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['baseTime']['gunes']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['baseTime']['gunes']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -989,13 +1046,29 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['extraTime']['israk']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['extraTime']['israk']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1026,14 +1099,30 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['extraTime']
-                                            ['kerahat']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['extraTime']
+                                        ['kerahat']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1064,14 +1153,30 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['baseTime']
-                                            ['gunorta']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['baseTime']
+                                        ['gunorta']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1109,13 +1214,29 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['baseTime']['ikindi']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['baseTime']['ikindi']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1146,14 +1267,30 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['extraTime']
-                                            ['asri_sani']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['extraTime']
+                                        ['asri_sani']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1184,14 +1321,30 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['extraTime']
-                                            ['isfirar']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child:  AutoSizeText(
+                                        zor['${c.difference}']['extraTime']
+                                        ['isfirar']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1229,13 +1382,29 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['baseTime']['axsam']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child:  AutoSizeText(
+                                        zor['${c.difference}']['baseTime']['axsam']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1266,14 +1435,30 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['extraTime']
-                                            ['istibak']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child:  AutoSizeText(
+                                        zor['${c.difference}']['extraTime']
+                                        ['istibak']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1304,13 +1489,29 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['baseTime']['yatsi']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['baseTime']['yatsi']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1348,14 +1549,30 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['extraTime']
-                                            ['isa_sani']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['extraTime']
+                                        ['isa_sani']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1387,14 +1604,30 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['extraTime']
-                                            ['midnight']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child:  AutoSizeText(
+                                        zor['${c.difference}']['extraTime']
+                                        ['midnight']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1425,14 +1658,30 @@ class _BodyState extends State<Body> {
                                       color: Colors.black54,
                                     ),
                                   ),
-                                  AutoSizeText(
-                                    zor['${c.difference}']['extraTime']
-                                            ['teheccud']
-                                        .toString(),
-                                    minFontSize: 15,
-                                    maxFontSize: 25,
-                                    style: TextStyle(color: Colors.black54),
+                                  Container(
+                                    width: 50,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(0xDE46BE8D).withOpacity(.85),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xDE46BE8D),
+                                              Constants.primaryColor
+                                            ])),
+                                    child: Center(
+                                      child: AutoSizeText(
+                                        zor['${c.difference}']['extraTime']
+                                        ['teheccud']
+                                            .toString(),
+                                        minFontSize: 15,
+                                        maxFontSize: 25,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -1536,22 +1785,26 @@ class _BodyState extends State<Body> {
                                   children: [
                                     AutoSizeText(
                                       circularPrName,
+                                      textAlign: TextAlign.center,
+                                      maxFontSize: 15,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 18,
+
                                       ),
-                                      maxLines: 1,
+                                      maxLines: 2,
                                     ),
-                                    AutoSizeText(
+                               circularPrPmName != "" ?     AutoSizeText(
                                       circularPrPmName,
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 17,
                                       ),
                                       maxLines: 1,
-                                    ),
+                                    ) : SizedBox(),
                                     SizedBox(
                                       height: 5,
                                     ),

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import '../../PageTransition/PageTransition.dart';
 import '../../StateManagement/StateManagement.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
 
@@ -287,7 +289,20 @@ leading: SizedBox(),
 
                           SizedBox(height: 10,),
                           ListTile(title: Text("Digər",style: TextStyle(color: Colors.black38 ,fontWeight: FontWeight.w600) )),
-                          ListTile(onTap: (){},
+                          ListTile(onTap: (){
+                            if (Platform.isAndroid || Platform.isIOS) {
+                              final appId = Platform.isAndroid ? 'com.turkiyetakvimi&gl=US' : 'YOUR_IOS_APP_ID';
+                              final url = Uri.parse(
+                                Platform.isAndroid
+                                    ? "market://details?id=$appId"
+                                    : "https://apps.apple.com/app/id$appId",
+                              );
+                              launchUrl(
+                                url,
+                                mode: LaunchMode.externalApplication,
+                              );
+                            }
+                          },
                               leading: Icon(Icons.star_rate_outlined,size: 20, color: Constants.primaryColor,),
                               title: Text("Dəyərləndir", style: TextStyle(fontWeight: FontWeight.w600, color: Constants.primaryColor),) ,
                               subtitle: Padding(

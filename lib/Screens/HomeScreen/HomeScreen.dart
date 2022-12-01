@@ -63,146 +63,159 @@ bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     final Controller c = Get.find();
-
+    var scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+        key: scaffoldKey,
       drawer: DrawerPage(),
       extendBodyBehindAppBar: true,
 
       backgroundColor:  Constants.primaryColor.withOpacity(.1),
      appBar: AppBar(
+       leading: TextButton(
+         child: CircleAvatar(child: Icon(Icons.menu_open_rounded)),
+         onPressed: () =>   scaffoldKey.currentState?.openDrawer()
+       ),
+       iconTheme: IconThemeData(color: Colors.white),
 
 
-       title:   DropdownButton<String>(
-                                icon: SizedBox(),
-                                iconSize: 0,
-                                elevation: 16,
-                                style: TextStyle(color: Constants.primaryColor,
-                                fontSize: 15,
-                                  fontFamily: "Oswald"
-                                ),
-                                underline: SizedBox(),
+       title:   Row(
+         mainAxisAlignment: MainAxisAlignment.end,
 
-                                items: items,
-                                onChanged: (value) async {
-                                  setState(() {
+         children: [
+           DropdownButton<String>(
+             icon: SizedBox(),
+             iconSize: 0,
+             elevation: 16,
+             style: TextStyle(color: Constants.primaryColor,
+                 fontSize: 15,
+                 fontFamily: "Oswald"
+             ),
+             underline: SizedBox(),
 
-                                      isLoading = true;
-                                    switch(value){
-                                      case "1423": cityname = "Ağdam" ;
-                                      break;
-                                      case "1424": cityname = "Şirvan";
-                                      break;
-                                      case "1425":  cityname ="Bakı";
-                                      break;case "1426":  cityname ="Bərdə";
-                                    break;case "1427": cityname ="Fizuli";
-                                    break;case "1428":cityname = "Gəncə";
-                                    break;case "1432": cityname ="Lənkəran";
-                                    break;case "1435": cityname ="Mingəçevir";
-                                    break;case "1437":cityname = "Sabirabad";
-                                    break;case "1438": cityname ="Səlyan";
-                                    break;case "1439": cityname ="Şəki";
-                                    break;case "1440": cityname ="Sumqayıt";
-                                    break;case "1441": cityname ="Zaqatala";
-                                    break;case "1443": cityname ="Şuşa";
-                                    break;case "1445": cityname ="Naxçıvan";
-                                    break;case "1447": cityname ="Culfa";
-                                    break;case "21319": cityname ="Tovuz";
-                                    break;case "38073": cityname ="Ağdaş";
-                                    break;case "38172": cityname ="İmişli";
-                                    break;case "38174": cityname ="Gədəbəy";
-                                    break;case "38179": cityname ="Ağdərə";
-                                    break;case "38193": cityname ="Saatlı";
-                                    break;case "38290": cityname ="Kəngərli";
-                                    break;case "38356": cityname ="Daşkəsən";
-                                    break;case "38457": cityname ="Göyçay";
-                                    break;case "38654": cityname ="Lerik";
-                                    break;case "38788": cityname ="Qubadlı";
-                                    break;case "38875": cityname ="Siyəzən";
-                                    break;case "38904": cityname ="Biləsuvar";
-                                    break;case "38944": cityname ="Yardımlı";
-                                    break;case "38985": cityname ="Xankəndi";
-                                    break;case "43363": cityname ="Ağsu";
-                                    break;case "43392":cityname = "Neftçala";
-                                    break;case "43395":cityname = "Quba";
-                                    break; case "43397": cityname ="Ucar";
-                                    break; case "43398": cityname ="Xaçmaz";
-                                    break; case "43661": cityname ="Tərtər";
-                                    break; case "43649": cityname ="Astara";
-                                    break; case "43873": cityname ="Beyləqan";
-                                    break; case "60075": cityname ="İsmayıllı";
-                                    break; case "62280": cityname ="Qusar";
-                                    break; case "62281": cityname ="Ordubad";
-                                    break; case "62282":cityname = "Şamaxı";
-                                    break; case "43392":cityname = "Goranboy";
-                                    break; case "62728":cityname = "Balakən";
-                                    break; case "65729": cityname ="Qax";
-                                    break; case "65732": cityname ="Şəmkir";
-                                    break; case "65737":cityname = "Yevlax";
-                                    break; case "65739": cityname ="Laçın" ;
-                                    break; case "65744": cityname ="Cəlilabad";
-                                    break; case "67957": cityname ="Oğuz";
-                                    break; case "70928": cityname ="Qəbələ";
-                                    break; case "82092": cityname ="Ağcabədi";
-                                    break; case "92768": cityname ="Göygöl";
-                                    break; case "92807": cityname ="Zəngilan";
-                                    break; case "21320": cityname ="Qazax";
+             items: items,
+             onChanged: (value) async {
+               setState(() {
 
-                                    break;
-                                    }
-                                  });
+                 isLoading = true;
+                 switch(value){
+                   case "1423": cityname = "Ağdam" ;
+                   break;
+                   case "1424": cityname = "Şirvan";
+                   break;
+                   case "1425":  cityname ="Bakı";
+                   break;case "1426":  cityname ="Bərdə";
+                 break;case "1427": cityname ="Fizuli";
+                 break;case "1428":cityname = "Gəncə";
+                 break;case "1432": cityname ="Lənkəran";
+                 break;case "1435": cityname ="Mingəçevir";
+                 break;case "1437":cityname = "Sabirabad";
+                 break;case "1438": cityname ="Səlyan";
+                 break;case "1439": cityname ="Şəki";
+                 break;case "1440": cityname ="Sumqayıt";
+                 break;case "1441": cityname ="Zaqatala";
+                 break;case "1443": cityname ="Şuşa";
+                 break;case "1445": cityname ="Naxçıvan";
+                 break;case "1447": cityname ="Culfa";
+                 break;case "21319": cityname ="Tovuz";
+                 break;case "38073": cityname ="Ağdaş";
+                 break;case "38172": cityname ="İmişli";
+                 break;case "38174": cityname ="Gədəbəy";
+                 break;case "38179": cityname ="Ağdərə";
+                 break;case "38193": cityname ="Saatlı";
+                 break;case "38290": cityname ="Kəngərli";
+                 break;case "38356": cityname ="Daşkəsən";
+                 break;case "38457": cityname ="Göyçay";
+                 break;case "38654": cityname ="Lerik";
+                 break;case "38788": cityname ="Qubadlı";
+                 break;case "38875": cityname ="Siyəzən";
+                 break;case "38904": cityname ="Biləsuvar";
+                 break;case "38944": cityname ="Yardımlı";
+                 break;case "38985": cityname ="Xankəndi";
+                 break;case "43363": cityname ="Ağsu";
+                 break;case "43392":cityname = "Neftçala";
+                 break;case "43395":cityname = "Quba";
+                 break; case "43397": cityname ="Ucar";
+                 break; case "43398": cityname ="Xaçmaz";
+                 break; case "43661": cityname ="Tərtər";
+                 break; case "43649": cityname ="Astara";
+                 break; case "43873": cityname ="Beyləqan";
+                 break; case "60075": cityname ="İsmayıllı";
+                 break; case "62280": cityname ="Qusar";
+                 break; case "62281": cityname ="Ordubad";
+                 break; case "62282":cityname = "Şamaxı";
+                 break; case "43392":cityname = "Goranboy";
+                 break; case "62728":cityname = "Balakən";
+                 break; case "65729": cityname ="Qax";
+                 break; case "65732": cityname ="Şəmkir";
+                 break; case "65737":cityname = "Yevlax";
+                 break; case "65739": cityname ="Laçın" ;
+                 break; case "65744": cityname ="Cəlilabad";
+                 break; case "67957": cityname ="Oğuz";
+                 break; case "70928": cityname ="Qəbələ";
+                 break; case "82092": cityname ="Ağcabədi";
+                 break; case "92768": cityname ="Göygöl";
+                 break; case "92807": cityname ="Zəngilan";
+                 break; case "21320": cityname ="Qazax";
 
-
-                                  try{
-                                 await getData(value!);
-                                  box.write("nameOfCity", cityname);
-
+                 break;
+                 }
+               });
 
 
-                           Navigator.pushReplacement(context, SizeTransition2(PageViewPage()));
-                                  }
-                                  catch(e){
-                                    setState(() {
-                                      isLoading = false;
-                                    });
-  CoolAlert.show(
-    lottieAsset: "assets/75267-no-wifi.json",
-      backgroundColor: Constants.primaryColor,
-      confirmBtnText: "Ok",
-      cancelBtnText: "Xeyr",
-      context: context,
-      type: CoolAlertType.error,
-      title: 'İnternet Bağlantınızı Yoxlayın',
-      onCancelBtnTap: (){
-        Navigator.pop(context);
-      },
-      onConfirmBtnTap: (){
-        Navigator.pop(context);
-      }
-  );
-}
-},
-         hint: Card(
-           color: Constants.primaryColor.withOpacity(.5),
-           shape: RoundedRectangleBorder(
-             borderRadius: BorderRadius.circular(15)
+               try{
+                 await getData(value!);
+                 box.write("nameOfCity", cityname);
+
+
+
+                 Navigator.pushReplacement(context, SizeTransition2(PageViewPage()));
+               }
+               catch(e){
+                 setState(() {
+                   isLoading = false;
+                 });
+                 CoolAlert.show(
+                     lottieAsset: "assets/75267-no-wifi.json",
+                     backgroundColor: Constants.primaryColor,
+                     confirmBtnText: "Ok",
+                     cancelBtnText: "Xeyr",
+                     context: context,
+                     type: CoolAlertType.error,
+                     title: 'İnternet Bağlantınızı Yoxlayın',
+                     onCancelBtnTap: (){
+                       Navigator.pop(context);
+                     },
+                     onConfirmBtnTap: (){
+                       Navigator.pop(context);
+                     }
+                 );
+               }
+             },
+             hint: Container(
+                 decoration: BoxDecoration(
+                     color: Constants.primaryColor.withOpacity(.8),
+                     borderRadius: BorderRadius.circular(20)
+
+                 ),
+                 child: Padding(
+                   padding: const EdgeInsets.all(6.0),
+                   child: Text("${box.read("nameOfCity") ?? "Bakı"}", style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: "Oswald"),),
+                 )),
            ),
-             child: Padding(
-           padding: const EdgeInsets.all(6.0),
-           child: Text("${box.read("nameOfCity") ?? "Bakı"}", style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: "Oswald"),),
-         )),
-                              ),
-       centerTitle: true,
+
+         ],
+       ),
+
        actions: [
-         IconButton(onPressed: (){
-           Navigator.push(context, SizeTransition2(DataTable1()));
+         TextButton(onPressed: (){
+            Navigator.push(context, SizeTransition2(DataTable1()));
 
 
-         }, icon: Icon(Icons.calendar_month, )),
+         }, child: CircleAvatar(child: Icon(Icons.calendar_month, color: Colors.white, ))),
          TextButton(onPressed: (){
            Navigator.push(context, SizeTransition2(ZikrPage()));
 
-         },  child: Opacity(opacity: .7,
-             child: Image.asset("assets/tasbeh1.png", width: 40, height: 30, )),),
+         },  child: CircleAvatar(child: Opacity(opacity: .7,child: Image.asset("assets/tasbeh1.png", width: 40, height: 30, ))),),
        ],
 
     //    title: FittedBox(

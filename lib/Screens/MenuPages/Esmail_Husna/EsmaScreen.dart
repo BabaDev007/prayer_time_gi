@@ -18,10 +18,10 @@ class _EsmaScreenState extends State<EsmaScreen> {
   late ScrollController _controller;
 
   var hadis = [
-    "Əbu Hürəyrə (ra)-dan rəvayət edilən bir hədisdə Peyğambərimiz (salallahu aleyhi və səlləm) buyurdu "
+    "Əbu Hürəyrə (radiallahu anh)-dan rəvayət edilən bir hədisdə Peyğambərimiz (salallahu aleyhi və səlləm) buyurdu "
         "ki: “Həqiqətən Allah'ın 99 adı vardır-yüzdən bir əskik- Kim onu sayarsa cənnətə girər.”",
   "“Allah, özündən başqa ilâh olmayandır. Ən gözel adlar O’na məxsusdur.” \n (Tâhâ, 20/8)",
-  "“…Ən gözel adlar O’nundur. Göylərdə və yerdə olanlar O’nun şanını ucaltma1tadırlar. O qalibdir, hikmət sahibidir.” \n (Həşr, 52/24)"
+  "“…Ən gözel adlar O’nundur. Göylərdə və yerdə olanlar O’nun şanını ucaltmaqdadırlar. O qalibdir, hikmət sahibidir.” \n (Həşr, 52/24)"
   ];
 @override
   void initState() {

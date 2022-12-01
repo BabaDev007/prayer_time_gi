@@ -21,6 +21,7 @@ class Controller extends GetxController {
   var allCounter = 0.obs;
   var zikrSayisi = 0.obs;
  var globalTime = "".obs;
+ var globalTime2 = "".obs;
   var globalHicriTime = "".obs;
   var globalTimeName = "".obs;
   var globalTimeTime = "  ".obs;
@@ -28,6 +29,7 @@ class Controller extends GetxController {
   var scrollOffset = 4.obs;
   var hikmetliSozler = "".obs;
   var duration ;
+  var zikrCounter = 0;
 
 
 

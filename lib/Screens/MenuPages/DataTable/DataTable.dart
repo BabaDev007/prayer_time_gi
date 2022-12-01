@@ -108,7 +108,7 @@ class _DataTable1 extends State<DataTable1> {
               ],
               rows:
               List<DataRow>.generate(
-                  30,
+                  40,
                       (index) => DataRow(
                         selected: true,
                           cells: [

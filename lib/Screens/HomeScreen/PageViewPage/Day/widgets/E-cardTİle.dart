@@ -59,8 +59,7 @@ class _EkardTileState extends State<EkardTile> {
     var response = await http.get(_url);
     final body = response.body;
     final document = parser.parse(body);
-    var res = document.getElementsByClassName("short-story10").forEach((
-        element) async {
+    var res = document.getElementsByClassName("short-story10").forEach((element) async {
       setState(() {
 
         image.add(
@@ -74,7 +73,7 @@ class _EkardTileState extends State<EkardTile> {
 
   @override
   void initState() {
-   // getData();
+    getData();
     // TODO: implement initState
     super.initState();}
 
