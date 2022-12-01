@@ -102,6 +102,7 @@ class _DataTable1 extends State<DataTable1> {
                 DataColumn2(
                   label: Text('İşa'), size: ColumnSize.L,
                 ),
+
                 DataColumn2(
                   label: Text('Gecə yarısı'), size: ColumnSize.L,
                 ),
