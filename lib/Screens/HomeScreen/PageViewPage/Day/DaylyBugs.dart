@@ -267,7 +267,7 @@ class _DayState extends State<Day> {
                 KufrCard(),
                 Visibility(visible: c.isShowBook.value, child: BookCard()),
                 Visibility(
-                  visible: noOfWeek == 5,
+                  visible: (noOfWeek == 5) && (c.isJumah.isTrue),
                     child:
                 JumahCard()
 

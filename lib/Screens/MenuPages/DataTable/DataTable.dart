@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:jiffy/jiffy.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,7 +7,6 @@ import 'package:prayer_time_gi/StateManagement/StateManagement.dart';
 import '../../../Constants.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../../HomeScreen/PageViewPage/PageViewPage.dart';
 
 class DataTable1 extends StatefulWidget {
@@ -26,9 +25,9 @@ class _DataTable1 extends State<DataTable1> {
   var zor;
   @override
   void initState() {
+
     zor = box.read("time");
     sayi = c.difference2.toInt();
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -48,6 +47,10 @@ class _DataTable1 extends State<DataTable1> {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: AppBar(
+                actions: [ElevatedButton(onPressed: (){
+                  print(Jiffy().date);
+                  print(Jiffy().daysInMonth);
+                }, child: Text(""))],
                 leading: IconButton(onPressed: () {    Navigator.pop(context);
                 }, icon: Icon(Icons.chevron_left, size: 30,),),
                 elevation: 0,
@@ -109,7 +112,7 @@ class _DataTable1 extends State<DataTable1> {
               ],
               rows:
               List<DataRow>.generate(
-                  40,
+               Jiffy().month == 12 ? Jiffy().daysInMonth-Jiffy().date + 1 : 30,
                       (index) => DataRow(
                         selected: true,
                           cells: [

@@ -30,6 +30,7 @@ class Controller extends GetxController {
   var hikmetliSozler = "".obs;
   var duration ;
   var zikrCounter = 0;
+  var isJumah = false.obs;
 
 
 

@@ -443,6 +443,24 @@ class _BodyState extends State<Body> {
           // colors();
 
         }
+        else if (teheccud!.isAfter(DateTime.now())) {
+          circularPrName = "Təhəccüd";
+          circularPrPmName = "vaxtına";
+          circularPrTime = teheccud!.difference(now);
+          var difPrToPr = teheccud!.difference(geceyarisi!).inMinutes;
+          var difPrToNow = teheccud!.difference(now).inMinutes;
+          percent = 1 - difPrToNow / difPrToPr.toDouble();
+          c.globalTimeName = "Təhəccüd".obs;
+
+          c.globalTimeTime =
+              "${zor['${c.difference2}']['extraTime']['teheccud']}".obs;
+
+          // var difPrToPr = geceyarisi!.difference(isasani!).inMinutes;
+          // var difPrToNow = geceyarisi!.difference(now).inMinutes;
+          // percent = (1-  difPrToNow/difPrToPr.toDouble());
+          // colors();
+
+        }
       });
     });
 
@@ -1766,7 +1784,7 @@ class _BodyState extends State<Body> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: CircularProgressIndicator(
-                                color: Colors.white,
+                                   color: Constants.primaryColor.withOpacity(.3),
                               ),
                             ),
                           )

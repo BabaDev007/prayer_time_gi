@@ -51,6 +51,7 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
       var response = await http.get(url);
       var json = response.body;
       var jsonData = jsonDecode(utf8.decode(json.runes.toList()).toString());
+      print(response.statusCode);
       if (response.statusCode == 200) {
         currentTime = jsonData["data"];
         box.write("time", currentTime);

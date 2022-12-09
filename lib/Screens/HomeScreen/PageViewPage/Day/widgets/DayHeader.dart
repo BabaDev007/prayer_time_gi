@@ -161,32 +161,47 @@ GetStorage box = GetStorage();
        print("percent ${percent}");
         now = DateTime.now();
 
-       if (teheccud!.isAfter(DateTime.now()) &&
-           imsak!.isAfter(DateTime.now())) {
-         circularPrName = "Təhəccüd";
-         circularPrPmName = "vaxtına";
-         circularPrTime = teheccud!.difference(now);
-         var difPrToPr = teheccud!.difference(geceyarisi!).inMinutes;
-         var difPrToNow = teheccud!.difference(now).inMinutes;
-         percent = 1 - difPrToNow / difPrToPr.toDouble();
-         c.globalTimeName = "Təhəccüd".obs;
-         c.globalTimeTime =
-             "${zor['${c.difference2}']['extraTime']['teheccud']}".obs;
-         colors();
-       }
-       if (teheccud!.isBefore(DateTime.now()) &&
-            imsak!.isAfter(DateTime.now())) {
-          circularPrName = "İmsak";
-          circularPrPmName = "vaxtına";
-          circularPrTime = imsak!.difference(now);
-          var difPrToPr = imsak!.difference(teheccud!).inMinutes;
-          var difPrToNow = imsak!.difference(now).inMinutes;
-          percent = 1 - difPrToNow / difPrToPr.toDouble();
-          c.globalTimeName = "Sübh".obs;
-          c.globalTimeTime =
-              "${zor['${c.difference2}']['baseTime']['sabah']}".obs;
-          colors();
-        } else if (imsak!.isBefore(DateTime.now()) &&
+         if (geceyarisi!.isBefore(DateTime.now())) {
+        circularPrName = "Təhəccüd";
+        circularPrPmName = "vaxtına";
+        circularPrTime = teheccud!.difference(now)+Duration(hours: 24);
+        var difPrToPr = teheccud!.difference(geceyarisi!).inMinutes;
+        var difPrToNow = teheccud!.difference(now).inMinutes;
+        percent = 1 - difPrToNow / difPrToPr.toDouble();
+        c.globalTimeName = "Təhəccüd".obs;
+
+        c.globalTimeTime =
+        "${zor['${c.difference2}']['extraTime']['teheccud']}".obs;
+        colors();
+           // var difPrToPr = geceyarisi!.difference(isasani!).inMinutes;
+        // var difPrToNow = geceyarisi!.difference(now).inMinutes;
+        // percent = (1-  difPrToNow/difPrToPr.toDouble());
+        // colors();
+        c.isJumah = false as RxBool;
+
+         }
+        else if (teheccud!.isAfter(DateTime.now())) {
+        circularPrName = "Təhəccüd";
+        circularPrPmName = "vaxtına";
+        circularPrTime = teheccud!.difference(now);
+        var difPrToPr = teheccud!.difference(geceyarisi!).inMinutes+1440;
+        var difPrToNow = teheccud!.difference(now).inMinutes;
+        percent = 1 - difPrToNow / difPrToPr.toDouble();
+        c.globalTimeName = "Təhəccüd".obs;
+
+        c.globalTimeTime =
+        "${zor['${c.difference2}']['extraTime']['teheccud']}".obs;
+        colors();
+
+           // var difPrToPr = geceyarisi!.difference(isasani!).inMinutes;
+        // var difPrToNow = geceyarisi!.difference(now).inMinutes;
+        // percent = (1-  difPrToNow/difPrToPr.toDouble());
+        // colors();
+        c.isJumah = true as RxBool;
+
+         }
+
+      else if (imsak!.isBefore(DateTime.now()) &&
             subh!.isAfter(DateTime.now())) {
           circularPrName = "Sübh";
           circularPrPmName = "namazına";
@@ -197,6 +212,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Sübh".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['sabah']}".obs;
+          c.isJumah = true as RxBool;
 
           colors();
         } else if (subh!.isBefore(DateTime.now()) &&
@@ -210,6 +226,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Günəş".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['gunes']}".obs;
+          c.isJumah = true as RxBool;
 
           colors();
         }
@@ -225,6 +242,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Zöhr".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['gunorta']}".obs;
+          c.isJumah = true as RxBool;
 
           colors();
         } else if (zohr!.isBefore(DateTime.now()) &&
@@ -239,6 +257,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Əsr".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['ikindi']}".obs;
+          c.isJumah = true as RxBool;
 
           colors();
         }
@@ -253,6 +272,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Axşam".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['axsam']}".obs;
+          c.isJumah = true as RxBool;
 
           colors();
         }
@@ -269,6 +289,7 @@ GetStorage box = GetStorage();
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['yatsi']}".obs;
 
+          c.isJumah = false as RxBool;
           colors();
         }
         else if (yatsi!.isBefore(DateTime.now())) {
@@ -282,6 +303,7 @@ GetStorage box = GetStorage();
           c.globalTimeTime =
               "${zor['${c.difference2}']['extraTime']['midnight']}".obs;
 
+          c.isJumah = false as RxBool;
           colors();
         }
 
