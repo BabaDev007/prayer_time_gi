@@ -17,6 +17,7 @@ class Video {
       title: snippet['title'],
       thumbnailUrl: snippet['thumbnails']['high']['url'],
       channelTitle: snippet['channelTitle'],
+
     );
   }
 }

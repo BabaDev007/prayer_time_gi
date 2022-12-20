@@ -47,7 +47,7 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
       "https://prayer-time-ws.herokuapp.com/api/dates/json/1.0/allDataYearly?indexOfCity=1425");
   var isIntroUpdated = false;
   Future<void> getData() async {
-    if (box.read("time") == null) {
+    if (box.read("time") == null || (box.read("yearOfUpdate")!=DateTime.now().year)) {
       var response = await http.get(url);
       var json = response.body;
       var jsonData = jsonDecode(utf8.decode(json.runes.toList()).toString());
@@ -55,6 +55,7 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
       if (response.statusCode == 200) {
         currentTime = jsonData["data"];
         box.write("time", currentTime);
+        box.write("yearOfUpdate", DateTime.now().year);
       }
     }
   }
@@ -91,6 +92,7 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
   @override
   void initState() {
     super.initState();
+
     getHikmet();
 
     _controller =

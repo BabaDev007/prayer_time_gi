@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:prayer_time_gi/Constants.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;

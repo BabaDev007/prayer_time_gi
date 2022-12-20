@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/HomeScreenBody/HomeScreenBody.dart';
 import 'package:prayer_time_gi/Screens/HomeScreen/PageViewPage/PageViewPage.dart';
+import 'package:prayer_time_gi/Screens/HomeScreen/splashscreen.dart';
 import 'package:prayer_time_gi/Screens/MenuPages/ZikirMatik/ZikirMatik.dart';
 import 'package:prayer_time_gi/Screens/Settings/SettingPage.dart';
 import '../../Constants.dart';
@@ -16,6 +17,8 @@ import '../MenuPages/DataTable/DataTable.dart';
 import 'package:http/http.dart' as http;
 import 'DraverPage.dart';
 import 'package:get_storage/get_storage.dart';
+
+import 'SplashError.dart';
 class HomeScreen extends StatefulWidget  {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -40,7 +43,6 @@ bool isLoading = false;
       box.write("time", currentTime);
 
 
-
     }
     }
 
@@ -50,8 +52,16 @@ bool isLoading = false;
   List weekday = ["Bzr. ertəsi", "Çər. axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə", "Bazar"];
 
   String cityname = "Bakı";
+
+  Future<void>yearControl()async{
+    if(box.read("yearOfUpdate")!=DateTime.now().year){
+      await box.write("time", null);
+      Navigator.pushReplacement(context, PageTransition(SplashError()));
+    }
+  }
   @override
   void initState() {
+    yearControl();
     zor = box.read("time");
     date =  "${zor['${c
         .difference}']['baseTime']["todayHijrahDate"]}";

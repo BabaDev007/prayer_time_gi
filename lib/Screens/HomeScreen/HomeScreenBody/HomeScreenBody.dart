@@ -145,17 +145,7 @@ class _BodyState extends State<Body> {
   var circularPrTime;
   Timer? mytimer;
   var percent;
-  void colors() {
-    if (percent > 0.40) {
-      color = Colors.yellow;
-    } else if (percent > 0.50) {
-      color = Colors.redAccent;
-    } else if (percent > 0.25) {
-      color = Colors.greenAccent;
-    } else {
-      color = Colors.white;
-    }
-  }
+
 
   var dataTime;
   @override
@@ -254,7 +244,6 @@ class _BodyState extends State<Body> {
           c.globalTimeName = "Sübh".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['sabah']}".obs;
-          colors();
         } else if (imsak!.isBefore(DateTime.now()) &&
             subh!.isAfter(DateTime.now())) {
           circularPrName = "Sübh";
@@ -267,7 +256,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['sabah']}".obs;
 
-          colors();
         } else if (subh!.isBefore(DateTime.now()) &&
             gunes!.isAfter(DateTime.now())) {
           circularPrName = "Günəş";
@@ -280,7 +268,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['gunes']}".obs;
 
-          colors();
         } else if (gunes!.isBefore(DateTime.now()) &&
             ishrak!.isAfter(DateTime.now())) {
           circularPrName = "İşrak";
@@ -293,7 +280,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['gunorta']}".obs;
 
-          colors();
         } else if (ishrak!.isBefore(DateTime.now()) &&
             kerahet!.isAfter(DateTime.now())) {
           circularPrName = "Kərahət";
@@ -306,7 +292,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['gunorta']}".obs;
 
-          colors();
         } else if (kerahet!.isBefore(DateTime.now()) &&
             zohr!.isAfter(DateTime.now())) {
           circularPrName = "Zöhr";
@@ -319,7 +304,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['gunorta']}".obs;
 
-          colors();
         } else if (zohr!.isBefore(DateTime.now()) &&
             ikindi!.isAfter(DateTime.now())) {
           circularPrName = "Əsr";
@@ -333,7 +317,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['ikindi']}".obs;
 
-          colors();
         } else if (ikindi!.isBefore(DateTime.now()) &&
             asrisani!.isAfter(DateTime.now())) {
           circularPrName = "Əsr-i Sani";
@@ -346,7 +329,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['axsam']}".obs;
 
-          colors();
         } else if (asrisani!.isBefore(DateTime.now()) &&
             isfirar!.isAfter(DateTime.now())) {
           circularPrName = "İsfirar";
@@ -359,7 +341,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['axsam']}".obs;
 
-          colors();
         } else if (isfirar!.isBefore(DateTime.now()) &&
             axsam!.isAfter(DateTime.now())) {
           circularPrName = "Axşam";
@@ -372,7 +353,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['axsam']}".obs;
 
-          colors();
         } else if (axsam!.isBefore(DateTime.now()) &&
             istibak!.isAfter(DateTime.now())) {
           circularPrName = "İştibak";
@@ -385,7 +365,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['yatsi']}".obs;
 
-          colors();
         } else if (istibak!.isBefore(DateTime.now()) &&
             yatsi!.isAfter(DateTime.now())) {
           circularPrName = "İşa";
@@ -398,7 +377,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['yatsi']}".obs;
 
-          colors();
         } else if (yatsi!.isBefore(DateTime.now()) &&
             isasani!.isAfter(DateTime.now())) {
           circularPrName = "İşa-i Sani";
@@ -409,9 +387,8 @@ class _BodyState extends State<Body> {
           percent = 1 - difPrToNow / difPrToPr.toDouble();
           c.globalTimeName = "Gecə yarısı".obs;
           c.globalTimeTime =
-              "${zor['${c.difference2}']['baseTime']['midnight']}".obs;
+              "${zor['${c.difference2}']['extraTime']['midnight']}".obs;
 
-          colors();
         } else if (isasani!.isBefore(DateTime.now())&&
             geceyarisi!.isAfter(DateTime.now())) {
           circularPrName = "Gecə yarısına";
@@ -424,7 +401,6 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['extraTime']['midnight']}".obs;
 
-          colors();
         } else if (geceyarisi!.isBefore(DateTime.now())) {
           circularPrName = "Təhəccüd";
           circularPrPmName = "vaxtına";
@@ -455,9 +431,7 @@ class _BodyState extends State<Body> {
           c.globalTimeTime =
               "${zor['${c.difference2}']['extraTime']['teheccud']}".obs;
 
-          // var difPrToPr = geceyarisi!.difference(isasani!).inMinutes;
-          // var difPrToNow = geceyarisi!.difference(now).inMinutes;
-          // percent = (1-  difPrToNow/difPrToPr.toDouble());
+
           // colors();
 
         }

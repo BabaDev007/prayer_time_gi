@@ -47,12 +47,7 @@ class _DataTable1 extends State<DataTable1> {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: AppBar(
-                actions: [ElevatedButton(onPressed: (){
-                  print(Jiffy().date);
-                  print(Jiffy().daysInMonth);
-                }, child: Text(""))],
-                leading: IconButton(onPressed: () {    Navigator.pop(context);
-                }, icon: Icon(Icons.chevron_left, size: 30,),),
+
                 elevation: 0,
 
                 shape: RoundedRectangleBorder(

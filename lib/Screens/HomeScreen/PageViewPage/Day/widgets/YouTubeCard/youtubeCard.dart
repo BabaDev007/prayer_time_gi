@@ -11,7 +11,7 @@ import '../../../../../MenuPages/Books/PdfViewer.dart';
 import 'models/channel_model.dart';
 import 'models/video_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:share/share.dart';
 class SohbetCard extends StatefulWidget {
   @override
   State<SohbetCard> createState() => _SohbetCardState();
@@ -264,7 +264,10 @@ class _SohbetCardState extends State<SohbetCard> {
                                           .withOpacity(.5)),
                                 )),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () async {
+
+                                  await Share.share("https://www.youtube.com/watch?v=${video!.id}");
+                                },
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,

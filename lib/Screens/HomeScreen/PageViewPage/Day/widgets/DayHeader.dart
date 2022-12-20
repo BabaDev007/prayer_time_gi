@@ -12,9 +12,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
-import 'package:flutter_carousel_slider/carousel_slider.dart';
-import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
-import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
+
 
 
 class DayHeader extends StatefulWidget {
@@ -76,10 +74,20 @@ class _DayHeaderState extends State<DayHeader> {
       color = Colors.yellow;
     }
     else if (percent > 0.8) {
-      color = Colors.redAccent;
+      color = Colors.red.shade300;
+    }
+    else if (percent > 0.9) {
+      color = Colors.red.shade500;
     }
     else if ( percent < 0.4) {
+      color = Colors.lime;
+    }else if ( percent < 0.3) {
+      color = Colors.lightGreenAccent;
+    }else if ( percent < 0.2) {
       color = Colors.greenAccent;
+    }
+    else if ( percent < 0.1) {
+      color = Colors.green;
     }
 
   }
@@ -177,7 +185,7 @@ GetStorage box = GetStorage();
         // var difPrToNow = geceyarisi!.difference(now).inMinutes;
         // percent = (1-  difPrToNow/difPrToPr.toDouble());
         // colors();
-        c.isJumah = false as RxBool;
+        box.write("isJumah", false);
 
          }
         else if (teheccud!.isAfter(DateTime.now())) {
@@ -197,7 +205,7 @@ GetStorage box = GetStorage();
         // var difPrToNow = geceyarisi!.difference(now).inMinutes;
         // percent = (1-  difPrToNow/difPrToPr.toDouble());
         // colors();
-        c.isJumah = true as RxBool;
+        box.write("isJumah", true);
 
          }
 
@@ -212,7 +220,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Sübh".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['sabah']}".obs;
-          c.isJumah = true as RxBool;
+          box.write("isJumah", true);
 
           colors();
         } else if (subh!.isBefore(DateTime.now()) &&
@@ -226,7 +234,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Günəş".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['gunes']}".obs;
-          c.isJumah = true as RxBool;
+          box.write("isJumah", true);
 
           colors();
         }
@@ -242,7 +250,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Zöhr".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['gunorta']}".obs;
-          c.isJumah = true as RxBool;
+          box.write("isJumah", true);
 
           colors();
         } else if (zohr!.isBefore(DateTime.now()) &&
@@ -257,7 +265,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Əsr".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['ikindi']}".obs;
-          c.isJumah = true as RxBool;
+          box.write("isJumah", true);
 
           colors();
         }
@@ -272,7 +280,7 @@ GetStorage box = GetStorage();
           c.globalTimeName = "Axşam".obs;
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['axsam']}".obs;
-          c.isJumah = true as RxBool;
+          box.write("isJumah", true);
 
           colors();
         }
@@ -289,7 +297,7 @@ GetStorage box = GetStorage();
           c.globalTimeTime =
               "${zor['${c.difference2}']['baseTime']['yatsi']}".obs;
 
-          c.isJumah = false as RxBool;
+          box.write("isJumah", false);
           colors();
         }
         else if (yatsi!.isBefore(DateTime.now())) {
@@ -303,7 +311,7 @@ GetStorage box = GetStorage();
           c.globalTimeTime =
               "${zor['${c.difference2}']['extraTime']['midnight']}".obs;
 
-          c.isJumah = false as RxBool;
+          box.write("isJumah", false);
           colors();
         }
 

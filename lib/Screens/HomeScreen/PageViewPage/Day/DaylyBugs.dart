@@ -107,6 +107,7 @@ class _DayState extends State<Day> {
   ];
   var noOfWeek = 1;
 
+
   @override
   void initState() {
     _initChannel();
@@ -267,7 +268,7 @@ class _DayState extends State<Day> {
                 KufrCard(),
                 Visibility(visible: c.isShowBook.value, child: BookCard()),
                 Visibility(
-                  visible: (noOfWeek == 5) && (c.isJumah.isTrue),
+                  visible: (noOfWeek == 5) && (box.read("isJumah")?? false),
                     child:
                 JumahCard()
 
